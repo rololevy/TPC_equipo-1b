@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|c:\\users\\administrator\\desktop\\repo git\\equipo1b-tpc\\equipo1b-tpc\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\equipo1b-tpc\\masterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\masterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.aspx",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Login.aspx",
+              "RelativeDocumentMoniker": "Equipo1b-TPC\\Login.aspx",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Login.aspx",
+              "RelativeToolTip": "Equipo1b-TPC\\Login.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-10-22T02:12:05.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Masterpage.Master",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Masterpage.Master",
+              "RelativeDocumentMoniker": "Equipo1b-TPC\\Masterpage.Master",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Masterpage.Master",
+              "RelativeToolTip": "Equipo1b-TPC\\Masterpage.Master",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-10-22T02:09:24.554Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
