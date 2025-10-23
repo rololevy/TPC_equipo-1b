@@ -13,7 +13,7 @@
                 <asp:Label ID="lblPassword" runat="server" CssClass="form-label" Text="Contraseña"></asp:Label>
                 <asp:TextBox ID="txtPassword" type="password" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
-            <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary" Text="Iniciar Sesion" />
+            <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary" Text="Iniciar Sesion" OnClick="btnLogin_Click"  />
         </div>
     </div>
 

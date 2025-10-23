@@ -1,0 +1,30 @@
+﻿.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    width: 100%; /*la imagen ocupa todo el ancho de la card*/
+    height: 200px; /*mismo alto para todas las imagenes*/
+    object-fit: contain; /*evita que se corten las imagenes*/
+    padding: 15px; /*espacio alrededor de la imagen*/
+   
+}
+
+.card-group {
+    display: flex; /*activa el modelo flexbox*/
+    justify-content: center; /*centra horizontalemnte las cards*/
+    align-items: flex-start; /*alinea las cards en la parte superior*/
+    gap: 20px; /*espacio entre cards*/
+    margin-top: 50px; /*espacio entre la navbar*/
+    flex-wrap: wrap;
+    padding-left: 100px; 
+    padding-right: 100px;
+}
+
+.card:hover{
+    transform:scale(1.05); /*agrandamiento al pasar el mouse*/
+    box-shadow:0 4px 8px rgba(0, 0, 0, 0.15);  /*sombra*/
+}
+body {
+    background-color:grey; /*color de fondo*/
+    margin: 0;
+    padding: 0;
+}

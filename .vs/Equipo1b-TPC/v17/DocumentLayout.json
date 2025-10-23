@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\equipo1b-tpc\\masterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\masterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|c:\\users\\administrator\\desktop\\repo git\\equipo1b-tpc\\equipo1b-tpc\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\equipo1b-tpc\\masterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\masterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|c:\\users\\administrator\\desktop\\repo git\\equipo1b-tpc\\equipo1b-tpc\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|c:\\users\\administrator\\desktop\\repo git\\equipo1b-tpc\\equipo1b-tpc\\home.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\home.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|c:\\users\\administrator\\desktop\\repo git\\equipo1b-tpc\\equipo1b-tpc\\content\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\content\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,11 +30,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
+              "Title": "styles.css",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\content\\styles.css",
+              "RelativeDocumentMoniker": "Equipo1b-TPC\\content\\styles.css",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\content\\styles.css",
+              "RelativeToolTip": "Equipo1b-TPC\\content\\styles.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-10-22T22:58:10.08Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Home.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Home.aspx.cs",
+              "RelativeDocumentMoniker": "Equipo1b-TPC\\Home.aspx.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Home.aspx.cs",
+              "RelativeToolTip": "Equipo1b-TPC\\Home.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAtwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-22T22:50:41.133Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Home.aspx",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Home.aspx",
+              "RelativeDocumentMoniker": "Equipo1b-TPC\\Home.aspx",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Home.aspx",
+              "RelativeToolTip": "Equipo1b-TPC\\Home.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-10-22T22:16:51.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Login.aspx",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Login.aspx",
               "RelativeDocumentMoniker": "Equipo1b-TPC\\Login.aspx",
@@ -35,7 +86,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Masterpage.Master",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Masterpage.Master",
               "RelativeDocumentMoniker": "Equipo1b-TPC\\Masterpage.Master",
