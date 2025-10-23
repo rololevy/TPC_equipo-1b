@@ -16,7 +16,7 @@ namespace Equipo1b_TPC
 
         protected void btnVentas_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("ventas.aspx");
         }
 
         protected void btnStock_Click(object sender, EventArgs e)
