@@ -11,10 +11,27 @@ namespace Equipo1b_TPC
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                gvVacia();
+            }
+        }
+        private void gvVacia()
+        {
+            gvProductos.DataSource = new List<object>();
+            gvProductos.DataBind();
+        }
+        protected void txtFiltrarClientes_TextChanged(object sender, EventArgs e)
+        {
 
         }
 
-        protected void txtFiltrarClientes_TextChanged(object sender, EventArgs e)
+        protected void btnAgregarCliente_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtIdProducto_TextChanged(object sender, EventArgs e)
         {
 
         }

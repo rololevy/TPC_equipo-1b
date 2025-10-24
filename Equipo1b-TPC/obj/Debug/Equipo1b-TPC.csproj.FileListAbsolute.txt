@@ -57,3 +57,5 @@ C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\obj\Debug\Equi
 C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\obj\Debug\Equipo1b.4E8BC8BC.Up2Date
 C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\obj\Debug\Equipo1b-TPC.dll
 C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\obj\Debug\Equipo1b-TPC.pdb
+C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\bin\dominio.dll
+C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\bin\dominio.pdb
