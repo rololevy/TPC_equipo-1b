@@ -102,9 +102,9 @@ El sistema contará con **inicio de sesión mediante usuario y contraseña**, di
 ## 👥 Equipo de Desarrollo
 
 **TPC - Programación 3 - UTN FRGP**  
-**Equipo 1B**
-Orlando Aguilera - rololevy(github)
-Albano Suarez - albazeraw(github)
+**Equipo 1B**  
+Orlando Aguilera - [@rololevy](https://github.com/rololevy)  
+Albano Suárez - [@albazeraw](https://github.com/albazeraw)
 
 ---
 
