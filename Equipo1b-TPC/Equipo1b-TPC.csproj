@@ -71,6 +71,7 @@
     <Content Include="Home.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Marcas.aspx" />
     <Content Include="Web.config" />
     <Content Include="Ventas.aspx" />
   </ItemGroup>
@@ -91,6 +92,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Marcas.aspx.cs">
+      <DependentUpon>Marcas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Marcas.aspx.designer.cs">
+      <DependentUpon>Marcas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Masterpage.Master.cs">
       <DependentUpon>Masterpage.Master</DependentUpon>
@@ -123,9 +131,17 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\datos\datos.csproj">
+      <Project>{fee01817-24a2-4a71-9a68-5fa767d00a6c}</Project>
+      <Name>datos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\dominio\dominio.csproj">
       <Project>{87d77751-2709-40fb-bde7-feb57cdb862b}</Project>
       <Name>dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{612a5dd9-a573-4e22-a4bf-53155f1907e3}</Project>
+      <Name>Negocio</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
