@@ -74,6 +74,7 @@
     <Content Include="Marcas.aspx" />
     <Content Include="Web.config" />
     <Content Include="Ventas.aspx" />
+    <Content Include="AgregarCliente.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Home.aspx.cs">
@@ -114,6 +115,13 @@
     </Compile>
     <Compile Include="Ventas.aspx.designer.cs">
       <DependentUpon>Ventas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarCliente.aspx.cs">
+      <DependentUpon>AgregarCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarCliente.aspx.designer.cs">
+      <DependentUpon>AgregarCliente.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

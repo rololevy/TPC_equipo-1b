@@ -59,3 +59,7 @@ C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\obj\Debug\Equi
 C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\obj\Debug\Equipo1b-TPC.pdb
 C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\bin\dominio.dll
 C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\bin\dominio.pdb
+C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\bin\datos.dll
+C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\bin\Negocio.dll
+C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\bin\datos.pdb
+C:\Users\Administrator\Desktop\repo git\Equipo1b-TPC\Equipo1b-TPC\bin\Negocio.pdb

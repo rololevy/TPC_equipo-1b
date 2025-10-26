@@ -28,7 +28,7 @@ namespace Equipo1b_TPC
 
         protected void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("agregarCliente.aspx");
         }
 
         protected void txtIdProducto_TextChanged(object sender, EventArgs e)

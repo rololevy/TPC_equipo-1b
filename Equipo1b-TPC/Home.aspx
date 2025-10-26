@@ -8,7 +8,7 @@
             <asp:Image ID="imgVenta" runat="server" CssClass="card-img-top" ImageUrl="https://www.ceupe.com/images/easyblog_articles/3939/b2ap3_amp_venta.png" AlternateText="Ventas" />
             <div class="card-body">
                 <h5 class="card-title">Ventas</h5>
-                <p class="card-text">Ingreso al sistema de venbtas.</p>
+                <p class="card-text">Ingreso al sistema de ventas.</p>
                 <div class="d-flex justify-content-center">
                     <asp:Button ID="btnVentas" OnClick="btnVentas_Click" CssClass="btn btn-primary" runat="server" Text="Ir a ventas" />
                 </div>
