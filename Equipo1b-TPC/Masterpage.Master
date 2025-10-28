@@ -26,7 +26,10 @@
                             <a class="nav-link active" aria-current="page" href="Ventas.aspx">Ventas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Stock</a>
+                            <a class="nav-link" href="Stock.aspx">Stock</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Categorias.aspx">Categorías</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Marcas.aspx">Marcas</a>

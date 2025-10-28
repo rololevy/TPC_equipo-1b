@@ -21,7 +21,7 @@ namespace Equipo1b_TPC
 
         protected void btnStock_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Stock.aspx");
         }
 
         protected void btnProvedores_Click(object sender, EventArgs e)

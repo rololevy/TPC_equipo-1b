@@ -1,21 +1,22 @@
-<%@ Page Title="Gestión de Marcas" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="Marcas.aspx.cs" Inherits="Equipo1b_TPC.Marcas" %>
+<%@ Page Title="Gestión de Categorías" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="Categorias.aspx.cs" Inherits="Equipo1b_TPC.Categorias" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container mt-4">
-        <h2>Gestión de Marcas</h2>
+        <h2>Gestión de Categorías</h2>
         
         <div class="row mt-3">
             <div class="col-12">
-                <asp:GridView ID="dgvMarcas" runat="server" 
+                <asp:GridView ID="dgvCategorias" runat="server" 
                     CssClass="table table-striped table-bordered" 
                     AutoGenerateColumns="false"
                     DataKeyNames="Id"
-                    OnSelectedIndexChanged="dgvMarcas_SelectedIndexChanged">
+                    OnSelectedIndexChanged="dgvCategorias_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="ID" />
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                        <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
                         <asp:CheckBoxField DataField="Activo" HeaderText="Activo" />
                         <asp:CommandField ShowSelectButton="true" SelectText="Editar" HeaderText="Acciones" />
                     </Columns>
@@ -27,14 +28,19 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Agregar/Modificar Marca</h5>
+                        <h5>Agregar/Modificar Categoría</h5>
                     </div>
                     <div class="card-body">
-                        <asp:HiddenField ID="hfIdMarca" runat="server" Value="0" />
+                        <asp:HiddenField ID="hfIdCategoria" runat="server" Value="0" />
                         
                         <div class="mb-3">
                             <asp:Label ID="lblNombre" runat="server" Text="Nombre:" CssClass="form-label"></asp:Label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                        </div>
+
+                        <div class="mb-3">
+                            <asp:Label ID="lblDescripcion" runat="server" Text="Descripción:" CssClass="form-label"></asp:Label>
+                            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" MaxLength="500"></asp:TextBox>
                         </div>
 
                         <div class="mb-3 form-check">
