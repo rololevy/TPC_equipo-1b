@@ -11,44 +11,44 @@ namespace Equipo1b_TPC
 {
 
 
-    public partial class WebForm1
+    public partial class WebForm3
     {
 
         /// <summary>
-        /// Control upClientes.
+        /// Control upProvedores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upClientes;
+        protected global::System.Web.UI.UpdatePanel upProvedores;
 
         /// <summary>
-        /// Control txtFiltrarClientes.
+        /// Control txtFiltrarProvedores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltrarClientes;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltrarProvedores;
 
         /// <summary>
-        /// Control ddlClientes.
+        /// Control ddlProvedores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlClientes;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvedores;
 
         /// <summary>
-        /// Control btnAgregarCliente.
+        /// Control btnAgregarProvedores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarCliente;
+        protected global::System.Web.UI.WebControls.Button btnAgregarProvedores;
 
         /// <summary>
         /// Control gvProductos.
@@ -78,13 +78,13 @@ namespace Equipo1b_TPC
         protected global::System.Web.UI.WebControls.DropDownList ddlProductos;
 
         /// <summary>
-        /// Control chkFiltro.
+        /// Control chkFiltros.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkFiltro;
+        protected global::System.Web.UI.WebControls.CheckBox chkFiltros;
 
         /// <summary>
         /// Control btnAgregarProducto.

@@ -26,7 +26,7 @@ namespace Equipo1b_TPC
 
         protected void btnProvedores_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("provedores.aspx");
         }
     }
 }

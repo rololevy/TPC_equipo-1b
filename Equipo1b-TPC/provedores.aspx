@@ -1,23 +1,23 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="Ventas.aspx.cs" Inherits="Equipo1b_TPC.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="provedores.aspx.cs" Inherits="Equipo1b_TPC.WebForm3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:UpdatePanel ID="upClientes" runat="server">
+    <asp:UpdatePanel ID="upProvedores" runat="server">
         <ContentTemplate>
             <div class="container mt-4">
                 <div class="card-grid p-4 border-1 text-white" style="min-width: 400px; background: linear-gradient(135deg, #0d6efd, #5fa8ff); border-radius: 15px;">
                     <div class="row justify-content-center align-items-center">
                         <div class="col-5">
-                            <asp:TextBox ID="txtFiltrarClientes" AutoPostBack="true" OnTextChanged="txtFiltrarClientes_TextChanged" placeHolder="Buscar Cliente ......" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtFiltrarProvedores" AutoPostBack="true" OnTextChanged="txtFiltrarProvedores_TextChanged" placeHolder="Buscar Provedores ......" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                         <div class="col-5">
-                            <asp:DropDownList ID="ddlClientes" CssClass="form-select" runat="server">
-                                <asp:ListItem Text="Seleccione un cliente existente....." Value=""></asp:ListItem>
+                            <asp:DropDownList ID="ddlProvedores" placeHolder="Seleccione un provedor existente" CssClass="form-select" runat="server">
+                                <asp:ListItem Text="Seleccione un provedor........" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </div>
                         <div class="col-2">
-                            <asp:Button ID="btnAgregarCliente" runat="server" CssClass="btn btn-primary" OnClick="btnAgregarCliente_Click" Text="Agregar Nuevo cliente" />
+                            <asp:Button ID="btnAgregarProvedores" runat="server" CssClass="btn btn-primary" OnClick="btnAgregarProvedores_Click" Text="Agregar Nuevo Provedor" />
                         </div>
                     </div>
                     <div class="row justify-content-center align-items-start mt-3">
@@ -39,18 +39,18 @@
                         </div>
                         <div class="col-5">
                             <asp:DropDownList ID="ddlProductos" CssClass="form-select" runat="server">
-                                <asp:ListItem Text="Seleccione un Producto....." Value=""></asp:ListItem>
+                                <asp:ListItem Text="Seleccione un Producto........" Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </div>
                         <div class="col-1">
-                            <asp:CheckBox ID="chkFiltro" CssClass="form-check" Text="Filtros" AutoPostBack="true" OnCheckedChanged="chkFiltro_CheckedChanged" runat="server" />
+                            <asp:CheckBox ID="chkFiltros" AutoPostBack="true" CssClass="form-check" Text="Filtros" OnCheckedChanged="chkFiltros_CheckedChanged" runat="server" />
                         </div>
                         <div class="col-2">
-                            <asp:Button ID="btnAgregarProducto" CssClass="btn btn-primary" runat="server" Text="Sumar producto" />
+                            <asp:Button ID="btnAgregarProducto" CssClass="btn btn-primary" runat="server" Text="sumar producto" />
                         </div>
                     </div>
                     <div>
-                        <%if (filtroAvanzado)
+                        <%if(filtroAvanzado)
                             {%>
                         <div class="row justify-content-center align-items-center mt-2">
                             <div class="col-6">
@@ -63,12 +63,12 @@
                                     <asp:ListItem Text="Seleccione una categoria para filtrar" Value=""></asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-                            <%  }%>
+                          <%  }%>
                         </div>
+
                     </div>
                 </div>
-            </div>
+            </div
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
-

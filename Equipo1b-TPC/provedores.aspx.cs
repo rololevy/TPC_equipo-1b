@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; 
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Equipo1b_TPC
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class WebForm3 : System.Web.UI.Page
     {
         public bool filtroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
@@ -17,19 +17,20 @@ namespace Equipo1b_TPC
                 gvVacia();
             }
         }
+
         private void gvVacia()
         {
             gvProductos.DataSource = new List<object>();
             gvProductos.DataBind();
         }
-        protected void txtFiltrarClientes_TextChanged(object sender, EventArgs e)
+        protected void txtFiltrarProvedores_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnAgregarCliente_Click(object sender, EventArgs e)
+        protected void btnAgregarProvedores_Click(object sender, EventArgs e)
         {
-            Response.Redirect("agregarCliente.aspx");
+            Response.Redirect("agregarProvedor.aspx");
         }
 
         protected void txtIdProducto_TextChanged(object sender, EventArgs e)
@@ -37,10 +38,10 @@ namespace Equipo1b_TPC
 
         }
 
-        protected void chkFiltro_CheckedChanged(object sender, EventArgs e)
+        protected void chkFiltros_CheckedChanged(object sender, EventArgs e)
         {
-            filtroAvanzado = chkFiltro.Checked;
-
+            filtroAvanzado = chkFiltros.Checked;
+            
         }
     }
 }
