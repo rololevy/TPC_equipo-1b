@@ -11,97 +11,70 @@ namespace Equipo1b_TPC
 {
 
 
-    public partial class Home
+    public partial class gestionArticulos
     {
 
         /// <summary>
-        /// Control imgVenta.
+        /// Control imgGestionProductos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgVenta;
+        protected global::System.Web.UI.WebControls.Image imgGestionProductos;
 
         /// <summary>
-        /// Control btnVentas.
+        /// Control btnAgregarProductos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVentas;
+        protected global::System.Web.UI.WebControls.Button btnAgregarProductos;
 
         /// <summary>
-        /// Control imgStock.
+        /// Control btnModificarProductos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgStock;
+        protected global::System.Web.UI.WebControls.Button btnModificarProductos;
 
         /// <summary>
-        /// Control btnStock.
+        /// Control imgGestionCategorias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnStock;
+        protected global::System.Web.UI.WebControls.Image imgGestionCategorias;
 
         /// <summary>
-        /// Control imgProvedores.
+        /// Control btnGestionCategorias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgProvedores;
+        protected global::System.Web.UI.WebControls.Button btnGestionCategorias;
 
         /// <summary>
-        /// Control btnProvedores.
+        /// Control imgMarcas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnProvedores;
+        protected global::System.Web.UI.WebControls.Image imgMarcas;
 
         /// <summary>
-        /// Control imgArticulos.
+        /// Control btnGestionMarcas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgArticulos;
-
-        /// <summary>
-        /// Control btnArticulos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnArticulos;
-
-        /// <summary>
-        /// Control imgResumenVenta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgResumenVenta;
-
-        /// <summary>
-        /// Control btnResumenVenta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnResumenVenta;
+        protected global::System.Web.UI.WebControls.Button btnGestionMarcas;
     }
 }

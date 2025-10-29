@@ -28,5 +28,11 @@ namespace Equipo1b_TPC
         {
             Response.Redirect("provedores.aspx");
         }
+
+     
+        protected void btnArticulos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("gestionProductos.aspx");
+        }
     }
 }

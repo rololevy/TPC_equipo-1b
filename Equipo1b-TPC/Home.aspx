@@ -35,4 +35,26 @@
             </div>
         </div>
     </div>
+    <div class="card-group">
+        <div class="card">
+            <asp:Image ID="imgArticulos" CssClass="card-img-top" ImageUrl="https://cdn-icons-png.flaticon.com/512/937/937486.png" AlternateText="Gestion Articulos" runat="server" />
+            <div class="card-body">
+                <h5 class="card-title">Gestion Articulos</h5>
+                <p class="card-text">Aceso a gestion de articulos,alta de nuevos articulos y modificacion tanto de articulos,categorias y marcas</p>
+                <div class="d-flex justify-content-center">
+                    <asp:Button ID="btnArticulos" CssClass="btn btn-primary" runat="server" Text="Ir a gestion de articulos" OnClick="btnArticulos_Click" />
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <asp:Image ID="imgResumenVenta" CssClass="card-img-top" ImageUrl="https://cdn-icons-png.flaticon.com/512/5070/5070804.png" AlternateText="Resumen de venta" runat="server" />
+            <div class="card-body">
+                <h5 class="card-title">Resumen de venta</h5>
+                <p class="card-text">Aceso a resumen de venta,consulta de cierre de caja medios de pago</p>
+                <div class="d-flex justify-content-center">
+                    <asp:Button ID="btnResumenVenta" CssClass="btn btn-primary" runat="server" Text="Ir a Resumen de venta"/>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>

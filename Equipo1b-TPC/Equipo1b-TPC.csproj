@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Categorias.aspx" />
     <Content Include="content\styles.css" />
+    <Content Include="gestionProductos.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Global.asax" />
@@ -77,6 +78,8 @@
     <Content Include="Web.config" />
     <Content Include="Ventas.aspx" />
     <Content Include="AgregarCliente.aspx" />
+    <Content Include="provedores.aspx" />
+    <Content Include="AgregarProvedor.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categorias.aspx.cs">
@@ -85,6 +88,13 @@
     </Compile>
     <Compile Include="Categorias.aspx.designer.cs">
       <DependentUpon>Categorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="gestionProductos.aspx.cs">
+      <DependentUpon>gestionProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gestionProductos.aspx.designer.cs">
+      <DependentUpon>gestionProductos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -138,6 +148,20 @@
     </Compile>
     <Compile Include="AgregarCliente.aspx.designer.cs">
       <DependentUpon>AgregarCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="provedores.aspx.cs">
+      <DependentUpon>provedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="provedores.aspx.designer.cs">
+      <DependentUpon>provedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarProvedor.aspx.cs">
+      <DependentUpon>AgregarProvedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarProvedor.aspx.designer.cs">
+      <DependentUpon>AgregarProvedor.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
