@@ -28,7 +28,7 @@
             <asp:Image ID="imgProvedores" CssClass="card-img-top" ImageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdsTvip-xGcAc0rXklMYadeDmDEVz49bw__Q&s" AlternateText="Provedores" runat="server" />
             <div class="card-body">
                 <h5 class="card-title">Provedores</h5>
-                <p class="card-text">Acesso a provedores realizar pedidos  y dar de alta nuevos provedores.</p>
+                <p class="card-text">Aceso a provedores realizar pedidos  y dar de alta nuevos provedores.</p>
                 <div class="d-flex justify-content-center">
                     <asp:Button ID="btnProvedores" CssClass="btn btn-primary" runat="server" Text="ir a provedores" OnClick="btnProvedores_Click" />
                 </div>
@@ -42,7 +42,8 @@
                 <h5 class="card-title">Gestion Articulos</h5>
                 <p class="card-text">Aceso a gestion de articulos,alta de nuevos articulos y modificacion tanto de articulos,categorias y marcas</p>
                 <div class="d-flex justify-content-center">
-                    <asp:Button ID="btnArticulos" CssClass="btn btn-primary" runat="server" Text="Ir a gestion de articulos" OnClick="btnArticulos_Click" />
+                    <!-- Single front-end navigation button to product management (no backend) -->
+                    <asp:Button ID="btnArticulos" CssClass="btn btn-primary" runat="server" Text="Gestión de productos" OnClientClick="window.location='GestionProductos.aspx'; return false;" />
                 </div>
             </div>
         </div>
