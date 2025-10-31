@@ -53,7 +53,7 @@
                 <h5 class="card-title">Resumen de venta</h5>
                 <p class="card-text">Aceso a resumen de venta,consulta de cierre de caja medios de pago</p>
                 <div class="d-flex justify-content-center">
-                    <asp:Button ID="btnResumenVenta" CssClass="btn btn-primary" runat="server" Text="Ir a Resumen de venta"/>
+                    <asp:Button ID="btnResumenVenta" CssClass="btn btn-primary" OnClick="btnResumenVenta_Click" runat="server" Text="Ir a Resumen de venta"/>
                 </div>
             </div>
         </div>

@@ -81,6 +81,7 @@
     <Content Include="AgregarCliente.aspx" />
     <Content Include="provedores.aspx" />
     <Content Include="AgregarProvedor.aspx" />
+    <Content Include="resumenVenta.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categorias.aspx.cs">
@@ -170,6 +171,13 @@
     </Compile>
     <Compile Include="AgregarProvedor.aspx.designer.cs">
       <DependentUpon>AgregarProvedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="resumenVenta.aspx.cs">
+      <DependentUpon>resumenVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="resumenVenta.aspx.designer.cs">
+      <DependentUpon>resumenVenta.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
