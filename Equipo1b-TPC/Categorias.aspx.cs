@@ -2,19 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using Equipo1b_TPC.Dominio;
+using Negocio;
 
 namespace Equipo1b_TPC
 {
     public partial class Categorias : System.Web.UI.Page
     {
-        //hardcodeo temporal
-        private static List<Categoria> listaCategorias = new List<Categoria>
-        {
-            new Categoria { Id = 1, Nombre = "Electrónica", Descripcion = "Dispositivos y accesorios", Activo = true },
-            new Categoria { Id = 2, Nombre = "Indumentaria", Descripcion = "Ropa y calzado", Activo = true },
-            new Categoria { Id = 3, Nombre = "Alimentos", Descripcion = "Productos comestibles", Activo = true }
-        };
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,45 +18,46 @@ namespace Equipo1b_TPC
 
         private void CargarGrilla()
         {
-            dgvCategorias.DataSource = listaCategorias;
-            dgvCategorias.DataBind();
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            try
+            {
+                List<Categoria> lista = negocio.listar();
+                dgvCategorias.DataSource = lista;
+                dgvCategorias.DataBind();
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje("Error al cargar: " + ex.Message);
+            }
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            Categoria categoria = new Categoria();
+
             try
             {
-                if (string.IsNullOrEmpty(txtNombre.Text.Trim()))
+                categoria.Nombre = txtNombre.Text.Trim();
+                categoria.Descripcion = txtDescripcion.Text.Trim();
+                categoria.Activo = chkActivo.Checked;
+
+                if (string.IsNullOrEmpty(categoria.Nombre))
                 {
-                    MostrarMensaje("Completa el nombre");
+                    MostrarMensaje("Nombre obligatorio");
                     return;
                 }
 
                 if (hfIdCategoria.Value == "0")
                 {
-                    //nueva
-                    Categoria nueva = new Categoria
-                    {
-                        Id = listaCategorias.Count + 1,
-                        Nombre = txtNombre.Text.Trim(),
-                        Descripcion = txtDescripcion.Text.Trim(),
-                        Activo = chkActivo.Checked
-                    };
-                    listaCategorias.Add(nueva);
+                    negocio.agregar(categoria);
                     MostrarMensaje("Categoría agregada");
                 }
                 else
                 {
-                    //modifico
-                    int id = int.Parse(hfIdCategoria.Value);
-                    Categoria existente = listaCategorias.Find(c => c.Id == id);
-                    if (existente != null)
-                    {
-                        existente.Nombre = txtNombre.Text.Trim();
-                        existente.Descripcion = txtDescripcion.Text.Trim();
-                        existente.Activo = chkActivo.Checked;
-                        MostrarMensaje("Categoría modificada");
-                    }
+                    categoria.Id = int.Parse(hfIdCategoria.Value);
+                    negocio.modificar(categoria);
+                    MostrarMensaje("Categoría modificada");
                 }
 
                 Limpiar();
@@ -78,14 +72,24 @@ namespace Equipo1b_TPC
         protected void dgvCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = (int)dgvCategorias.SelectedDataKey.Value;
-            Categoria categoria = listaCategorias.Find(c => c.Id == id);
-
-            if (categoria != null)
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            
+            try
             {
-                hfIdCategoria.Value = categoria.Id.ToString();
-                txtNombre.Text = categoria.Nombre;
-                txtDescripcion.Text = categoria.Descripcion;
-                chkActivo.Checked = categoria.Activo;
+                List<Categoria> lista = negocio.listar();
+                Categoria categoria = lista.Find(c => c.Id == id);
+
+                if (categoria != null)
+                {
+                    hfIdCategoria.Value = categoria.Id.ToString();
+                    txtNombre.Text = categoria.Nombre;
+                    txtDescripcion.Text = categoria.Descripcion;
+                    chkActivo.Checked = categoria.Activo;
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje("Error: " + ex.Message);
             }
         }
 
