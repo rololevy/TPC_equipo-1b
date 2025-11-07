@@ -28,12 +28,11 @@ GO
 
 CREATE TABLE Clientes (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    Nombre VARCHAR(100) NOT NULL,
-    Apellido VARCHAR(100) NOT NULL,
-    DNI VARCHAR(50) NULL,
-    Email VARCHAR(200) NULL,
-    Telefono VARCHAR(50) NULL,
-    Direccion VARCHAR(250) NULL,
+    RazonSocial varchar(100) NOT NULL,
+    Cuit VARCHAR(11) NOT NULL,
+    Telefono VARCHAR(20)NULL,
+    Direccion VARCHAR(100) NULL,
+    Email VARCHAR(100) NULL,
     Activo BIT NOT NULL DEFAULT(1)
 );
 GO

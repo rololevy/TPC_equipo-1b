@@ -8,17 +8,26 @@
             <div class="container mt-4">
                 <div class="card-grid p-4 border-1 text-white" style="min-width: 400px; background: linear-gradient(135deg, #0d6efd, #5fa8ff); border-radius: 15px;">
                     <div class="row justify-content-center align-items-center">
-                        <div class="col-5">
+                        <div class="col-auto text-center">
+                            <asp:CheckBox ID="chkFiltrarCuit" ClientIDMode="Static" AutoPostBack="true" Text="Filtrar por cuit" OnCheckedChanged="chkFiltrarCuit_CheckedChanged" runat="server" />
+                        </div>
+                        <div class="col-3">
                             <asp:TextBox ID="txtFiltrarClientes" AutoPostBack="true" OnTextChanged="txtFiltrarClientes_TextChanged" placeHolder="Buscar Cliente ......" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
-                        <div class="col-5">
+                        <div class="col-3">
                             <asp:DropDownList ID="ddlClientes" CssClass="form-select" runat="server">
-                                <asp:ListItem Text="Seleccione un cliente existente....." Value=""></asp:ListItem>
                             </asp:DropDownList>
                         </div>
-                        <div class="col-2">
+                        <div class="col-auto">
                             <asp:Button ID="btnAgregarCliente" runat="server" CssClass="btn btn-primary" OnClick="btnAgregarCliente_Click" Text="Agregar Nuevo cliente" />
                         </div>
+                        <div class="col-auto">
+                            <asp:Button ID="btnModificarCliente" runat="server" CssClass="btn btn-primary" OnClick="btnModificarCliente_Click" Text="Modificar cliente existente" />
+     
+                        </div>
+                    </div>
+                    <div class="row justify-content-center align-items-center text-center">
+                         <asp:Label ID="lblModificarCliente" runat="server" ClientIDMode="Static" CssClass="text-danger fw-bold text-center" Visible="false" Text="Debe seleccionar un cliente para modificar"></asp:Label>
                     </div>
                     <div class="row justify-content-center align-items-start mt-3">
                         <div class="col-12">

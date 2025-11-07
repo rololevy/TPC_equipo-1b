@@ -53,9 +53,20 @@
                 <h5 class="card-title">Resumen de venta</h5>
                 <p class="card-text">Aceso a resumen de venta,consulta de cierre de caja medios de pago</p>
                 <div class="d-flex justify-content-center">
-                    <asp:Button ID="btnResumenVenta" CssClass="btn btn-primary" OnClick="btnResumenVenta_Click" runat="server" Text="Ir a Resumen de venta"/>
+                    <asp:Button ID="btnResumenVenta" CssClass="btn btn-primary" OnClick="btnResumenVenta_Click" runat="server" Text="Ir a Resumen de venta" />
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <asp:Image ID="imgGestionClientes" CssClass="card-img-top" ImageUrl="https://img.freepik.com/vector-premium/imagen-vectorial-icono-gestion-relaciones-cliente-puede-utilizar-tecnologia-marketing_120816-124918.jpg" AlternateText="Gestion de clientes" runat="server" />
+            <div class="card-body">
+                <h5 class="card-title">Gestion de clientes</h5>
+                <p class="card-text">Aceso a Gestion de clientes, alta y baja de clientes activos</p>
+                <div class="d-flex justify-content-center">
+                    <asp:Button ID="btnGestionClientes" CssClass="btn btn-primary" OnClick="btnGestionClientes_Click" runat="server" Text="Ir a gestion de clientes" />
                 </div>
             </div>
         </div>
     </div>
 </asp:Content>
+<%--https://img.freepik.com/vector-premium/imagen-vectorial-icono-gestion-relaciones-cliente-puede-utilizar-tecnologia-marketing_120816-124918.jpg--%>

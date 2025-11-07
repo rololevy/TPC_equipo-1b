@@ -48,6 +48,7 @@ namespace Equipo1b_TPC
             }
             catch (Exception ex)
             {
+                throw ex;
                 // Error login
             }
         }
