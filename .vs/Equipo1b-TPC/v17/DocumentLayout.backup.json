@@ -3,44 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|c:\\users\\administrator\\desktop\\repo git\\equipo1b-tpc\\equipo1b-tpc\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|c:\\users\\administrator\\desktop\\repo git\\equipo1b-tpc\\equipo1b-tpc\\provedores.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\provedores.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\equipo1b-tpc\\ventas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\ventas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{612A5DD9-A573-4E22-A4BF-53155F1907E3}|Negocio\\Negocio.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\negocio\\provedoresnegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{612A5DD9-A573-4E22-A4BF-53155F1907E3}|Negocio\\Negocio.csproj|solutionrelative:negocio\\provedoresnegocio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\equipo1b-tpc\\agregarcliente.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\agregarcliente.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\equipo1b-tpc\\agregarprovedor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\agregarprovedor.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\equipo1b-tpc\\agregarprovedor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\agregarprovedor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\equipo1b-tpc\\provedores.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\provedores.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\equipo1b-tpc\\agregarcliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\agregarcliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\equipo1b-tpc\\ventas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{20CCD7F7-835A-4E88-A529-86D825386FA2}|Equipo1b-TPC\\Equipo1b-TPC.csproj|solutionrelative:equipo1b-tpc\\ventas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87D77751-2709-40FB-BDE7-FEB57CDB862B}|dominio\\dominio.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87D77751-2709-40FB-BDE7-FEB57CDB862B}|dominio\\dominio.csproj|solutionrelative:dominio\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87D77751-2709-40FB-BDE7-FEB57CDB862B}|dominio\\dominio.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87D77751-2709-40FB-BDE7-FEB57CDB862B}|dominio\\dominio.csproj|solutionrelative:dominio\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87D77751-2709-40FB-BDE7-FEB57CDB862B}|dominio\\dominio.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87D77751-2709-40FB-BDE7-FEB57CDB862B}|dominio\\dominio.csproj|solutionrelative:dominio\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87D77751-2709-40FB-BDE7-FEB57CDB862B}|dominio\\dominio.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\detalleventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87D77751-2709-40FB-BDE7-FEB57CDB862B}|dominio\\dominio.csproj|solutionrelative:dominio\\detalleventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87D77751-2709-40FB-BDE7-FEB57CDB862B}|dominio\\dominio.csproj|C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\detallecompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87D77751-2709-40FB-BDE7-FEB57CDB862B}|dominio\\dominio.csproj|solutionrelative:dominio\\detallecompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,36 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Home.aspx",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Home.aspx",
-              "RelativeDocumentMoniker": "Equipo1b-TPC\\Home.aspx",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Home.aspx",
-              "RelativeToolTip": "Equipo1b-TPC\\Home.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-10-26T16:03:32.98Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AgregarCliente.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\AgregarCliente.aspx.cs",
-              "RelativeDocumentMoniker": "Equipo1b-TPC\\AgregarCliente.aspx.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\AgregarCliente.aspx.cs",
-              "RelativeToolTip": "Equipo1b-TPC\\AgregarCliente.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-26T15:54:04.392Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "AgregarCliente.aspx",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\AgregarCliente.aspx",
               "RelativeDocumentMoniker": "Equipo1b-TPC\\AgregarCliente.aspx",
@@ -87,91 +46,68 @@
               "RelativeToolTip": "Equipo1b-TPC\\AgregarCliente.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-10-25T23:49:48.338Z"
+              "WhenOpened": "2025-11-08T21:17:44.552Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Ventas.aspx",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Ventas.aspx",
-              "RelativeDocumentMoniker": "Equipo1b-TPC\\Ventas.aspx",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Ventas.aspx",
-              "RelativeToolTip": "Equipo1b-TPC\\Ventas.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-10-25T23:36:47.644Z"
+              "Title": "ProvedoresNegocio.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Negocio\\ProvedoresNegocio.cs",
+              "RelativeDocumentMoniker": "Negocio\\ProvedoresNegocio.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Negocio\\ProvedoresNegocio.cs",
+              "RelativeToolTip": "Negocio\\ProvedoresNegocio.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAAAGcAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T20:54:07.683Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Cliente.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\Cliente.cs",
-              "RelativeDocumentMoniker": "dominio\\Cliente.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\Cliente.cs",
-              "RelativeToolTip": "dominio\\Cliente.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAwAoAAAAXAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "provedores.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\provedores.aspx.cs",
+              "RelativeDocumentMoniker": "Equipo1b-TPC\\provedores.aspx.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\provedores.aspx.cs*",
+              "RelativeToolTip": "Equipo1b-TPC\\provedores.aspx.cs*",
+              "ViewState": "AgIAADEAAAAAAAAAAAAtwCIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T18:35:26.163Z"
+              "WhenOpened": "2025-11-08T18:33:36.717Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Ventas.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Ventas.aspx.cs",
-              "RelativeDocumentMoniker": "Equipo1b-TPC\\Ventas.aspx.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\Ventas.aspx.cs",
-              "RelativeToolTip": "Equipo1b-TPC\\Ventas.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T00:24:06.838Z"
+              "Title": "provedores.aspx",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\provedores.aspx",
+              "RelativeDocumentMoniker": "Equipo1b-TPC\\provedores.aspx",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\provedores.aspx",
+              "RelativeToolTip": "Equipo1b-TPC\\provedores.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-11-08T18:33:35.211Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "venta.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\venta.cs",
-              "RelativeDocumentMoniker": "dominio\\venta.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\venta.cs",
-              "RelativeToolTip": "dominio\\venta.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T23:42:47.57Z"
+              "DocumentIndex": 3,
+              "Title": "AgregarProvedor.aspx",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\AgregarProvedor.aspx",
+              "RelativeDocumentMoniker": "Equipo1b-TPC\\AgregarProvedor.aspx",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\AgregarProvedor.aspx",
+              "RelativeToolTip": "Equipo1b-TPC\\AgregarProvedor.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-11-08T17:31:57.514Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Producto.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\Producto.cs",
-              "RelativeDocumentMoniker": "dominio\\Producto.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\Producto.cs",
-              "RelativeToolTip": "dominio\\Producto.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAASAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "AgregarProvedor.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\AgregarProvedor.aspx.cs",
+              "RelativeDocumentMoniker": "Equipo1b-TPC\\AgregarProvedor.aspx.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\Equipo1b-TPC\\AgregarProvedor.aspx.cs",
+              "RelativeToolTip": "Equipo1b-TPC\\AgregarProvedor.aspx.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAWwC8AAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T23:37:28.371Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "detalleCompra.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\detalleCompra.cs",
-              "RelativeDocumentMoniker": "dominio\\detalleCompra.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\detalleCompra.cs",
-              "RelativeToolTip": "dominio\\detalleCompra.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T23:40:57.545Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "detalleVenta.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\detalleVenta.cs",
-              "RelativeDocumentMoniker": "dominio\\detalleVenta.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\repo git\\Equipo1b-TPC\\dominio\\detalleVenta.cs",
-              "RelativeToolTip": "dominio\\detalleVenta.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T14:09:10.891Z"
+              "WhenOpened": "2025-11-08T17:41:15.917Z"
             }
           ]
         }

@@ -31,7 +31,7 @@
                 <asp:Button ID="btnCancelar" CssClass="btn btn-primary" OnClick="btnCancelar_Click" runat="server" Text="Cancelar alta de cliente" />
             </div>
             <div class="mb-3">
-                <asp:Label ID="lblConfirmacion" ClientIDMode="Static" Visible="false" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="lblConfirmacion" ClientIDMode="Static" Visible="false" runat="server" Text=""></asp:Label>
             </div>
             
         </div>

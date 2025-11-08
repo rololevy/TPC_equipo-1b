@@ -14,7 +14,7 @@ namespace Equipo1b_TPC.Dominio
         public Categoria Categoria { get; set; }
         public Proveedor Provedor { get; set; }
         public decimal PrecioCompra { get; set; }
-        public int PorcentajeGanancia { get; set; }
+        public decimal PorcentajeGanancia { get; set; }
         public int StockActual { get; set; }
         public int StockMinimo { get; set; }
         public bool Activo { get; set; }

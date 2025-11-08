@@ -40,11 +40,11 @@ GO
 
 CREATE TABLE Proveedores (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    RazonSocial VARCHAR(200) NOT NULL,
-    CUIL VARCHAR(50) NULL,
-    Email VARCHAR(200) NULL,
-    Telefono VARCHAR(50) NULL,
-    Direccion VARCHAR(250) NULL,
+    RazonSocial VARCHAR(100) NOT NULL,
+    CUIT VARCHAR(11) NOT NULL, 
+    Email VARCHAR(100) NULL,
+    Telefono VARCHAR(20) NULL,
+    Direccion VARCHAR(100) NULL,
     Activo BIT NOT NULL DEFAULT(1)
 );
 GO
@@ -163,14 +163,14 @@ INSERT INTO Categorias (Nombre, Descripcion, Activo) VALUES
 GO
 
 -- Proveedores
-INSERT INTO Proveedores (RazonSocial, CUIL, Email, Telefono, Direccion, Activo) VALUES
-('Proveedor Uno','20-12345678-9','prov1@example.com','011-1234-5678','Calle Falsa 123',1);
+INSERT INTO Proveedores (RazonSocial, CUIT, Email, Telefono, Direccion, Activo) VALUES
+('Proveedor Uno','20123456789','prov1@example.com','011-1234-5678','Calle Falsa 123',1);
 GO
 
 -- Clientes
-INSERT INTO Clientes (Nombre, Apellido, DNI, Email, Telefono, Direccion, Activo) VALUES
-('Albano','Suarez','12345678','albano@mail.com','011-9876-5432','Av Kurama 742',1),
-('Orlando','Aguilera','98764543','orlan@mail.com','011-1234-5678','Av. Konoha 345',1);
+INSERT INTO Clientes (RazonSocial, Cuit,Email, Telefono, Direccion, Activo) VALUES
+('Albano Suarez','20123456787','albano@mail.com','011-9876-5432','Av Kurama 742',1),
+('Orlando Aguilera','20987645437','orlan@mail.com','011-1234-5678','Av. Konoha 345',1);
 GO
 
 -- Usuarios

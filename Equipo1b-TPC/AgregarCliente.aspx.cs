@@ -94,12 +94,29 @@ namespace Equipo1b_TPC
             string modo = ViewState["modo"]?.ToString();
             ClientesNegocio clienteNegocio = new ClientesNegocio();
             Cliente cl = new Cliente();
-            cl.RazonSocial = txtRazonSocial.Text.Trim();
-            cl.Cuit = txtCuit.Text.Trim();
-            cl.Email = txtEmail.Text.Trim();
-            cl.Telefono = txtTelefono.Text.Trim();
-            cl.Direccion = txtDireccion.Text.Trim();
+            try
+            {
+                if (string.IsNullOrEmpty(txtCuit.Text) || string.IsNullOrEmpty(txtRazonSocial.Text))
+                {
+                    lblConfirmacion.Visible = true;
+                    lblConfirmacion.CssClass = "text-danger fw-bold";
+                    lblConfirmacion.Text = "debe ingregar al menos una razon social y CUIT";
+                    return;
+                }
+               
+               
+                
+                cl.RazonSocial = txtRazonSocial.Text.Trim();
+                cl.Cuit = txtCuit.Text.Trim();
+                cl.Email = txtEmail.Text.Trim();
+                cl.Telefono = txtTelefono.Text.Trim();
+                cl.Direccion = txtDireccion.Text.Trim();
+            }
+            catch(Exception ex)
+            {
 
+                throw ex;
+            }
             try
             {
                 if (modo == "Modificar")
