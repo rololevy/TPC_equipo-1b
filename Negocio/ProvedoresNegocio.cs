@@ -100,10 +100,10 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("UPDATE Proveedores SET RazonSocial=@RazonSocial, Cuit=@Cuit,Email=@Email,Telefono=@Telefono,Direccion=@Direccion WHERE ID=@ID");
+                datos.setearConsulta("UPDATE Proveedores SET RazonSocial=@RazonSocial, CUIT=@CUIT, Email=@Email, Telefono=@Telefono, Direccion=@Direccion WHERE Id=@Id");
                 datos.setearParametro("@Id", prov.Id);
                 datos.setearParametro("@RazonSocial", prov.RazonSocial);
-                datos.setearParametro("@Cuit", prov.CUIT);
+                datos.setearParametro("@CUIT", prov.CUIT);
                 datos.setearParametro("@Email", prov.Email);
                 datos.setearParametro("@Telefono",prov.Telefono);
                 datos.setearParametro("@Direccion", prov.Direccion);

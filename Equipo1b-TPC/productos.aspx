@@ -9,33 +9,75 @@
                 <h4 class="mb-0">Gestión de Productos</h4>
             </div>
             <div class="card-body">
-                <p>Esta página muestra la grilla y opciones para listar y gestionar productos (solo front-end demo).</p>
-                <asp:TextBox ID="txtBuscarProd" runat="server" CssClass="form-control mb-2" placeholder="Buscar..."></asp:TextBox>
-                <asp:Button ID="btnNuevoProd" runat="server" CssClass="btn btn-success mb-3" Text="+ Nuevo Producto" />
+                <!-- Filtros y búsqueda -->
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <asp:TextBox ID="txtBuscarProd" runat="server" CssClass="form-control" 
+                            placeholder="Buscar producto..." AutoPostBack="true" 
+                            OnTextChanged="txtBuscarProd_TextChanged"></asp:TextBox>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-select" 
+                            AutoPostBack="true" OnSelectedIndexChanged="ddlMarca_SelectedIndexChanged">
+                        </asp:DropDownList>
+                    </div>
+                    <div class="col-md-3">
+                        <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-select" 
+                            AutoPostBack="true" OnSelectedIndexChanged="ddlCategoria_SelectedIndexChanged">
+                        </asp:DropDownList>
+                    </div>
+                    <div class="col-md-2">
+                        <asp:Button ID="btnNuevoProd" runat="server" CssClass="btn btn-success w-100" 
+                            Text="+ Nuevo" OnClick="btnNuevoProd_Click" />
+                    </div>
+                </div>
 
-                <asp:GridView ID="gvProductosPage" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="false">
+                <!-- GridView con funcionalidad -->
+                <asp:GridView ID="gvProductosPage" runat="server" CssClass="table table-striped table-hover" 
+                    AutoGenerateColumns="false" DataKeyNames="Id" 
+                    OnRowCommand="gvProductosPage_RowCommand">
                     <Columns>
-                        <asp:BoundField HeaderText="ID" DataField="Id" />
+                        <asp:BoundField HeaderText="ID" DataField="Id" ItemStyle-Width="50px" />
                         <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                        <asp:BoundField HeaderText="Marca" DataField="Marca" />
-                        <asp:BoundField HeaderText="Categoría" DataField="Categoria" />
-                        <asp:BoundField HeaderText="Precio Compra" DataField="PrecioCompra" DataFormatString="{0:C}" />
-                        <asp:BoundField HeaderText="% Ganancia" DataField="PorcentajeGanancia" />
-                        <asp:BoundField HeaderText="Stock Actual" DataField="StockActual" />
-                        <asp:BoundField HeaderText="Stock Mínimo" DataField="StockMinimo" />
-                        <asp:TemplateField HeaderText="Activo">
+                        <asp:BoundField HeaderText="Marca" DataField="Marca.Nombre" />
+                        <asp:BoundField HeaderText="Categoría" DataField="Categoria.Nombre" />
+                        <asp:BoundField HeaderText="Precio Compra" DataField="PrecioCompra" DataFormatString="{0:C2}" />
+                        <asp:BoundField HeaderText="% Ganancia" DataField="PorcentajeGanancia" DataFormatString="{0}%" />
+                        <asp:TemplateField HeaderText="Precio Venta">
                             <ItemTemplate>
-                                <asp:Label runat="server" Text='<%# (bool)Eval("Activo") ? "Sí" : "No" %>' CssClass="badge badge-secondary"></asp:Label>
+                                <%# String.Format("{0:C2}", ((Equipo1b_TPC.Dominio.Producto)Container.DataItem).CalcularPrecioVenta()) %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField HeaderText="Stock Actual" DataField="StockActual" ItemStyle-CssClass="text-center" />
+                        <asp:BoundField HeaderText="Stock Mínimo" DataField="StockMinimo" ItemStyle-CssClass="text-center" />
+                        <asp:TemplateField HeaderText="Estado Stock">
+                            <ItemTemplate>
+                                <%# Convert.ToInt32(Eval("StockActual")) < Convert.ToInt32(Eval("StockMinimo")) 
+                                    ? "<span class='badge bg-danger'>Bajo</span>" 
+                                    : "<span class='badge bg-success'>OK</span>" %>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Acciones">
                             <ItemTemplate>
-                                <asp:Button ID="btnEditarPage" runat="server" CssClass="btn btn-sm btn-outline-primary mr-1" Text="Editar" />
-                                <asp:Button ID="btnEliminarPage" runat="server" CssClass="btn btn-sm btn-outline-danger" Text="Eliminar" />
+                                <asp:Button ID="btnEditarPage" runat="server" 
+                                    CssClass="btn btn-sm btn-outline-primary me-1" 
+                                    Text="Editar" CommandName="Editar" 
+                                    CommandArgument='<%# Eval("Id") %>' />
+                                <asp:Button ID="btnEliminarPage" runat="server" 
+                                    CssClass="btn btn-sm btn-outline-danger" 
+                                    Text="Eliminar" CommandName="Eliminar" 
+                                    CommandArgument='<%# Eval("Id") %>'
+                                    OnClientClick="return confirm('¿Está seguro que desea eliminar este producto?');" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
+                    <EmptyDataTemplate>
+                        <div class="alert alert-info">No hay productos para mostrar</div>
+                    </EmptyDataTemplate>
                 </asp:GridView>
+
+                <!-- Mensaje de feedback -->
+                <asp:Label ID="lblMensaje" runat="server" CssClass="mt-2" Visible="false"></asp:Label>
             </div>
         </div>
     </div>

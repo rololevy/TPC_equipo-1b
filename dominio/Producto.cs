@@ -14,7 +14,7 @@ namespace Equipo1b_TPC.Dominio
         public Categoria Categoria { get; set; }
         public Proveedor Provedor { get; set; }
         public decimal PrecioCompra { get; set; }
-        public decimal PorcentajeGanancia { get; set; }
+        public int PorcentajeGanancia { get; set; }  // Cambié de decimal a int
         public int StockActual { get; set; }
         public int StockMinimo { get; set; }
         public bool Activo { get; set; }
@@ -23,13 +23,16 @@ namespace Equipo1b_TPC.Dominio
         {
             Marca = new Marca();
             Categoria = new Categoria();
+            Provedor = new Proveedor();  // Agregué inicialización
             Activo = true;
         }
-        //calcula el precico de venta aplicando el porcentaje de ganancia
-        public decimal CalcularprecioVenta()
+
+        // Calcula el precio de venta aplicando el porcentaje de ganancia
+        public decimal CalcularPrecioVenta()
         {
-            return PrecioCompra * (1 + PorcentajeGanancia / 100);
+            return Math.Round(PrecioCompra * (1 + PorcentajeGanancia / 100.0m), 2);
         }
+
         public override string ToString()
         {
             return Nombre;

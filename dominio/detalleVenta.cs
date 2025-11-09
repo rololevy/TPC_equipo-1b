@@ -14,7 +14,7 @@ namespace dominio
         //calcula el subtotal segun el producto
         public decimal CalcularSubtotal()
         {
-            return producto.CalcularprecioVenta() * cantidad;
+            return producto.CalcularPrecioVenta() * cantidad;
         }
         
     }

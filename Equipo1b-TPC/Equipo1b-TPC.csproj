@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Categorias.aspx" />
     <Content Include="content\styles.css" />
+    <Content Include="FormularioProducto.aspx" />
     <Content Include="gestionProductos.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Login.aspx" />
@@ -91,6 +92,13 @@
     </Compile>
     <Compile Include="Categorias.aspx.designer.cs">
       <DependentUpon>Categorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioProducto.aspx.cs">
+      <DependentUpon>FormularioProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioProducto.aspx.designer.cs">
+      <DependentUpon>FormularioProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="gestionProductos.aspx.cs">
       <DependentUpon>gestionProductos.aspx</DependentUpon>
