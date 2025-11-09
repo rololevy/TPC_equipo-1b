@@ -178,3 +178,12 @@ INSERT INTO Usuarios (NombreUsuario, Contrasena, Nombre, Apellido, TipoUsuario, 
 ('admin', 'admin123', 'Orlando', 'Administrador', 2, 1),
 ('vendedor', 'vendedor123', 'Albano', 'Vendedor', 1, 1);
 GO
+
+---Productos
+INSERT INTO Productos (Nombre, Descripcion, MarcaId, CategoriaId, ProveedorId, PrecioCompra, PorcentajeGanancia, StockActual, StockMinimo, Activo) VALUES
+('TV Samsung 55" 4K', 'Televisor Samsung 55 pulgadas Ultra HD 4K', 1, 1, 1, 450000.00, 35, 10, 5, 1),
+('TV LG OLED 65"', 'Televisor LG OLED 65 pulgadas', 2, 1, 1, 850000.00, 30, 5, 3, 1),
+('Soundbar Sony HT-S350', 'Barra de sonido Sony 2.1 canales', 3, 2, 1, 120000.00, 40, 15, 8, 1),
+('Microondas Philips', 'Microondas digital 20L', 4, 3, 1, 65000.00, 45, 20, 10, 1),
+('Smart TV Samsung 43"', 'Televisor Smart Samsung 43 pulgadas Full HD', 1, 1, 1, 280000.00, 35, 12, 6, 1);
+GO
