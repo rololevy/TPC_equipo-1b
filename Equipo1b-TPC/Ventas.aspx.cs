@@ -3,6 +3,7 @@ using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -26,9 +27,10 @@ namespace Equipo1b_TPC
             List<Cliente> lcliente = cliente.listar(false);
             ddlClientes.DataSource = lcliente;
             ddlClientes.DataTextField = "RazonSocial";
+            ddlClientes.DataValueField = "Id";
             ddlClientes.DataBind();
 
-            ddlClientes.Items.Insert(0, new ListItem("seleccione un cliente"));
+            ddlClientes.Items.Insert(0, new ListItem("seleccione un cliente", "0"));
         }
         private void gvVacia()
         {
@@ -37,46 +39,42 @@ namespace Equipo1b_TPC
         }
         protected void txtFiltrarClientes_TextChanged(object sender, EventArgs e)
         {
-            
-            if (!chkFiltrarCuit.Checked) {
-                return;
-            }
-            //si el textbox esta vacio ocultamos el label
-            if (string.IsNullOrWhiteSpace(txtFiltrarClientes.Text))
+            string filtro = txtFiltrarClientes.Text.Trim();
+            //si el txt esta vacio volvemos a recargar los controles
+            if (string.IsNullOrWhiteSpace(filtro))
             {
                 lblModificarCliente.Visible = false;
+                chkFiltrarCuit.Checked = false;
+                CargarClientes();
+                return;
+            }
+            //si no esta seleccionado el checkbox salimos
+            if (!chkFiltrarCuit.Checked)
+            {
+                lblModificarCliente.Visible = true;
+                lblModificarCliente.Text = "Debe marcar filtar por cuit";
+                lblModificarCliente.CssClass = "text-danger fw-bold";
                 return;
             }
 
-            if (txtFiltrarClientes.Text.Length == 11)
+            ClientesNegocio negocio = new ClientesNegocio();
+            List<Cliente> lcliente = negocio.ListarPorCuit(filtro, false);
+            //si no encontro nada
+            if (lcliente == null || lcliente.Count == 0)
             {
-                ClientesNegocio negocio = new ClientesNegocio();
-                List<Cliente> lcliente = negocio.ListarPorCuit(txtFiltrarClientes.Text, false);
-                if (lcliente == null || lcliente.Count == 0)
-                {
-                    lblModificarCliente.Text = "no se encontro ningun cliente con el CUIT ingresado";
-                    lblModificarCliente.CssClass = "text-danger fw-bold";
-                    lblModificarCliente.Visible = true;
-                    ddlClientes.Items.Clear();
-                    CargarClientes();
-                    return;
-                }
-                ddlClientes.DataSource = lcliente;
-                ddlClientes.DataTextField = "razonSocial";
-                ddlClientes.DataBind();
-            }
-            else
-            {
-                lblModificarCliente.Text = "Debe ingresar 11 digitos para filtrar por CUIT";
+                lblModificarCliente.Text = "no se encontro ningun cliente con el CUIT ingresado";
+                lblModificarCliente.CssClass = "text-danger fw-bold";
                 lblModificarCliente.Visible = true;
                 ddlClientes.Items.Clear();
                 CargarClientes();
+                return;
             }
-            
+            ddlClientes.DataSource = lcliente;
+            ddlClientes.DataTextField = "razonSocial";
+            ddlClientes.DataValueField = "Id";
+            ddlClientes.DataBind();
+            lblModificarCliente.Visible = false;
         }
-
-
-
         protected void btnAgregarCliente_Click(object sender, EventArgs e)
         {
             Response.Redirect("agregarCliente.aspx");
@@ -95,57 +93,16 @@ namespace Equipo1b_TPC
 
         protected void btnModificarCliente_Click(object sender, EventArgs e)
         {
-            if (chkFiltrarCuit.Checked)
+            int idSeleccionado = int.Parse(ddlClientes.SelectedValue);
+            if (idSeleccionado == 0)
             {
-                //checkeamos que el txt tenga una longitud de 11 para filtar por cuit
-                if (txtFiltrarClientes.Text.Length == 11)
-                {
-                    //si esta checkeado mandamos el cuit por url
-                    string cuit = txtFiltrarClientes.Text;
-                    ClientesNegocio negocio = new ClientesNegocio();
-                    List<Cliente> lclientes = negocio.ListarPorCuit(cuit, false);
-                    if (lclientes != null && lclientes.Count > 0)
-                    {
-                        //si el cuit filtrado existe redirigimos a agregarcliente para modificarlo 
-                        Response.Redirect("agregarCliente.aspx?cuit=" + cuit);
-                    }
-                    else
-                    {
-                        lblModificarCliente.Text = "no se encontro ningun cliente con el CUIT ingresado";
-                        lblModificarCliente.CssClass = "text-danger fw-bold";
-                        lblModificarCliente.Visible = true;
-                    }
-
-
-
-                }
-                else
-                {
-                    lblModificarCliente.Text = "Para filtrar por CUIT debe ingresar exactamente 11 digitos numericos.";
-                    lblModificarCliente.CssClass = "text-danger fw-bold";
-                    lblModificarCliente.Visible = true;
-
-                }
+                lblModificarCliente.Visible = true;
+                lblModificarCliente.Text = "Debe seleccionar un cliente para modificar";
+                lblModificarCliente.CssClass= "text-danger fw-bold";
+                return;
+               
             }
-
-
-
-            else
-            {
-
-                string razonSeleccionada = ddlClientes.SelectedValue;
-                //si tenemos un cliente seleccionado en la ddl
-                if (razonSeleccionada != "seleccione un cliente")
-                {
-                    //mandamos la razon social de la ddl por url
-                    //codificamos la razon social para que rellene espacios vacios
-                    Response.Redirect("AgregarCliente.aspx?razonSocial=" + Server.UrlEncode(razonSeleccionada));
-                }
-                else
-                {
-                    lblModificarCliente.Visible = true;
-                }
-            }
+            Response.Redirect("AgregarCliente.aspx?id=" + idSeleccionado);
         }
 
         protected void chkFiltrarCuit_CheckedChanged(object sender, EventArgs e)

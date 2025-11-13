@@ -22,7 +22,7 @@ namespace Equipo1b_TPC
                     int ID = int.Parse(Request.QueryString["id"]);
                     List<Proveedor> lprov = new List<Proveedor>();
                     ProvedoresNegocio negocio = new ProvedoresNegocio();
-                    lprov = negocio.listar(ID);
+                    lprov = negocio.listar(true, ID);
                     txtCuit.Text = lprov[0].CUIT;
                     txtDireccion.Text = lprov[0].Direccion;
                     txtEmail.Text = lprov[0].Email;
@@ -40,39 +40,32 @@ namespace Equipo1b_TPC
 
             try
             {
-
+                Proveedor prov = new Proveedor();
+                ProvedoresNegocio negocio = new ProvedoresNegocio();
+                if (string.IsNullOrEmpty(txtCuit.Text) || string.IsNullOrEmpty(txtRazonSocial.Text))
+                {
+                    lblConfirmacion.Visible = true;
+                    lblConfirmacion.Text = "debe ingregar al menos una razon social y CUIT";
+                    lblConfirmacion.CssClass = "text-danger fw-bold";
+                    return;
+                }
+                prov.RazonSocial = txtRazonSocial.Text;
+                prov.Email = txtEmail.Text;
+                prov.Direccion = txtDireccion.Text;
+                prov.Telefono = txtTelefono.Text;
+                prov.CUIT = txtCuit.Text;
                 //si vamos a modificar un provedor existente
                 if (Request.QueryString["id"] != null)
                 {
-                    Proveedor prov = new Proveedor();
-                    ProvedoresNegocio negocio = new ProvedoresNegocio();
                     prov.Id = int.Parse(Request.QueryString["id"]);
-                    prov.RazonSocial = txtRazonSocial.Text;
-                    prov.Email = txtEmail.Text;
-                    prov.Direccion = txtDireccion.Text;
-                    prov.Telefono = txtTelefono.Text;
-                    prov.CUIT = txtCuit.Text;
                     negocio.modificar(prov);
+                    lblConfirmacion.Visible = true;
+                    lblConfirmacion.Text = "Provedor modificado correctamente";
+                    lblConfirmacion.CssClass = "text-success fw-bold";
                 }
                 //si vamos agregar un nuevo provedor
                 else
                 {
-                    if (string.IsNullOrEmpty(txtCuit.Text) || string.IsNullOrEmpty(txtRazonSocial.Text))
-                    {
-                        lblConfirmacion.Visible = true;
-                        lblConfirmacion.Text = "debe ingregar al menos una razon social y CUIT";
-                        lblConfirmacion.CssClass = "text-danger fw-bold";
-                        return;
-
-
-                    }
-                    ProvedoresNegocio negocio = new ProvedoresNegocio();
-                    Proveedor prov = new Proveedor();
-                    prov.CUIT = txtCuit.Text.Trim();
-                    prov.RazonSocial = txtRazonSocial.Text.Trim();
-                    prov.Email = txtEmail.Text.Trim();
-                    prov.Telefono = txtTelefono.Text.Trim();
-                    prov.Direccion = txtDireccion.Text.Trim();
                     negocio.agregar(prov);
                     lblConfirmacion.Visible = true;
                     lblConfirmacion.Text = "Provedor agregado correctamente";

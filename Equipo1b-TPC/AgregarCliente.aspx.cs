@@ -17,25 +17,20 @@ namespace Equipo1b_TPC
         {
             if (!IsPostBack)
             {
-                //configuracion si estamos modificando por razon social
-                string razonSocial = Server.UrlDecode(Request.QueryString["razonSocial"]);
-                //si modificamos por cuit
-                String cuit = Request.QueryString["cuit"];
-                
-                if (!string.IsNullOrEmpty(razonSocial))
+                //configuracion si estamos modificando 
+                if (Request.QueryString["Id"] != null)
                 {
-                    ViewState["modo"] = "Modificar";
+                    //si recibimos una id precargamos los txt y modificamos los controles
+                    int id = int.Parse(Request.QueryString["Id"]);
                     ClientesNegocio negocio = new ClientesNegocio();
-                    List<Cliente> lcliente = negocio.listar(true,razonSocial);
-                    Cliente seleccionado = lcliente[0];
-                    ViewState["cuitOriginal"] =seleccionado.Cuit;//guardamos el cuit original
-                    //modificamos nombre de los controles
-                    btnAgregar.Text = "Modificar Cliente";
-                    btnCancelar.Text = "Cancelar modificacion de cliente";
-                    lblTitulo.Text = "Modificacion de clientes";
-
-                    if (seleccionado != null)
+                    List<Cliente> lcliente = negocio.listar(true, id);
+                    if (lcliente != null && lcliente.Count > 0)
                     {
+                        Cliente seleccionado = lcliente[0];
+                        //modificamos nombre de los controles
+                        btnAgregar.Text = "Modificar Cliente";
+                        btnCancelar.Text = "Cancelar modificacion de cliente";
+                        lblTitulo.Text = "Modificacion de clientes";
                         txtRazonSocial.Text = seleccionado.RazonSocial;
                         txtCuit.Text = seleccionado.Cuit;
                         txtEmail.Text = seleccionado.Email;
@@ -43,44 +38,11 @@ namespace Equipo1b_TPC
                         txtDireccion.Text = seleccionado.Direccion;
                     }
                 }
-                else
-                {
-                    ViewState["modo"] = "Modificar";
-                    //modificamos nombre de los controles
-                    lblTitulo.Text = "Modificacion de clientes";
-                    btnAgregar.Text = "Modificar Cliente";
-                    btnCancelar.Text = "Cancelar modificacion de cliente";
-                    if (!string.IsNullOrEmpty(cuit))
-                    {
-                        
-                        ClientesNegocio negocio = new ClientesNegocio();
-                        List<Cliente> lcliente = negocio.ListarPorCuit(cuit,true);
-                        Cliente seleccionado = lcliente[0];
-                        ViewState["cuitOriginal"] = seleccionado.Cuit;
-                        if (seleccionado != null)
-                        {
-                            txtRazonSocial.Text = seleccionado.RazonSocial;
-                            txtCuit.Text = seleccionado.Cuit;
-                            txtEmail.Text = seleccionado.Email;
-                            txtTelefono.Text = seleccionado.Telefono;
-                            txtDireccion.Text = seleccionado.Direccion;
-
-                            
-                        }
-
-                    }
-                    else
-                    {
-                        ViewState["modo"] = "Agregar";
-                        lblTitulo.Text = "Agregar Cliente";
-                        btnAgregar.Text = "Agregar nuevo cliente";
-                        btnCancelar.Text = "Cancelar alta de cliente";
-                    }
-                }
-
             }
 
         }
+
+
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -91,11 +53,11 @@ namespace Equipo1b_TPC
         protected void btnAgregar_Click(object sender, EventArgs e)
 
         {
-            string modo = ViewState["modo"]?.ToString();
-            ClientesNegocio clienteNegocio = new ClientesNegocio();
-            Cliente cl = new Cliente();
+
             try
             {
+                Cliente cl = new Cliente();
+                ClientesNegocio negocio = new ClientesNegocio();
                 if (string.IsNullOrEmpty(txtCuit.Text) || string.IsNullOrEmpty(txtRazonSocial.Text))
                 {
                     lblConfirmacion.Visible = true;
@@ -103,50 +65,35 @@ namespace Equipo1b_TPC
                     lblConfirmacion.Text = "debe ingregar al menos una razon social y CUIT";
                     return;
                 }
-               
-               
-                
                 cl.RazonSocial = txtRazonSocial.Text.Trim();
                 cl.Cuit = txtCuit.Text.Trim();
                 cl.Email = txtEmail.Text.Trim();
                 cl.Telefono = txtTelefono.Text.Trim();
                 cl.Direccion = txtDireccion.Text.Trim();
-            }
-            catch(Exception ex)
-            {
-
-                throw ex;
-            }
-            try
-            {
-                if (modo == "Modificar")
+                //si vamos a modificar
+                if (Request.QueryString["Id"] != null)
                 {
-                    //almacenamos el cuit del cliente para filtrar en caso de que deseemos cambiar el cuit
-                    string cuitModificar = ViewState["cuitOriginal"].ToString();
-
-                    clienteNegocio.modificar(cl,cuitModificar);
+                    cl.Id = int.Parse(Request.QueryString["Id"]);
+                    negocio.modificar(cl);
                     lblConfirmacion.Visible = true;
                     lblConfirmacion.Text = "cliente modificado correctamente";
                     lblConfirmacion.CssClass = "text-success fw-bold";
-
                 }
+                //si vamos a agregar
                 else
                 {
-                    clienteNegocio.agregar(cl);
+                    negocio.agregar(cl);
                     lblConfirmacion.Visible = true;
                     lblConfirmacion.Text = "Cliente agregado correctamente.";
                     lblConfirmacion.CssClass = "text-success fw-bold";
                 }
-
             }
-            catch (Exception)
+
+            catch (Exception ex)
             {
-                lblConfirmacion.Visible = true;
-                lblConfirmacion.Text = "Error al agregar cliente, intente nuevamente mas tarde";
-                lblConfirmacion.CssClass = "text-danger fw-bold";
 
+                throw ex;
             }
-
 
         }
     }

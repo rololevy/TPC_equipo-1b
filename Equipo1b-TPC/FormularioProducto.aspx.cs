@@ -66,7 +66,7 @@ namespace Equipo1b_TPC
                 ddlCategoria.DataBind();
                 ddlCategoria.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Seleccione...", "0"));
 
-                ddlProveedor.DataSource = proveedorNegocio.listar();
+                ddlProveedor.DataSource = proveedorNegocio.listar(false);
                 ddlProveedor.DataTextField = "RazonSocial";
                 ddlProveedor.DataValueField = "Id";
                 ddlProveedor.DataBind();

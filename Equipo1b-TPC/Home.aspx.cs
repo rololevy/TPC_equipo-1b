@@ -44,5 +44,10 @@ namespace Equipo1b_TPC
         {
             Response.Redirect("GestionClientes.aspx");
         }
+
+        protected void btnGestionProveedores_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("GestionProveedores.aspx");
+        }
     }
 }

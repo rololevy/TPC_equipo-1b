@@ -31,6 +31,7 @@
                     <div class="col-12 mt-2">
                         <asp:GridView ID="gvClientes" ClientIDMode="Static" ShowHeaderWhenEmpty="true" EmptyDataText="No se encontraron clientes en la base de datos" CssClass="table table-striped table-bordered text-center table-hover w-100" AutoGenerateColumns="false" runat="server">
                             <Columns>
+                                <asp:BoundField DataField="Id" HeaderText="Id" Visible="false" />
                                 <asp:BoundField DataField="razonSocial" HeaderText="razon social" />
                                 <asp:BoundField DataField="cuit" HeaderText="cuit" />
                                 <asp:BoundField DataField="email" HeaderText="email" />
@@ -43,9 +44,9 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Acciones">
                                     <ItemTemplate>
-                                        <asp:Button ID="btnEditar" runat="server" CssClass="btn btn-sm btn-outline-primary mr-1" OnClick="btnEditar_Click" Text="Editar" CommandArgument='<%# Eval("cuit") %>' />
-                                        <asp:Button ID="btnEliminar" runat="server" CssClass="btn btn-sm btn-outline-danger" OnClick="btnEliminar_Click" Text="Eliminar" CommandArgument='<%# Eval("cuit") %>' Visible='<%# Convert.ToBoolean(Eval("Activo")) %>' />
-                                        <asp:Button ID="btnActivar" runat="server" CssClass="btn btn-sm btn-outline-success" OnClick="btnActivar_Click" Text="Activar" CommandArgument='<%# Eval("cuit") %>' Visible='<%# !Convert.ToBoolean(Eval("Activo")) %>' />
+                                        <asp:Button ID="btnEditar" runat="server" CssClass="btn btn-sm btn-outline-primary mr-1" OnClick="btnEditar_Click" Text="Editar" CommandArgument='<%# Eval("Id") %>' />
+                                        <asp:Button ID="btnEliminar" runat="server" CssClass="btn btn-sm btn-outline-danger" OnClick="btnEliminar_Click" Text="Desactivar" CommandArgument='<%# Eval("Id") %>' Visible='<%# Convert.ToBoolean(Eval("Activo")) %>' />
+                                        <asp:Button ID="btnActivar" runat="server" CssClass="btn btn-sm btn-outline-success" OnClick="btnActivar_Click" Text="Activar" CommandArgument='<%# Eval("Id") %>' Visible='<%# !Convert.ToBoolean(Eval("Activo")) %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

@@ -11,17 +11,37 @@ namespace Negocio
 {
     public class ProvedoresNegocio
     {
-        public List<Proveedor> listar(int id=0)
+        public List<Proveedor> listar(bool incluirInactivos,int id=0,string razonSocial="",string cuit="")
         {
             AccesoDatos datos = new AccesoDatos();
             List<Proveedor> lProveedores = new List<Proveedor>();
-            string consulta = "select Id,RazonSocial,CUIT,Email,Telefono,Direccion,Activo from Proveedores WHERE Activo=1";
-            
+            string consulta = "select Id,RazonSocial,CUIT,Email,Telefono,Direccion,Activo from Proveedores";
+
             try
             {
+                //Si no queremos incluir inactivos
+                if (!incluirInactivos)
+                {
+                    consulta += " WHERE Activo=1";
+                }
+                //evitamos que de error
+                else
+                {
+                    consulta += " WHERE 1=1";
+                }
                 if (id != 0)
                 {
                     consulta += " AND Id=" + id.ToString();
+                }
+                //filtro por razon social
+                if (!string.IsNullOrEmpty(razonSocial))
+                {
+                    consulta += " AND RazonSocial LIKE '%" + razonSocial + "%'";
+                }
+                if (!string.IsNullOrEmpty(cuit))
+                {
+                    consulta += " AND Cuit LIKE '%" + cuit + "%';";
+
                 }
 
                 datos.setearConsulta(consulta);
@@ -76,16 +96,35 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        public void eliminar(string cuit)
+        public void bajaLogica(int id)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("UPDATE Proveedores SET Activo = 0 WHERE CUIT = @CUIT;");
-                datos.setearParametro("@CUIT", cuit);
+                datos.setearConsulta("UPDATE Proveedores SET Activo = 0 WHERE Id = @Id;");
+                datos.setearParametro("@Id", id);
                 datos.ejecutarAccion();
             }
             catch(Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void AltaLogica(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE Proveedores SET Activo = 1 WHERE Id = @Id;");
+                datos.setearParametro("@Id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
             {
                 throw ex;
 

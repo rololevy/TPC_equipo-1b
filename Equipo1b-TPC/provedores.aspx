@@ -8,20 +8,23 @@
             <div class="container mt-4">
                 <div class="card-grid p-4 border-1 text-white" style="min-width: 400px; background: linear-gradient(135deg, #0d6efd, #5fa8ff); border-radius: 15px;">
                     <div class="row justify-content-center align-items-center">
-                        <div class="col-4">
+                        <div class="col-auto">
+                            <asp:CheckBox ID="chkCuit" Text="Filtrar por CUIT" CssClass="form-check" AutoPostBack="true" runat="server" />
+                        </div>
+                        <div class="col-3">
                             <asp:TextBox ID="txtFiltrarProvedores" AutoPostBack="true" OnTextChanged="txtFiltrarProvedores_TextChanged" placeHolder="Buscar Provedores ......" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <asp:DropDownList ID="ddlProvedores" placeHolder="Seleccione un provedor existente" AutoPostBack="true" CssClass="form-select" runat="server"></asp:DropDownList>
                         </div>
-                        <div class="col-2">
+                        <div class="col-auto">
                             <asp:Button ID="btnAgregarProvedores" runat="server" CssClass="btn btn-primary" OnClick="btnAgregarProvedores_Click" Text="Agregar Nuevo Provedor" />
                         </div>
-                        <div class="col-2">
+                        <div class="col-auto">
                             <asp:Button ID="btnModificarProvedores" runat="server" CssClass="btn btn-primary" OnClick="btnModificarProvedores_Click" text="Modificar Provedor"/>
                         </div>
                     </div>
-                    <div class="row justify-content-center align-items-center">
+                    <div class="row justify-content-center align-items-center tex-center">
                         <asp:Label ID="lblMensaje" Visible="false" ClientIDMode="Static" runat="server" Text=""></asp:Label>
                     </div>
                     <div class="row justify-content-center align-items-start mt-3">
@@ -54,7 +57,7 @@
                         </div>
                     </div>
                     <div>
-                        <%if(filtroAvanzado)
+                        <%if (filtroAvanzado)
                             {%>
                         <div class="row justify-content-center align-items-center mt-2">
                             <div class="col-6">

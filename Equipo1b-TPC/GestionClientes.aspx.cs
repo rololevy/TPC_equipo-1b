@@ -15,10 +15,10 @@ namespace Equipo1b_TPC
         {
             if (!IsPostBack)
             {
-                cargarGrilla();
+                cargarClientes();
             }
         }
-        private void cargarGrilla()
+        private void cargarClientes()
         {
             ClientesNegocio negocio = new ClientesNegocio();
             try
@@ -27,7 +27,7 @@ namespace Equipo1b_TPC
                 gvClientes.DataSource = lista;
                 gvClientes.DataBind();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -36,7 +36,7 @@ namespace Equipo1b_TPC
         protected void btnAgregarCliente_Click(object sender, EventArgs e)
         {
             Response.Redirect("AgregarCliente.aspx");
-        
+
         }
 
         protected void btnEditar_Click(object sender, EventArgs e)
@@ -46,9 +46,9 @@ namespace Equipo1b_TPC
             //obtenemos la fila
             GridViewRow fila = (GridViewRow)btn.NamingContainer;
             //obtenemos el cuit de la fila
-            String cuitSeleccionado = btn.CommandArgument;
+            int id = int.Parse(btn.CommandArgument);
             //redigirimos a la pagina para modificar
-            Response.Redirect("AgregarCliente.aspx?cuit=" + cuitSeleccionado);
+            Response.Redirect("AgregarCliente.aspx?id=" + id);
 
         }
 
@@ -59,20 +59,20 @@ namespace Equipo1b_TPC
             //obtenemos la fila
             GridViewRow fila = (GridViewRow)btn.NamingContainer;
 
-            String cuitSeleccionado = btn.CommandArgument;
+            int id = int.Parse(btn.CommandArgument);
             try
             {
                 ClientesNegocio negocio = new ClientesNegocio();
-                negocio.bajaLogica(cuitSeleccionado);
-                cargarGrilla();
+                negocio.bajaLogica(id);
+                cargarClientes();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
         }
 
-    
+
 
         protected void btnActivar_Click(object sender, EventArgs e)
         {
@@ -81,12 +81,12 @@ namespace Equipo1b_TPC
             //obtenemos la fila
             GridViewRow fila = (GridViewRow)btn.NamingContainer;
 
-            String cuitSeleccionado = btn.CommandArgument;
+            int id = int.Parse(btn.CommandArgument);
             try
             {
                 ClientesNegocio negocio = new ClientesNegocio();
-                negocio.AltaLogica(cuitSeleccionado);
-                cargarGrilla();
+                negocio.AltaLogica(id);
+                cargarClientes();
             }
             catch (Exception ex)
             {
@@ -96,35 +96,42 @@ namespace Equipo1b_TPC
 
         protected void txtFiltro_TextChanged(object sender, EventArgs e)
         {
+            string filtro = txtFiltro.Text.Trim();
+            //si el txt esta vacio recargamos los controles
+            if (string.IsNullOrEmpty(filtro))
+            {
+                lblFiltro.Visible = false;
+                chkCuit.Checked = false;
+                ChkRazonSocial.Checked = false;
+                cargarClientes();
+                return;
+            }
+            if (!chkCuit.Checked && !ChkRazonSocial.Checked)
+            {
+                lblFiltro.Text = "selecione un tipo de filtro (CUIT o razon social)";
+                lblFiltro.CssClass = "text-danger fw-bold";
+                lblFiltro.Visible = true;
+                return;
+            }
             ClientesNegocio negocio = new ClientesNegocio();
             List<Cliente> listaFiltrada = new List<Cliente>();
-            string filtro = txtFiltro.Text.Trim();
-            //si el campo esta vacio recargamos todo
-            if(string.IsNullOrEmpty(filtro))
+            // si esta marcado filtrar por cuit
             if (chkCuit.Checked)
             {
-                    cargarGrilla();
-                    return;
-            }
-            //si esta marcado filtrar por cuit
-            if (chkCuit.Checked)
-            {
-                    listaFiltrada = negocio.ListarPorCuit(filtro, true);
+                listaFiltrada = negocio.ListarPorCuit(filtro, true);
+                
             }
             //si esta marcado filtrar por razon social
             else if (ChkRazonSocial.Checked)
             {
-                listaFiltrada = negocio.listar(true, filtro);
+                listaFiltrada = negocio.ListarPorRazonSocial(filtro, true);
             }
-            else
-            {
-                lblFiltro.Text = "selecione un tipo de filtro (CUIT o razon social)";
-                lblFiltro.Visible = true;
-            }
-            //mostramos mensaje si no hay resultados
-            if(listaFiltrada==null|| listaFiltrada.Count == 0)
+
+            //verificamos si encontro algun cliente
+            if (listaFiltrada == null || listaFiltrada.Count == 0)
             {
                 lblFiltro.Text = "No se encontraron clientes.";
+                lblFiltro.CssClass = "text-danger fw-bold";
                 lblFiltro.Visible = true;
                 gvClientes.DataSource = null;
                 gvClientes.DataBind();
@@ -134,11 +141,12 @@ namespace Equipo1b_TPC
             lblFiltro.Visible = false;
             gvClientes.DataSource = listaFiltrada;
             gvClientes.DataBind();
+            
         }
 
         protected void btnLimpiarFiltros_Click(object sender, EventArgs e)
         {
-            cargarGrilla();
+            cargarClientes();
         }
     }
 }
