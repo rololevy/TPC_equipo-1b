@@ -28,7 +28,7 @@ namespace Equipo1b_TPC
                     {
                         Cliente seleccionado = lcliente[0];
                         //modificamos nombre de los controles
-                        btnAgregar.Text = "Modificar Cliente";
+                        btnAgregar.Text = "Modificar Cliente existente";
                         btnCancelar.Text = "Cancelar modificacion de cliente";
                         lblTitulo.Text = "Modificacion de clientes";
                         txtRazonSocial.Text = seleccionado.RazonSocial;

@@ -26,9 +26,9 @@
             <asp:TextBox ID="txtDireccion" CssClass="form-control" placeHolder="Ingrese la direccion"  runat="server"></asp:TextBox>
         </div>
 
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between gap-1">
             <asp:Button ID="btnAgregar" CssClass="btn btn-primary" runat="server" OnClick="btnAgregar_Click" Text="Agregar nuevo Provedor"/>
-            <asp:Button ID="btnCancelar" CssClass="btn btn-primary" OnClick="btnCancelar_Click" runat="server" Text="Cancelar alta de provedor" />
+            <asp:Button ID="btnCancelar" CssClass="btn btn-danger" OnClick="btnCancelar_Click" runat="server" Text="Cancelar alta de provedor" />
         </div>
         <div class="mb-3">
             <asp:Label ID="lblConfirmacion" ClientIDMode="Static" runat="server" Visible="false" Text=""></asp:Label>

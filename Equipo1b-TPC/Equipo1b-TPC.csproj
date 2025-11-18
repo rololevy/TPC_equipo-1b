@@ -71,6 +71,7 @@
     <Content Include="content\styles.css" />
     <Content Include="FormularioProducto.aspx" />
     <Content Include="gestionProductos.aspx" />
+    <Content Include="GestionProveedores.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Global.asax" />
@@ -106,6 +107,13 @@
     </Compile>
     <Compile Include="gestionProductos.aspx.designer.cs">
       <DependentUpon>gestionProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionProveedores.aspx.cs">
+      <DependentUpon>GestionProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionProveedores.aspx.designer.cs">
+      <DependentUpon>GestionProveedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

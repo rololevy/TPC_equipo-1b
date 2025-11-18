@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Web;
@@ -19,7 +20,77 @@ namespace Equipo1b_TPC
             {
                 gvVacia();
                 CargarClientes();
+                CargarProductos();
             }
+        }
+        private void CargarProductos()
+        {
+            ProductosNegocio negocio= new ProductosNegocio();
+            List<Producto> lproducto = new List<Producto>();
+            lproducto = negocio.listar();
+            ddlProductos.DataSource = lproducto;
+            ddlProductos.DataTextField = "Nombre";
+            ddlProductos.DataValueField = "Id";
+            ddlProductos.DataBind();
+            ddlProductos.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
+        }
+        private void FiltrarProductos()
+        {
+            
+            int idMarcas = int.Parse(ddlMarcas.SelectedValue);
+            int idCategorias = int.Parse(ddlCategorias.SelectedValue);
+            ProductosNegocio negocio = new ProductosNegocio();
+            List<Producto> lprod = new List<Producto>();
+            if (idMarcas != 0 && idCategorias != 0)
+            {  
+                lprod = negocio.listar(0, idMarcas, idCategorias);
+            }
+            else if (idMarcas != 0)
+            {     
+                lprod = negocio.listar(0, idMarcas, 0);
+            }
+            else if (idCategorias != 0)
+            {
+                lprod = negocio.listar(0, 0, idCategorias);
+            }
+            else
+            {
+                return;
+            }
+            ddlProductos.DataSource = lprod;
+            ddlProductos.DataValueField = "Id";
+            ddlProductos.DataTextField = "Nombre";
+            ddlProductos.DataBind();
+            lblFiltro.Visible = false;
+            if (lprod.Count == 0)
+            {
+                lblFiltro.Visible = true;
+                lblFiltro.Text = "No se encontro ningun producto con los filtros selecionados";
+            }
+            return;
+
+        }
+        private void CargarMarcas()
+        {
+            MarcaNegocio negocio = new MarcaNegocio();
+            List<Marca> lmarca = new List<Marca>();
+            lmarca = negocio.listar();
+            ddlMarcas.DataSource = lmarca;
+            ddlMarcas.DataTextField = "Nombre";
+            ddlMarcas.DataValueField = "Id";
+            ddlMarcas.DataBind();
+            ddlMarcas.Items.Insert(0, new ListItem("Seleccione una marca", "0"));
+        }
+        private void CargarCategorias()
+        {
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            List<Categoria> lcat = new List<Categoria>();
+            lcat = negocio.listar();
+            ddlCategorias.DataSource = lcat;
+            ddlCategorias.DataTextField = "Nombre";
+            ddlCategorias.DataValueField = "Id";
+            ddlCategorias.DataBind();
+            ddlCategorias.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
         }
         private void CargarClientes()
         {
@@ -82,13 +153,57 @@ namespace Equipo1b_TPC
 
         protected void txtIdProducto_TextChanged(object sender, EventArgs e)
         {
+            //si esta vacio 
+            string id = txtIdProducto.Text;
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                lblProducto.Visible = false;
+                CargarProductos();
+                return;
+            }
+            if(!int.TryParse(id,out int idProducto))
+            {
+                lblProducto.Text = "El ID debe ser numerico";
+                lblProducto.CssClass += "text-danger";
+                lblProducto.Visible = true;
+                CargarProductos();
+                return;
+            }
+            ProductosNegocio negocio = new ProductosNegocio();
+            List<Producto> lproductos = negocio.listar(int.Parse(id));
+            //si no encontro nada
+            if(lproductos==null || lproductos.Count == 0)
+            {
+                lblProducto.CssClass += "text-danger";
+                lblProducto.Text = "No se encontro ningun producto con el id ingresado";
+                lblProducto.Visible = true;
+                ddlProductos.Items.Clear();
+                CargarProductos();
+                return;
+            }
+            //si encontro 
+            ddlProductos.DataSource = lproductos;
+            ddlProductos.DataTextField = "Nombre";
+            ddlProductos.DataValueField = "Id";
+            ddlProductos.DataBind();
+            lblProducto.Visible = false;
 
         }
 
         protected void chkFiltro_CheckedChanged(object sender, EventArgs e)
         {
             filtroAvanzado = chkFiltro.Checked;
+            if (filtroAvanzado) {
+                CargarCategorias();
+                CargarMarcas();
+            }
+            else
+            {
+                lblFiltro.Visible = false;
+                CargarProductos();
+            }
 
+           
         }
 
         protected void btnModificarCliente_Click(object sender, EventArgs e)
@@ -108,6 +223,17 @@ namespace Equipo1b_TPC
         protected void chkFiltrarCuit_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+
+   
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            if (chkFiltro.Checked) {
+                FiltrarProductos();
+            }
+            
         }
     }
 }

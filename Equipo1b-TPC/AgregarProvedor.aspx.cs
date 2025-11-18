@@ -28,8 +28,8 @@ namespace Equipo1b_TPC
                     txtEmail.Text = lprov[0].Email;
                     txtRazonSocial.Text = lprov[0].RazonSocial;
                     txtTelefono.Text = lprov[0].Telefono;
-                    btnAgregar.Text = "Modificar Provedor";
-                    btnCancelar.Text = "Cancelar Modificacion";
+                    btnAgregar.Text = "Modificar Proveedor existente";
+                    btnCancelar.Text = "Cancelar Modificacion de proveedor";
                     lblTitulo.Text = "Modificar Proveedores";
                 }
             }

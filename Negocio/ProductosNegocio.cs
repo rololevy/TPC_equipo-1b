@@ -7,7 +7,7 @@ namespace Negocio
 {
     public class ProductosNegocio
     {
-        public List<Producto> listar(int id = 0)
+        public List<Producto> listar(int id = 0,int idMarca=0,int idCategoria=0)
         {
             List<Producto> lproductos = new List<Producto>();
             AccesoDatos datos = new AccesoDatos();
@@ -31,6 +31,14 @@ namespace Negocio
                 if (id != 0)
                 {
                     consulta += " AND P.Id = " + id.ToString();
+                }
+                if (idMarca != 0)
+                {
+                    consulta += "AND P.MarcaId=" + idMarca.ToString();
+                }
+                if (idCategoria != 0)
+                {
+                    consulta += "AND P.CategoriaId=" + idCategoria.ToString();
                 }
 
                 datos.setearConsulta(consulta);

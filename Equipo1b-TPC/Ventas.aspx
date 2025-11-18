@@ -45,11 +45,10 @@
                     <div class="row justify-content-center align-items-center">
                         <div class="col-4">
                             <asp:TextBox ID="txtIdProducto" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtIdProducto_TextChanged" placeHolder="id Producto" runat="server"></asp:TextBox>
+                            <asp:Label ID="lblProducto" runat="server" Visible="false" CssClass="fw-bold text-center " Text=""></asp:Label>
                         </div>
                         <div class="col-5">
-                            <asp:DropDownList ID="ddlProductos" CssClass="form-select" runat="server">
-                                <asp:ListItem Text="Seleccione un Producto....." Value=""></asp:ListItem>
-                            </asp:DropDownList>
+                            <asp:DropDownList ID="ddlProductos" CssClass="form-select" runat="server"></asp:DropDownList>
                         </div>
                         <div class="col-1">
                             <asp:CheckBox ID="chkFiltro" CssClass="form-check" Text="Filtros" AutoPostBack="true" OnCheckedChanged="chkFiltro_CheckedChanged" runat="server" />
@@ -57,21 +56,24 @@
                         <div class="col-2">
                             <asp:Button ID="btnAgregarProducto" CssClass="btn btn-primary" runat="server" Text="Sumar producto" />
                         </div>
+                        <div class="col-auto">
+                            <asp:Label ID="lblFiltro" runat="server" Visible="false" CssClass="text-center fw-bold text-danger" Text=""></asp:Label>
+                        </div>
                     </div>
                     <div>
                         <%if (filtroAvanzado)
                             {%>
                         <div class="row justify-content-center align-items-center mt-2">
-                            <div class="col-6">
-                                <asp:DropDownList ID="ddlMarcas" CssClass="form-select" runat="server">
-                                    <asp:ListItem Text="Seleccione una marca para filtrar" Value=""></asp:ListItem>
-                                </asp:DropDownList>
+                            <div class="col-5">
+                                <asp:DropDownList ID="ddlMarcas" CssClass="form-select" runat="server"></asp:DropDownList>
                             </div>
-                            <div class="col-6">
-                                <asp:DropDownList ID="ddlCategorias" CssClass="form-select" runat="server">
-                                    <asp:ListItem Text="Seleccione una categoria para filtrar" Value=""></asp:ListItem>
-                                </asp:DropDownList>
+                            <div class="col-5">
+                                <asp:DropDownList ID="ddlCategorias" CssClass="form-select" runat="server"></asp:DropDownList>
                             </div>
+                            <div class="col-2">
+                                <asp:Button ID="btnFiltrar" OnClick="btnFiltrar_Click" CssClass="btn btn-primary" runat="server" Text="Filtrar" />
+                            </div>
+                            
                             <%  }%>
                         </div>
                     </div>
