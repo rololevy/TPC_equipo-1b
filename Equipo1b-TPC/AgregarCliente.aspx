@@ -15,6 +15,14 @@
                 <asp:TextBox ID="txtCuit" ClientIDMode="Static"   CssClass="form-control" placeHolder="Ingrese el cuit" runat="server"></asp:TextBox>
             </div>
             <div class="mb-3">
+                <asp:Label ID="lblTipoFactura"  CssClass="form-label" runat="server" Text="Tipo de factura"></asp:Label>
+                <asp:DropDownList ID="ddlTipoFactura" CssClass="form-select" runat="server">
+                    <asp:ListItem Text="Factura B" Value="B"></asp:ListItem>
+                    <asp:ListItem Text="Factura A" Value="A"></asp:ListItem>
+                    <asp:ListItem Text="Factura C" Value="C"></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <div class="mb-3">
                 <asp:Label ID="lblEmail" CssClass="form-label"  runat="server" Text="Email del cliente"></asp:Label>
                 <asp:TextBox ID="txtEmail" ClientIDMode="Static"  TextMode="Email" CssClass="form-control" placeHolder="ejemplo@correo.com"  runat="server"></asp:TextBox>
             </div>

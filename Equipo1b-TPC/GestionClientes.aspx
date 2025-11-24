@@ -37,6 +37,7 @@
                                 <asp:BoundField DataField="email" HeaderText="email" />
                                 <asp:BoundField DataField="telefono" HeaderText="telefono" />
                                 <asp:BoundField DataField="direccion" HeaderText="direccion" />
+                                <asp:BoundField DataField="TipoFactura" HeaderText="Tipo Factura" />
                                 <asp:TemplateField HeaderText="Activo">
                                     <ItemTemplate>
                                         <asp:CheckBox ID="chkActivo" runat="server" Checked='<%# Convert.ToBoolean(Eval("Activo")) %>' Enabled="false" CssClass="form-check-input" />

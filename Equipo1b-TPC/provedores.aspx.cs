@@ -1,4 +1,5 @@
-﻿using Equipo1b_TPC.Dominio;
+﻿using dominio;
+using Equipo1b_TPC.Dominio;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Equipo1b_TPC
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
+        List<detalleVenta> ldetalle = new List<detalleVenta>();
         public bool filtroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,8 +20,9 @@ namespace Equipo1b_TPC
             {
 
                 CargarProveedores();
-                gvVacia();
+                CargarDetalle();
             }
+          
         }
         private void CargarProveedores()
         {
@@ -33,9 +36,9 @@ namespace Equipo1b_TPC
             ddlProvedores.Items.Insert(0, new ListItem("Seleccione un Proveedor", "0"));
 
         }
-        private void gvVacia()
+        private void CargarDetalle()
         {
-            gvProductos.DataSource = new List<object>();
+            gvProductos.DataSource = ldetalle;
             gvProductos.DataBind();
         }
         protected void txtFiltrarProvedores_TextChanged(object sender, EventArgs e)

@@ -10,8 +10,8 @@ namespace dominio
     public class venta
     {
         public int numeroFactura { get; set; }
-        public char tipoFactura { get; set; }//'a' ,'b' o 'c'
-        public char MedioPago { get; set; }//'t' tarjeta , 'q' qr(modo,mercadopago,etc),'e' Efectivo
+        public string tipoFactura { get; set; }//'a' ,'b' o 'c'
+        public string MedioPago { get; set; }//'t' tarjeta , 'q' qr(modo,mercadopago,etc),'e' Efectivo
         public List<detalleVenta> detalleV { get; set; }
         public Cliente cliente { get; set; }
         public decimal totalVenta { get; set; }
@@ -22,6 +22,7 @@ namespace dominio
             detalleV = new List<detalleVenta>();
             totalVenta = 0;
             FechaVenta = DateTime.Now;//asignamos la fecha actual
+            cliente = new Cliente();
             
         }
         //meotdo que calcula el total de la venta 

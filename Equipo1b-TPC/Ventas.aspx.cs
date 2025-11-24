@@ -1,31 +1,51 @@
-﻿using Equipo1b_TPC.Dominio;
+﻿using dominio;
+using Equipo1b_TPC.Dominio;
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 
 namespace Equipo1b_TPC
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        private List<detalleVenta> ldetalle
+        {
+            get
+            {
+                if (Session["ldetalle"] == null)
+                {
+                    Session["ldetalle"] = new List<detalleVenta>();
+                }
+                return (List<detalleVenta>)Session["ldetalle"];
+            }
+            set
+            {
+                Session["ldetalle"] = value;
+            }
+        }
         public bool filtroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                gvVacia();
+                CargarDetalle();
                 CargarClientes();
                 CargarProductos();
             }
+
         }
         private void CargarProductos()
         {
-            ProductosNegocio negocio= new ProductosNegocio();
+            ProductosNegocio negocio = new ProductosNegocio();
             List<Producto> lproducto = new List<Producto>();
             lproducto = negocio.listar();
             ddlProductos.DataSource = lproducto;
@@ -34,19 +54,31 @@ namespace Equipo1b_TPC
             ddlProductos.DataBind();
             ddlProductos.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
         }
+        private void CargarDetalle()
+        {
+            gvProductos.DataSource = ldetalle;
+            gvProductos.DataBind();
+
+            decimal total = ldetalle.Sum(d => d.total);
+            var cultaAR = new CultureInfo("es-AR");
+            if (ldetalle.Count > 0)
+            {
+                txtTotal.Text = total.ToString("C2", cultaAR);
+            }
+        }
         private void FiltrarProductos()
         {
-            
+
             int idMarcas = int.Parse(ddlMarcas.SelectedValue);
             int idCategorias = int.Parse(ddlCategorias.SelectedValue);
             ProductosNegocio negocio = new ProductosNegocio();
             List<Producto> lprod = new List<Producto>();
             if (idMarcas != 0 && idCategorias != 0)
-            {  
+            {
                 lprod = negocio.listar(0, idMarcas, idCategorias);
             }
             else if (idMarcas != 0)
-            {     
+            {
                 lprod = negocio.listar(0, idMarcas, 0);
             }
             else if (idCategorias != 0)
@@ -60,14 +92,21 @@ namespace Equipo1b_TPC
             ddlProductos.DataSource = lprod;
             ddlProductos.DataValueField = "Id";
             ddlProductos.DataTextField = "Nombre";
+            if (int.Parse(ddlProductos.SelectedValue) != 0)
+            {
+                txtIdProducto.Text = ddlProductos.SelectedValue;
+            }
             ddlProductos.DataBind();
-            lblFiltro.Visible = false;
+            lblMensaje.Visible = false;
             if (lprod.Count == 0)
             {
-                lblFiltro.Visible = true;
-                lblFiltro.Text = "No se encontro ningun producto con los filtros selecionados";
+
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "No se encontro ningun producto con los filtros selecionados";
+                txtIdProducto.Text = "";
+                return;
             }
-            return;
+
 
         }
         private void CargarMarcas()
@@ -103,11 +142,7 @@ namespace Equipo1b_TPC
 
             ddlClientes.Items.Insert(0, new ListItem("seleccione un cliente", "0"));
         }
-        private void gvVacia()
-        {
-            gvProductos.DataSource = new List<object>();
-            gvProductos.DataBind();
-        }
+
         protected void txtFiltrarClientes_TextChanged(object sender, EventArgs e)
         {
             string filtro = txtFiltrarClientes.Text.Trim();
@@ -157,26 +192,25 @@ namespace Equipo1b_TPC
             string id = txtIdProducto.Text;
             if (string.IsNullOrWhiteSpace(id))
             {
-                lblProducto.Visible = false;
+                lblMensaje.Visible = false;
                 CargarProductos();
                 return;
             }
-            if(!int.TryParse(id,out int idProducto))
+            if (!int.TryParse(id, out int idProducto))
             {
-                lblProducto.Text = "El ID debe ser numerico";
-                lblProducto.CssClass += "text-danger";
-                lblProducto.Visible = true;
+                lblMensaje.Text = "El ID ingresado debe ser numerico";
+                lblMensaje.Visible = true;
                 CargarProductos();
                 return;
             }
             ProductosNegocio negocio = new ProductosNegocio();
             List<Producto> lproductos = negocio.listar(int.Parse(id));
             //si no encontro nada
-            if(lproductos==null || lproductos.Count == 0)
+            if (lproductos == null || lproductos.Count == 0)
             {
-                lblProducto.CssClass += "text-danger";
-                lblProducto.Text = "No se encontro ningun producto con el id ingresado";
-                lblProducto.Visible = true;
+                txtIdProducto.Text = "";
+                lblMensaje.Text = "No se encontro ningun producto con el id ingresado";
+                lblMensaje.Visible = true;
                 ddlProductos.Items.Clear();
                 CargarProductos();
                 return;
@@ -186,24 +220,25 @@ namespace Equipo1b_TPC
             ddlProductos.DataTextField = "Nombre";
             ddlProductos.DataValueField = "Id";
             ddlProductos.DataBind();
-            lblProducto.Visible = false;
+            lblMensaje.Visible = false;
 
         }
 
         protected void chkFiltro_CheckedChanged(object sender, EventArgs e)
         {
             filtroAvanzado = chkFiltro.Checked;
-            if (filtroAvanzado) {
+            if (filtroAvanzado)
+            {
                 CargarCategorias();
                 CargarMarcas();
             }
             else
             {
-                lblFiltro.Visible = false;
+                lblMensaje.Visible = false;
                 CargarProductos();
             }
 
-           
+
         }
 
         protected void btnModificarCliente_Click(object sender, EventArgs e)
@@ -213,9 +248,9 @@ namespace Equipo1b_TPC
             {
                 lblModificarCliente.Visible = true;
                 lblModificarCliente.Text = "Debe seleccionar un cliente para modificar";
-                lblModificarCliente.CssClass= "text-danger fw-bold";
+                lblModificarCliente.CssClass = "text-danger fw-bold";
                 return;
-               
+
             }
             Response.Redirect("AgregarCliente.aspx?id=" + idSeleccionado);
         }
@@ -226,14 +261,157 @@ namespace Equipo1b_TPC
         }
 
 
-   
+
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-            if (chkFiltro.Checked) {
+            if (chkFiltro.Checked)
+            {
                 FiltrarProductos();
             }
+
+        }
+
+        protected void btnAgregarProducto_Click(object sender, EventArgs e)
+        {
+            if (int.Parse(ddlClientes.SelectedValue) == 0)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "Debe seleccionar al menos un cliente para realizar una venta";
+                return;
+
+            }
+            if (int.Parse(ddlProductos.SelectedValue) == 0)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "Debe seleccionar al menos un producto para agregarlo a ala venta";
+                return;
+
+            }
+            if (string.IsNullOrEmpty(txtCantidad.Text))
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "Debe ingresar la cantidad para agregar el producto";
+                return;
+            }
+           
+            int cantidad = int.Parse(txtCantidad.Text);
+            int id = int.Parse(ddlProductos.SelectedValue);
+
+            ProductosNegocio negocio = new ProductosNegocio();
+            List<Producto> lprod = negocio.listar(id);
+
+            Producto producto = lprod[0];
+
+            //cantidad del producto actual
+            int cantidadActual = ldetalle.Where(d => d.producto.Id == id).Sum(d => d.cantidad);
+            int cantidadTotal = cantidad + cantidadActual;
+            if (cantidadTotal > producto.StockActual)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "No hay stock suficiente, stock disponible :"+producto.StockActual ;
+                return;
+            }
+
+            detalleVenta detalle = new detalleVenta();
+            detalle.producto = lprod[0];
+            detalle.cantidad = cantidad;
+            ldetalle.Add(detalle);
+            CargarDetalle();
+            lblMensaje.Visible = false;
+
+
+
+
+
+
+        }
+
+        protected void ddlProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (int.Parse(ddlProductos.SelectedValue) == 0)
+
+            {
+                txtIdProducto.Text = "";
+                return;
+            }
+            txtIdProducto.Text = ddlProductos.SelectedValue;
+        }
+
+        protected void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            if (ldetalle == null || ldetalle.Count == 0)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "No puede finalizar una venta sin ningun articulo cargado";
+                return;
+            }
+            if (ddlMedioPago.SelectedValue == "0")
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "Debe seleccionar un medio de pago";
+                return;
+            }
+            //venta venta = new venta();
+            //venta.detalleV = ldetalle;
+            //ClientesNegocio negocio = new ClientesNegocio();
+            //List<Cliente> lclientes = negocio.listar(false,int.Parse(ddlClientes.SelectedValue));
+            //venta.cliente = lclientes[0];
+            //venta.tipoFactura =ddlFactura.SelectedValue;
+            //venta.calcularTotal();
+            //venta.MedioPago = ddlMedioPago.SelectedValue;
+            //ldetalle = new List<detalleVenta>();
+            //CargarDetalle();
+            //txtCantidad.Text = "";
+            //txtIdProducto.Text = "";
+            //txtTotal.Text = "";
+            //ddlProductos.Items.Clear();
+            //CargarProductos();
+            //ddlClientes.SelectedIndex = 0;
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            ldetalle = new List<detalleVenta>();
+            CargarDetalle();
+            txtCantidad.Text = "";
+            txtIdProducto.Text = "";
+            txtTotal.Text = "";
+            ddlProductos.Items.Clear();
+            CargarProductos();
+            ddlClientes.SelectedIndex = 0;
             
+            
+
+        }
+
+        protected void ddlClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlClientes.SelectedIndex != 0)
+            {
+                int id = int.Parse(ddlClientes.SelectedValue);
+                ClientesNegocio negocio = new ClientesNegocio();
+                List<Cliente> lcliente= negocio.listar(false, id);
+                string TipoFactura = lcliente[0].TipoFactura;
+                switch (TipoFactura)
+                {
+                    case "A":
+                        ddlFactura.SelectedValue = "A";
+                        break;
+                    case "B":
+                        ddlFactura.SelectedValue = "B";
+                        break;
+                    case "C":
+                        ddlFactura.SelectedValue = "C";
+                        break;
+                }
+            }
         }
     }
 }

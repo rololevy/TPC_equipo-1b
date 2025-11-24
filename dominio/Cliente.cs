@@ -14,20 +14,12 @@ namespace Equipo1b_TPC.Dominio
         public string Telefono { get; set; }
         public string Direccion { get; set; }
         public bool Activo { get; set; }
+        public string TipoFactura { get; set; }
 
         public Cliente()
         {
             Activo = true;
         }
 
-        //public string NombreCompleto
-        //{
-        //    get { return Nombre + " " + Apellido; }
-        //}
-
-        //public override string ToString()
-        //{
-        //    return NombreCompleto;
-        //}
     }
 }

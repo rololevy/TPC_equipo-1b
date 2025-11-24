@@ -32,26 +32,26 @@ namespace dominio
 
             switch (ventas.MedioPago)
             {
-                case 'E':
+                case "E":
                     totalEfectivo += ventas.totalVenta;
                     break;
-                case 'T':
+                case "T":
                     totalTarjeta += ventas.totalVenta;
                     break;
-                case 'Q':
+                case "Q":
                     totalQr += ventas.totalVenta;
                     break;
 
             }
             switch (ventas.tipoFactura)
             {
-                case 'A':
+                case "A":
                     totalFa += ventas.totalVenta;
                     break;
-                case 'B':
+                case "B":
                     totalFb += ventas.totalVenta;
                     break;
-                case 'C':
+                case "C":
                     totalFc += ventas.totalVenta;
                     break;
 

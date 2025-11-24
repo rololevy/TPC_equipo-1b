@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -15,10 +16,18 @@ namespace Equipo1b_TPC.Dominio
         public Proveedor Provedor { get; set; }
         public decimal PrecioCompra { get; set; }
         public int PorcentajeGanancia { get; set; }  // Cambié de decimal a int
+        public decimal PrecioVenta
+        {
+            get
+            {
+                return CalcularPrecioVenta();
+            }
+        }
         public int StockActual { get; set; }
         public int StockMinimo { get; set; }
         public bool Activo { get; set; }
 
+       
         public Producto()
         {
             Marca = new Marca();

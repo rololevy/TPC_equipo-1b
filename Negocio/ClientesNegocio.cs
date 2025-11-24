@@ -15,7 +15,7 @@ namespace Negocio
         {
             List<Cliente> lClientes = new List<Cliente>();
             AccesoDatos datos = new AccesoDatos();
-            string consulta = "select Id,RazonSocial,Cuit,Telefono,Direccion,Activo,Email from Clientes";
+            string consulta = "select Id,RazonSocial,Cuit,Telefono,Direccion,Activo,Email,TipoFactura from Clientes";
             //si no queremos incluir inactivos
             if (!incluirInactivos)
             {
@@ -48,6 +48,8 @@ namespace Negocio
                     aux.Direccion = (string)datos.Lector["Direccion"];
                     aux.Activo = (bool)datos.Lector["Activo"];
                     aux.Email = (string)datos.Lector["Email"];
+                    aux.TipoFactura = (string)datos.Lector["TipoFactura"];
+
             
 
                     lClientes.Add(aux);
@@ -68,7 +70,7 @@ namespace Negocio
         {
             List<Cliente> lClientes = new List<Cliente>();
             AccesoDatos datos = new AccesoDatos();
-            string consulta = "select Id,RazonSocial,Cuit,Telefono,Direccion,Activo,Email from Clientes";
+            string consulta = "select Id,RazonSocial,Cuit,Telefono,Direccion,Activo,Email,TipoFactura from Clientes";
             //si no queremos incluir inactivos
             if (!incluirInactivos)
             {
@@ -94,7 +96,7 @@ namespace Negocio
                     aux.Direccion = (string)datos.Lector["Direccion"];
                     aux.Activo = (bool)datos.Lector["Activo"];
                     aux.Email = (string)datos.Lector["Email"];
-
+                    aux.TipoFactura = (string)datos.Lector["TipoFactura"];
 
                     lClientes.Add(aux);
                 }
@@ -114,7 +116,7 @@ namespace Negocio
         {
             List<Cliente> lClientes = new List<Cliente>();
             AccesoDatos datos = new AccesoDatos();
-            string consulta = "select Id,RazonSocial,Cuit,Telefono,Direccion,Activo,Email from Clientes";
+            string consulta = "select Id,RazonSocial,Cuit,Telefono,Direccion,Activo,Email,TipoFactura from Clientes";
             //si no queremos incluir inactivos
             if (!incluirInactivos)
             {
@@ -140,7 +142,7 @@ namespace Negocio
                     aux.Direccion = (string)datos.Lector["Direccion"];
                     aux.Activo = (bool)datos.Lector["Activo"];
                     aux.Email = (string)datos.Lector["Email"];
-
+                    aux.TipoFactura = (string)datos.Lector["TipoFactura"];
 
                     lClientes.Add(aux);
                 }
@@ -162,12 +164,13 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("insert into Clientes(RazonSocial, Cuit, Telefono, Direccion,Email)Values(@RazonSocial, @Cuit, @Telefono, @Direccion,@Email);");
+                datos.setearConsulta("insert into Clientes(RazonSocial, Cuit, Telefono, Direccion,Email,TipoFactura)Values(@RazonSocial, @Cuit, @Telefono, @Direccion,@Email,@TipoFactura);");
                 datos.setearParametro("@RazonSocial", cl.RazonSocial);
                 datos.setearParametro("@Cuit", cl.Cuit);
                 datos.setearParametro("@Telefono", cl.Telefono);
                 datos.setearParametro("@Direccion", cl.Direccion);
                 datos.setearParametro("@Email", cl.Email);
+                datos.setearParametro("@TipoFactura", cl.TipoFactura);
                 datos.ejecutarAccion();
 
             }
@@ -186,13 +189,14 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update Clientes set RazonSocial = @RazonSocial, Cuit = @CuitNuevo, Telefono = @Telefono, Direccion = @Direccion, Email = @Email where Id = @Id");
+                datos.setearConsulta("update Clientes set RazonSocial = @RazonSocial, Cuit = @CuitNuevo, Telefono = @Telefono, Direccion = @Direccion, Email = @Email,TipoFactura = @TipoFactura where Id = @Id");
                 datos.setearParametro("@RazonSocial", cl.RazonSocial);
                 datos.setearParametro("@CuitNuevo", cl.Cuit);
                 datos.setearParametro("@Telefono", cl.Telefono);
                 datos.setearParametro("@Direccion", cl.Direccion);
                 datos.setearParametro("@Email", cl.Email);
                 datos.setearParametro("@Id",cl.Id);
+                datos.setearParametro("@TipoFactura", cl.TipoFactura);
                 datos.ejecutarAccion();
             }
             catch(Exception ex)
