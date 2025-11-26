@@ -9,6 +9,7 @@ namespace dominio
 {
     public class ResumenVenta
     {
+        public int NroDeCierre { get; set; }
         public decimal totalGeneral { get; set; }
         //totales por medio de pago
         public decimal totalEfectivo { get; set; }
@@ -20,7 +21,7 @@ namespace dominio
         public decimal totalFb { get; set; }
         public int totalOperaciones { get; set; }
         public DateTime fechaResumenVenta { get; set; }
-
+        public bool Cerrado { get; set; }
         public void sumarVenta(venta ventas)
         {
             if (ventas == null)
@@ -67,7 +68,7 @@ namespace dominio
             totalFc = 0;
             totalFb = 0;
             totalOperaciones = 0;
-            fechaResumenVenta = DateTime.Now;
+            fechaResumenVenta = DateTime.Today;
             
 
         }

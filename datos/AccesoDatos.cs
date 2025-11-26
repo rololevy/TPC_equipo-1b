@@ -66,5 +66,24 @@ namespace datos
             if (conexion != null)
                 conexion.Close();
         }
+        public int ejecutarScalar()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                return Convert.ToInt32(comando.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+
+                conexion.Close();
+            }
+        }
     }
+    
 }

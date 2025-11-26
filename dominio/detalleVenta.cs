@@ -9,8 +9,14 @@ namespace dominio
 {
     public class detalleVenta
     {
+        public int id { get; set; }
+        public int NumeroFactura { get; set; }
+
         public Producto producto { get; set; }
         public int cantidad { get; set; }
+        public decimal subtotal { get; set; }
+         public decimal PrecioUnitario { get; set;
+        }
         public decimal total
         {
             get
@@ -24,6 +30,10 @@ namespace dominio
         {
             return producto.CalcularPrecioVenta() * cantidad;
 
+        }
+        public detalleVenta()
+        {
+            producto = new Producto();
         }
 
     }

@@ -17,7 +17,7 @@ namespace Negocio
             List<venta> lventas = new List<venta>();
             try
             {
-                string consulta = "select NumeroFactura, TipoFactura, Fecha, ClienteId, Total from Ventas";
+                string consulta = "select NumeroFactura, TipoFactura, Fecha, ClienteId, Total,MedioPago from Ventas";
                 if (numeroFactura != 0)
                 {
                     consulta += " WHERE NumeroFactura=" + numeroFactura;
@@ -31,7 +31,8 @@ namespace Negocio
                     aux.tipoFactura = (string)datos.Lector["TipoFactura"];
                     aux.FechaVenta = (DateTime)datos.Lector["Fecha"];
                     aux.cliente.Id = (int)datos.Lector["ClienteId"];
-                    aux.totalVenta = (Decimal)datos.Lector["Total"];
+                    aux.totalVenta = (decimal)datos.Lector["Total"];
+                    aux.MedioPago = (string)datos.Lector["MedioPago"];
 
                     lventas.Add(aux);
 
@@ -48,18 +49,19 @@ namespace Negocio
             }
 
         }
-        public void Agregar(venta venta)
+        public int Agregar(venta venta)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "insert into Ventas(TipoFactura,Fecha,ClienteId,Total) VALUES (@TipoFactura,@Fecha,@ClienteId,@Total)";
+                string consulta = "insert into Ventas(TipoFactura,Fecha,ClienteId,Total,MedioPago) VALUES (@TipoFactura,@Fecha,@ClienteId,@Total,@MedioPago) SELECT SCOPE_IDENTITY()";
                 datos.setearConsulta(consulta);
                 datos.setearParametro("@TipoFactura", venta.tipoFactura);
                 datos.setearParametro("@Fecha", venta.FechaVenta);
                 datos.setearParametro("@ClienteId", venta.cliente.Id);
                 datos.setearParametro("@Total", venta.totalVenta);
-                datos.ejecutarAccion();
+                datos.setearParametro("@MedioPago", venta.MedioPago);
+                return datos.ejecutarScalar();
             }
             catch(Exception ex)
             {
@@ -76,13 +78,14 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = ("Update Ventas SET  TipoFactura=@TipoFactura,Fecha=@Fecha,ClienteId=@ClienteId,Total=@Total WHERE NumeroFactura=@NumeroFactura");
+                string consulta = ("Update Ventas SET  TipoFactura=@TipoFactura,Fecha=@Fecha,ClienteId=@ClienteId,Total=@Total,MedioPago=@MedioPago WHERE NumeroFactura=@NumeroFactura");
                 datos.setearConsulta(consulta);
                 datos.setearParametro("@NumeroFactura", venta.numeroFactura);
                 datos.setearParametro("@TipoFactura", venta.tipoFactura);
                 datos.setearParametro("@Fecha", venta.FechaVenta);
                 datos.setearParametro("@ClienteId", venta.cliente.Id);
                 datos.setearParametro("@Total", venta.totalVenta);
+                datos.setearParametro("@MedioPago", venta.MedioPago);
                 datos.ejecutarAccion();
             }
             catch(Exception ex)
@@ -94,6 +97,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        
       
     }
 }

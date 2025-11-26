@@ -32,6 +32,7 @@ namespace Equipo1b_TPC
                 Session["ldetalle"] = value;
             }
         }
+       
         public bool filtroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -294,7 +295,7 @@ namespace Equipo1b_TPC
                 lblMensaje.Text = "Debe ingresar la cantidad para agregar el producto";
                 return;
             }
-           
+
             int cantidad = int.Parse(txtCantidad.Text);
             int id = int.Parse(ddlProductos.SelectedValue);
 
@@ -309,7 +310,7 @@ namespace Equipo1b_TPC
             if (cantidadTotal > producto.StockActual)
             {
                 lblMensaje.Visible = true;
-                lblMensaje.Text = "No hay stock suficiente, stock disponible :"+producto.StockActual ;
+                lblMensaje.Text = "No hay stock suficiente, stock disponible :" + producto.StockActual;
                 return;
             }
 
@@ -358,22 +359,47 @@ namespace Equipo1b_TPC
                 lblMensaje.Text = "Debe seleccionar un medio de pago";
                 return;
             }
-            //venta venta = new venta();
-            //venta.detalleV = ldetalle;
-            //ClientesNegocio negocio = new ClientesNegocio();
-            //List<Cliente> lclientes = negocio.listar(false,int.Parse(ddlClientes.SelectedValue));
-            //venta.cliente = lclientes[0];
-            //venta.tipoFactura =ddlFactura.SelectedValue;
-            //venta.calcularTotal();
-            //venta.MedioPago = ddlMedioPago.SelectedValue;
-            //ldetalle = new List<detalleVenta>();
-            //CargarDetalle();
-            //txtCantidad.Text = "";
-            //txtIdProducto.Text = "";
-            //txtTotal.Text = "";
-            //ddlProductos.Items.Clear();
-            //CargarProductos();
-            //ddlClientes.SelectedIndex = 0;
+            VentaNegocio ventaNegocio = new VentaNegocio();
+            DetalleVentasNegocio detalleNegocio = new DetalleVentasNegocio();
+            ResumenVentaNegocio resumenVentaNegocio = new ResumenVentaNegocio();
+            //asignacion de venta
+            venta venta = new venta();
+            venta.tipoFactura = ddlFactura.SelectedValue;
+            venta.MedioPago = ddlMedioPago.SelectedValue;
+            venta.detalleV = ldetalle;
+            ClientesNegocio negocio = new ClientesNegocio();
+            List<Cliente> lclientes = negocio.listar(false, int.Parse(ddlClientes.SelectedValue));
+            venta.cliente = lclientes[0];
+            venta.calcularTotal();
+            //obtenemos el id de venta agregado
+            int numeroFactura= ventaNegocio.Agregar(venta);
+
+            //guardamos los detalles
+            foreach(var det in ldetalle)
+            {
+                det.NumeroFactura = numeroFactura;
+                det.PrecioUnitario = det.producto.PrecioVenta;
+                det.subtotal = det.CalcularSubtotal();
+                detalleNegocio.AgregarDetalle(det);
+            }
+            //sumamos la venta al resumen
+            bool actualizo=resumenVentaNegocio.actualizarResumenDeldia(venta);
+            //si no actualizo mostramos mensaje
+            if (!actualizo)
+            {
+                lblMensaje.Text = "No se puede agregar la venta al resumen debido a que , la venta del dia " + DateTime.Today.ToString("dd/MM/yyyy") + " esta cerrada";
+                lblMensaje.Visible = true;
+            }
+           
+            //reiniciamos la lista y controles
+            ldetalle = new List<detalleVenta>();
+            CargarDetalle();
+            txtCantidad.Text = "";
+            txtIdProducto.Text = "";
+            txtTotal.Text = "";
+            ddlProductos.Items.Clear();
+            CargarProductos();
+            ddlClientes.SelectedIndex = 0;
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -386,8 +412,8 @@ namespace Equipo1b_TPC
             ddlProductos.Items.Clear();
             CargarProductos();
             ddlClientes.SelectedIndex = 0;
-            
-            
+
+
 
         }
 
@@ -397,7 +423,7 @@ namespace Equipo1b_TPC
             {
                 int id = int.Parse(ddlClientes.SelectedValue);
                 ClientesNegocio negocio = new ClientesNegocio();
-                List<Cliente> lcliente= negocio.listar(false, id);
+                List<Cliente> lcliente = negocio.listar(false, id);
                 string TipoFactura = lcliente[0].TipoFactura;
                 switch (TipoFactura)
                 {

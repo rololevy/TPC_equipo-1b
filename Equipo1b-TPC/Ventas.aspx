@@ -74,7 +74,7 @@
                             <asp:TextBox ID="txtTotal" CssClass="form-control" AutoPostBack="true" ClientIDMode="Static" ReadOnly="true" placeHolder="Total" runat="server"></asp:TextBox>
                         </div>
                         <div class="col-4">
-                            <asp:DropDownList ID="ddlMedioPago" Enabled="false" ReadOnly="true" CssClass="form-select" runat="server">
+                            <asp:DropDownList ID="ddlMedioPago" AutoPostBack="true"  CssClass="form-select" runat="server">
                                 <asp:ListItem Text="Seleccione el medio de pago" Value="0"></asp:ListItem>
                                 <asp:ListItem Text="Tarjeta" Value="T"></asp:ListItem>
                                 <asp:ListItem Text="codigo QR" Value="Q"></asp:ListItem>

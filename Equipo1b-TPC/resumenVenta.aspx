@@ -15,12 +15,18 @@
                                 <asp:BoundField DataField="TotalFa" HeaderText="Total Factura(A)" />
                                 <asp:BoundField DataField="TotalFb" HeaderText="Total Factura(B)" />
                                 <asp:BoundField DataField="TotalFc" HeaderText="Total Factura(C)" />
-                                <asp:BoundField DataField="TotalOp" HeaderText="Total de operaciones" />
-                                <asp:BoundField DataField="TotalE" HeaderText="Total Efectivo" />
-                                <asp:BoundField DataField="TotalT" HeaderText="Total Tarjeta" />
+                                <asp:BoundField DataField="TotalOperaciones" HeaderText="Total de operaciones" />
+                                <asp:BoundField DataField="TotalEfectivo" HeaderText="Total Efectivo" />
+                                <asp:BoundField DataField="TotalTarjeta" HeaderText="Total Tarjeta" />
                                 <asp:BoundField DataField="TotalQR" HeaderText="Total Qr" />
                             </Columns>
                         </asp:GridView>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <asp:Button ID="btnCierreCaja" runat="server" OnClick="btnCierreCaja_Click" CssClass="btn btn-danger" Text="Generar ciere de caja" />
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <asp:Label ID="lblMensaje" CssClass="text-danger fw-bold text-center" Visible="false" runat="server" Text=""></asp:Label>
+                        </div>
                     </div>
                 </ContentTemplate>
 
@@ -49,11 +55,11 @@
                         </div>
                     </div>
                     <div class="col-12 mt-4">
-                        <asp:GridView ID="gvHistorialVentas" ClientIDMode="static" ShowHeaderWhenEmpty="true" EmptyDataText="No hay ventas almacenadas en la base de datos aun" CssClass="table table-striped table-bordered text-center w-100" AutoGenerateColumns="false" runat="server">
+                        <asp:GridView ID="gvHistorialVentas" ClientIDMode="static" ShowHeaderWhenEmpty="true" EmptyDataText="No hay ventas historicas almacenadas" CssClass="table table-striped table-bordered text-center w-100" AutoGenerateColumns="false" runat="server">
                             <Columns>
                                 <asp:BoundField DataField="TotalGeneral" HeaderText="Total venta General" />
-                                <asp:BoundField DataField="TotalOp" HeaderText="Total de operaciones" />
-                                <asp:BoundField DataField="fechaVenta" HeaderText="fecha de venta" />
+                                <asp:BoundField DataField="TotalOperaciones" HeaderText="Total de operaciones" />
+                                <asp:BoundField DataField="fechaResumenVenta" HeaderText="fecha de venta" />
                             </Columns>
                         </asp:GridView>
                     </div>
