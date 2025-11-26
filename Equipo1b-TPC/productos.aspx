@@ -4,37 +4,37 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container mt-4">
-        <div class="card">
-            <div class="card-header bg-primary text-white">
-                <h4 class="mb-0">Gestión de Productos</h4>
-            </div>
+        <div class="card-grid p-4 border-1 text-white" style="min-width: 400px; background: linear-gradient(135deg, #0d6efd, #5fa8ff); border-radius: 15px;">
+            <h1 class="text-center text-white fw-bold text-primary">
+                Gestion de Productos
+            </h1>
             <div class="card-body">
                 <!-- Filtros y búsqueda -->
                 <div class="row mb-3">
                     <div class="col-md-4">
-                        <asp:TextBox ID="txtBuscarProd" runat="server" CssClass="form-control" 
-                            placeholder="Buscar producto..." AutoPostBack="true" 
+                        <asp:TextBox ID="txtBuscarProd" runat="server" CssClass="form-control"
+                            placeholder="Buscar producto..." AutoPostBack="true"
                             OnTextChanged="txtBuscarProd_TextChanged"></asp:TextBox>
                     </div>
                     <div class="col-md-3">
-                        <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-select" 
+                        <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-select"
                             AutoPostBack="true" OnSelectedIndexChanged="ddlMarca_SelectedIndexChanged">
                         </asp:DropDownList>
                     </div>
                     <div class="col-md-3">
-                        <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-select" 
+                        <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-select"
                             AutoPostBack="true" OnSelectedIndexChanged="ddlCategoria_SelectedIndexChanged">
                         </asp:DropDownList>
                     </div>
                     <div class="col-md-2">
-                        <asp:Button ID="btnNuevoProd" runat="server" CssClass="btn btn-success w-100" 
+                        <asp:Button ID="btnNuevoProd" runat="server" CssClass="btn btn-success w-100"
                             Text="+ Nuevo" OnClick="btnNuevoProd_Click" />
                     </div>
                 </div>
 
                 <!-- GridView con funcionalidad -->
-                <asp:GridView ID="gvProductosPage" runat="server" CssClass="table table-striped table-hover" 
-                    AutoGenerateColumns="false" DataKeyNames="Id" 
+                <asp:GridView ID="gvProductosPage" runat="server" CssClass="table table-striped table-hover"
+                    AutoGenerateColumns="false" DataKeyNames="Id"
                     OnRowCommand="gvProductosPage_RowCommand">
                     <Columns>
                         <asp:BoundField HeaderText="ID" DataField="Id" ItemStyle-Width="50px" />
@@ -59,13 +59,13 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Acciones">
                             <ItemTemplate>
-                                <asp:Button ID="btnEditarPage" runat="server" 
-                                    CssClass="btn btn-sm btn-outline-primary me-1" 
-                                    Text="Editar" CommandName="Editar" 
+                                <asp:Button ID="btnEditarPage" runat="server"
+                                    CssClass="btn btn-sm btn-outline-primary me-1"
+                                    Text="Editar" CommandName="Editar"
                                     CommandArgument='<%# Eval("Id") %>' />
-                                <asp:Button ID="btnEliminarPage" runat="server" 
-                                    CssClass="btn btn-sm btn-outline-danger" 
-                                    Text="Eliminar" CommandName="Eliminar" 
+                                <asp:Button ID="btnEliminarPage" runat="server"
+                                    CssClass="btn btn-sm btn-outline-danger"
+                                    Text="Eliminar" CommandName="Eliminar"
                                     CommandArgument='<%# Eval("Id") %>'
                                     OnClientClick="return confirm('¿Está seguro que desea eliminar este producto?');" />
                             </ItemTemplate>

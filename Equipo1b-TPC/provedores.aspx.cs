@@ -1,4 +1,4 @@
-﻿using Equipo1b_TPC.Dominio;
+using Equipo1b_TPC.Dominio;
 using dominio;
 using Negocio;
 using System;
@@ -10,8 +10,9 @@ namespace Equipo1b_TPC
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
+        List<detalleVenta> ldetalle = new List<detalleVenta>();
         public bool filtroAvanzado { get; set; }
-        
+
         private List<DetalleCompraTemp> DetallesCompra
         {
             get
@@ -60,7 +61,7 @@ namespace Equipo1b_TPC
             }
 
             ProductosNegocio negocio = new ProductosNegocio();
-            
+
             // Si hay filtros avanzados activos
             int idMarca = 0;
             int idCategoria = 0;
@@ -69,14 +70,14 @@ namespace Equipo1b_TPC
             {
                 if (ddlMarcas.SelectedValue != "0")
                     idMarca = int.Parse(ddlMarcas.SelectedValue);
-                
+
                 if (ddlCategorias.SelectedValue != "0")
                     idCategoria = int.Parse(ddlCategorias.SelectedValue);
             }
 
             // Cargar solo productos del proveedor seleccionado
             List<Producto> lproducto = negocio.listarPorProveedor(idProveedor, idMarca, idCategoria);
-            
+
             ddlProductos.DataSource = lproducto;
             ddlProductos.DataTextField = "Nombre";
             ddlProductos.DataValueField = "Id";
@@ -127,7 +128,7 @@ namespace Equipo1b_TPC
         protected void txtFiltrarProvedores_TextChanged(object sender, EventArgs e)
         {
             string filtro = txtFiltrarProvedores.Text.Trim();
-            
+
             if (string.IsNullOrWhiteSpace(filtro))
             {
                 OcultarMensaje();
@@ -163,12 +164,12 @@ namespace Equipo1b_TPC
         protected void ddlProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             int idProducto = int.Parse(ddlProductos.SelectedValue);
-            
+
             if (idProducto > 0)
             {
                 ProductosNegocio negocio = new ProductosNegocio();
                 List<Producto> productos = negocio.listar(idProducto);
-                
+
                 if (productos != null && productos.Count > 0)
                 {
                     txtPrecioUnitario.Text = productos[0].PrecioCompra.ToString("F2");
@@ -179,13 +180,13 @@ namespace Equipo1b_TPC
         protected void chkFiltros_CheckedChanged(object sender, EventArgs e)
         {
             filtroAvanzado = chkFiltros.Checked;
-            
+
             if (filtroAvanzado)
             {
                 CargarMarcas();
                 CargarCategorias();
             }
-            
+
             // Recargar productos con o sin filtros
             CargarProductosPorProveedor();
         }
@@ -239,7 +240,7 @@ namespace Equipo1b_TPC
 
                 // Verificar si el producto ya está en la lista
                 var productoExistente = DetallesCompra.FirstOrDefault(d => d.ProductoId == idProducto);
-                
+
                 if (productoExistente != null)
                 {
                     // Actualizar cantidad y precio
@@ -348,10 +349,10 @@ namespace Equipo1b_TPC
         private void MostrarMensaje(string mensaje, string tipo)
         {
             lblMensaje.Text = mensaje;
-            
+
             // Limpiar clases anteriores
             lblMensaje.CssClass = "mensaje-box";
-            
+
             // Agregar clase según el tipo
             switch (tipo.ToLower())
             {
@@ -365,7 +366,7 @@ namespace Equipo1b_TPC
                     lblMensaje.CssClass += " mensaje-warning";
                     break;
             }
-            
+
             lblMensaje.Visible = true;
         }
 
@@ -389,13 +390,13 @@ namespace Equipo1b_TPC
             ddlProvedores.SelectedIndex = 0;
             ddlProductos.Items.Clear();
             ddlProductos.Items.Insert(0, new ListItem("Seleccione un Proveedor primero", "0"));
-            
+
             if (filtroAvanzado)
             {
                 ddlMarcas.SelectedIndex = 0;
                 ddlCategorias.SelectedIndex = 0;
             }
-            
+
             ActualizarGridProductos();
             OcultarMensaje();
         }

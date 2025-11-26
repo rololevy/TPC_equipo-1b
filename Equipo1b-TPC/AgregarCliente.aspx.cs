@@ -36,6 +36,7 @@ namespace Equipo1b_TPC
                         txtEmail.Text = seleccionado.Email;
                         txtTelefono.Text = seleccionado.Telefono;
                         txtDireccion.Text = seleccionado.Direccion;
+                        ddlTipoFactura.SelectedValue = seleccionado.TipoFactura;
                     }
                 }
             }
@@ -65,11 +66,19 @@ namespace Equipo1b_TPC
                     lblConfirmacion.Text = "debe ingregar al menos una razon social y CUIT";
                     return;
                 }
+                if (ddlTipoFactura.SelectedValue == "")
+                {
+                    lblConfirmacion.Visible = true;
+                    lblConfirmacion.CssClass = "text-danger fw-bold";
+                    lblConfirmacion.Text = "Debe seleccionar un tipo de factura";
+                    return;
+                }
                 cl.RazonSocial = txtRazonSocial.Text.Trim();
                 cl.Cuit = txtCuit.Text.Trim();
                 cl.Email = txtEmail.Text.Trim();
                 cl.Telefono = txtTelefono.Text.Trim();
                 cl.Direccion = txtDireccion.Text.Trim();
+                cl.TipoFactura = ddlTipoFactura.SelectedValue;
                 //si vamos a modificar
                 if (Request.QueryString["Id"] != null)
                 {
