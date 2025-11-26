@@ -34,11 +34,11 @@ namespace Negocio
                 }
                 if (idMarca != 0)
                 {
-                    consulta += "AND P.MarcaId=" + idMarca.ToString();
+                    consulta += " AND P.MarcaId=" + idMarca.ToString();
                 }
                 if (idCategoria != 0)
                 {
-                    consulta += "AND P.CategoriaId=" + idCategoria.ToString();
+                    consulta += " AND P.CategoriaId=" + idCategoria.ToString();
                 }
 
                 datos.setearConsulta(consulta);
@@ -78,6 +78,105 @@ namespace Negocio
                     }
 
                     // Cargar Proveedor con su nombre
+                    if (datos.Lector["ProveedorId"] != DBNull.Value)
+                    {
+                        aux.Provedor = new Proveedor 
+                        { 
+                            Id = (int)datos.Lector["ProveedorId"],
+                            RazonSocial = datos.Lector["ProveedorNombre"] != DBNull.Value 
+                                ? (string)datos.Lector["ProveedorNombre"] 
+                                : ""
+                        };
+                    }
+
+                    aux.PrecioCompra = (decimal)datos.Lector["PrecioCompra"];
+                    aux.PorcentajeGanancia = Convert.ToInt32(datos.Lector["PorcentajeGanancia"]);
+                    aux.StockActual = (int)datos.Lector["StockActual"];
+                    aux.StockMinimo = (int)datos.Lector["StockMinimo"];
+                    aux.Activo = (bool)datos.Lector["Activo"];
+
+                    lproductos.Add(aux);
+                }
+                return lproductos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        /// <summary>
+        /// Lista productos de un proveedor específico (para usar en compras)
+        /// </summary>
+        public List<Producto> listarPorProveedor(int proveedorId, int idMarca = 0, int idCategoria = 0)
+        {
+            List<Producto> lproductos = new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
+            
+            try
+            {
+                string consulta = @"SELECT P.Id, P.Nombre, P.Descripcion, 
+                                   P.MarcaId, P.CategoriaId, P.ProveedorId, 
+                                   P.PrecioCompra, P.PorcentajeGanancia, 
+                                   P.StockActual, P.StockMinimo, P.Activo,
+                                   M.Nombre AS MarcaNombre,
+                                   C.Nombre AS CategoriaNombre,
+                                   PR.RazonSocial AS ProveedorNombre
+                                   FROM Productos P
+                                   LEFT JOIN Marcas M ON P.MarcaId = M.Id
+                                   LEFT JOIN Categorias C ON P.CategoriaId = C.Id
+                                   LEFT JOIN Proveedores PR ON P.ProveedorId = PR.Id
+                                   WHERE P.Activo = 1 
+                                     AND P.ProveedorId = @ProveedorId";
+
+                if (idMarca != 0)
+                {
+                    consulta += " AND P.MarcaId = " + idMarca.ToString();
+                }
+                if (idCategoria != 0)
+                {
+                    consulta += " AND P.CategoriaId = " + idCategoria.ToString();
+                }
+
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@ProveedorId", proveedorId);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto aux = new Producto();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = datos.Lector["Descripcion"] != DBNull.Value 
+                        ? (string)datos.Lector["Descripcion"] 
+                        : string.Empty;
+                    
+                    if (datos.Lector["MarcaId"] != DBNull.Value)
+                    {
+                        aux.Marca = new Marca 
+                        { 
+                            Id = (int)datos.Lector["MarcaId"],
+                            Nombre = datos.Lector["MarcaNombre"] != DBNull.Value 
+                                ? (string)datos.Lector["MarcaNombre"] 
+                                : ""
+                        };
+                    }
+
+                    if (datos.Lector["CategoriaId"] != DBNull.Value)
+                    {
+                        aux.Categoria = new Categoria 
+                        { 
+                            Id = (int)datos.Lector["CategoriaId"],
+                            Nombre = datos.Lector["CategoriaNombre"] != DBNull.Value 
+                                ? (string)datos.Lector["CategoriaNombre"] 
+                                : ""
+                        };
+                    }
+
                     if (datos.Lector["ProveedorId"] != DBNull.Value)
                     {
                         aux.Provedor = new Proveedor 
@@ -212,6 +311,64 @@ namespace Negocio
             {
                 datos.setearConsulta("UPDATE Productos SET Activo = 0 WHERE Id = @Id");
                 datos.setearParametro("@Id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        /// <summary>
+        /// Actualiza únicamente el stock actual de un producto
+        /// </summary>
+        public void ActualizarStock(int productoId, int nuevoStock)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            
+            try
+            {
+                datos.setearConsulta(@"UPDATE Productos 
+                                      SET StockActual = @StockActual 
+                                      WHERE Id = @Id");
+
+                datos.setearParametro("@Id", productoId);
+                datos.setearParametro("@StockActual", nuevoStock);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        /// <summary>
+        /// Actualiza el stock actual y el stock mínimo de un producto
+        /// </summary>
+        public void ActualizarStocks(int productoId, int nuevoStockActual, int nuevoStockMinimo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            
+            try
+            {
+                datos.setearConsulta(@"UPDATE Productos 
+                                      SET StockActual = @StockActual,
+                                          StockMinimo = @StockMinimo
+                                      WHERE Id = @Id");
+
+                datos.setearParametro("@Id", productoId);
+                datos.setearParametro("@StockActual", nuevoStockActual);
+                datos.setearParametro("@StockMinimo", nuevoStockMinimo);
+
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

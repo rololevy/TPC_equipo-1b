@@ -7,6 +7,9 @@
         <div class="card-grid p-4 border-1 text-white" style="min-width: 400px; background: linear-gradient(135deg, #0d6efd, #5fa8ff); border-radius: 15px;">
             <h2>Gestión de Stock</h2>
 
+            <!-- Mensaje de error -->
+            <asp:Label ID="lblError" runat="server" CssClass="alert alert-danger d-block mb-3" Visible="false"></asp:Label>
+
             <div class="row mb-3">
                 <div class="col-md-4">
                     <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Buscar producto..." AutoPostBack="true" OnTextChanged="txtBuscar_TextChanged"></asp:TextBox>
@@ -35,9 +38,10 @@
                             <asp:BoundField HeaderText="Producto" DataField="Nombre" />
                             <asp:BoundField HeaderText="Marca" DataField="Marca.Nombre" />
                             <asp:BoundField HeaderText="Categoría" DataField="Categoria.Nombre" />
+                            <asp:BoundField HeaderText="Proveedor" DataField="Provedor.RazonSocial" />
                             <asp:BoundField HeaderText="Stock Actual" DataField="StockActual" ItemStyle-CssClass="text-center" />
                             <asp:BoundField HeaderText="Stock Mínimo" DataField="StockMinimo" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Precio" DataField="PrecioCompra" DataFormatString="{0:C2}" />
+                            <asp:BoundField HeaderText="Precio Compra" DataField="PrecioCompra" DataFormatString="{0:C2}" />
                             <asp:TemplateField HeaderText="Estado">
                                 <ItemTemplate>
                                     <%# Convert.ToInt32(Eval("StockActual")) < Convert.ToInt32(Eval("StockMinimo")) 
@@ -49,7 +53,7 @@
                                 <ItemTemplate>
                                     <asp:LinkButton ID="btnAjustar" runat="server" CssClass="btn btn-sm btn-primary"
                                         CommandName="Ajustar" CommandArgument='<%# Eval("Id") %>'>
-                                Ajustar
+                                        <i class="bi bi-pencil-square"></i> Ajustar
                                     </asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -60,15 +64,26 @@
 
             <asp:Panel ID="pnlModal" runat="server" CssClass="modal-overlay" Visible="false">
                 <div class="modal-content-custom">
-                    <h4>Ajustar Stock</h4>
+                    <h4 class="mb-4">Ajustar Stock</h4>
                     <asp:HiddenField ID="hfIdProducto" runat="server" Value="0" />
+                    
                     <div class="mb-3">
-                        <asp:Label ID="lblProducto" runat="server" Text="" CssClass="form-label fw-bold"></asp:Label>
+                        <label class="form-label fw-bold text-dark">Producto:</label>
+                        <asp:Label ID="lblProducto" runat="server" Text="" CssClass="form-control-plaintext fw-bold text-primary"></asp:Label>
                     </div>
+                    
                     <div class="mb-3">
-                        <label class="form-label">Nuevo Stock:</label>
-                        <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                        <label class="form-label text-dark">Stock Actual:</label>
+                        <asp:TextBox ID="txtStockActual" runat="server" CssClass="form-control" TextMode="Number" min="0"></asp:TextBox>
+                        <small class="form-text text-muted">Cantidad disponible en inventario</small>
                     </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label text-dark">Stock Mínimo:</label>
+                        <asp:TextBox ID="txtStockMinimo" runat="server" CssClass="form-control" TextMode="Number" min="0"></asp:TextBox>
+                        <small class="form-text text-muted">Nivel de alerta para reabastecimiento</small>
+                    </div>
+                    
                     <div class="d-flex justify-content-end">
                         <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary me-2" OnClick="btnGuardar_Click" />
                         <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" />
@@ -95,7 +110,8 @@
             background: white;
             padding: 30px;
             border-radius: 10px;
-            min-width: 400px;
+            min-width: 450px;
+            color: #333;
         }
     </style>
 </asp:Content>

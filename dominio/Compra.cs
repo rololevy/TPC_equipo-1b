@@ -7,27 +7,31 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    internal class Compra
+    public class Compra
     {
-        public int idCompra { get; set; }
-        public Proveedor proveedor { get; set; }
-        public DateTime fechaCompra { get; set; }
-        public List<detalleCompra> detalles {get;set;}
-        public bool recibida { get; set; }//true si ya se recibio la compra
-         public Compra()
+        public int Id { get; set; }
+        public Proveedor Proveedor { get; set; }
+        public DateTime FechaCompra { get; set; }
+        public List<detalleCompra> Detalles { get; set; }
+        public bool Recibida { get; set; }
+        public decimal Total { get; set; }
+
+        public Compra()
         {
-            detalles = new List<detalleCompra>();
-            recibida = false;
+            Detalles = new List<detalleCompra>();
+            Recibida = true;
+            FechaCompra = DateTime.Now;
         }
-        public decimal calcularTotal()
+
+        public decimal CalcularTotal()
         {
             decimal total = 0;
-            foreach(var detalle in detalles)
+            foreach (var detalle in Detalles)
             {
                 total += detalle.CalcularTotal();
             }
+            Total = total;
             return total;
         }
-
     }
 }

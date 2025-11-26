@@ -10,13 +10,14 @@ namespace dominio
 {
     public class detalleCompra
     {
-        public Producto producto { get; set; }
-        public int cantidad { get; set; }
-        
+        public int Id { get; set; }
+        public Producto Producto { get; set; }
+        public int Cantidad { get; set; }
+        public decimal PrecioUnitario { get; set; }
 
         public decimal CalcularTotal()
         {
-            return cantidad * producto.PrecioCompra;
+            return Cantidad * PrecioUnitario;
         }
     }
 }
