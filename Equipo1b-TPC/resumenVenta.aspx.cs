@@ -58,5 +58,47 @@ namespace Equipo1b_TPC
             CargarResumenHistorico();
 
         }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFechaDesde.Text) || string.IsNullOrEmpty(txtFechaHasta.Text))
+            {
+                lblMensajeHistorial.Text = "Debe seleccionar al menos dos fechas para filtrar ";
+                lblMensajeHistorial.Visible = true;
+                return;
+            }
+            DateTime desde = DateTime.Parse(txtFechaDesde.Text);
+            DateTime hasta = DateTime.Parse(txtFechaHasta.Text);
+            //validamos que tenga un rango correcto
+            if (desde > hasta)
+            {
+                lblMensajeHistorial.Text = "La primer fecha seleccionada no puede ser mayor a la segunda ";
+                lblMensajeHistorial.Visible = true;
+                CargarResumenHistorico();
+                return;
+            }
+            ResumenVentaNegocio negocio= new ResumenVentaNegocio();
+            List<ResumenVenta> lresumen = negocio.filtrarPorFechas(desde, hasta);
+            gvHistorialVentas.DataSource = lresumen;
+            gvHistorialVentas.DataBind();
+            if (lresumen.Count == 0)
+            {
+                lblMensajeHistorial.Text = "No se encontraron resultados para el rango ingresado";
+                lblMensajeHistorial.Visible = true;
+            }
+            lblMensajeHistorial.Visible = false;
+
+
+
+            
+        }
+
+        protected void btnLimpiarFiltros_Click(object sender, EventArgs e)
+        {
+            lblMensajeHistorial.Visible = false;
+            lblDesde.Text = "";
+            lblHasta.Text = "";
+            CargarResumenHistorico();
+        }
     }
 }

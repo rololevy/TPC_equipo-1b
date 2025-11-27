@@ -47,23 +47,23 @@
                             <asp:Label ID="lblHasta" runat="server" Text="Hasta" CssClass="form-label"></asp:Label>
                             <asp:TextBox ID="txtFechaHasta" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
-                        <div class="col-2 mt-4">
-                            <asp:Button ID="btnFiltrar" CssClass="btn btn-primary" runat="server" Text="Filtrar por fecha" />
-                        </div>
-                        <div class="col-2 mt-4">
-                            <asp:Button ID="btnLimpiarFiltros" CssClass="btn btn-danger" runat="server" Text="limpiar filtros" />
+                        <div class="col-4 mt-4">
+                            <asp:Button ID="btnFiltrar" OnClick="btnFiltrar_Click" CssClass="btn btn-primary" runat="server" Text="Filtrar por fecha" />
+                            <asp:Button ID="btnLimpiarFiltros" OnClick="btnLimpiarFiltros_Click" CssClass="btn btn-danger" runat="server" Text="limpiar filtros" />
                         </div>
                     </div>
-                    <div class="col-12 mt-4">
-                        <asp:GridView ID="gvHistorialVentas" ClientIDMode="static" ShowHeaderWhenEmpty="true" EmptyDataText="No hay ventas historicas almacenadas" CssClass="table table-striped table-bordered text-center w-100" AutoGenerateColumns="false" runat="server">
-                            <Columns>
-                                <asp:BoundField DataField="TotalGeneral" HeaderText="Total venta General" />
-                                <asp:BoundField DataField="TotalOperaciones" HeaderText="Total de operaciones" />
-                                <asp:BoundField DataField="fechaResumenVenta" HeaderText="fecha de venta" />
-                            </Columns>
-                        </asp:GridView>
+                    <div style="max-height:400px; overflow-y:auto; overflow-x:hidden; background:white; margin-top:12px;">
+                            <asp:GridView ID="gvHistorialVentas" ClientIDMode="static" ShowHeaderWhenEmpty="true" EmptyDataText="No hay ventas historicas almacenadas" CssClass="table table-striped table-bordered text-center w-100" AutoGenerateColumns="false" runat="server">
+                                <Columns>
+                                    <asp:BoundField DataField="TotalGeneral" HeaderText="Total venta General" />
+                                    <asp:BoundField DataField="TotalOperaciones" HeaderText="Total de operaciones" />
+                                    <asp:BoundField DataField="fechaResumenVenta" HeaderText="fecha de venta" />
+                                </Columns>
+                            </asp:GridView>
                     </div>
-
+                    <div class="d-flex justify-content-center align-items-center">
+                        <asp:Label ID="lblMensajeHistorial" CssClass="text-danger fw-bold text-center" Visible="false" runat="server" Text=""></asp:Label>
+                    </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
