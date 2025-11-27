@@ -52,8 +52,8 @@ namespace Equipo1b_TPC
             ResumenVentaNegocio negocio = new ResumenVentaNegocio();
             negocio.CerrarVenta();
             lblMensaje.Visible = true;
-            lblMensaje.CssClass = "text-succes fw-bold";
-            lblMensaje.Text = "La caja del dia :" + DateTime.Today + " se cerro correctamente ";
+            lblMensaje.CssClass = "h4 text-success fw-bold";
+            lblMensaje.Text = "La caja del dia " + DateTime.Today.ToString("dd/MM/yyyy") + " se cerro correctamente ";
             cargarResumen();
             CargarResumenHistorico();
 

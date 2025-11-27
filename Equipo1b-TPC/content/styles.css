@@ -5,7 +5,6 @@
     height: 200px; /*mismo alto para todas las imagenes*/
     object-fit: contain; /*evita que se corten las imagenes*/
     padding: 15px; /*espacio alrededor de la imagen*/
-   
 }
 
 .card-group {
@@ -15,27 +14,30 @@
     gap: 20px; /*espacio entre cards*/
     margin-top: 50px; /*espacio entre la navbar*/
     flex-wrap: wrap;
-    padding-left: 100px; 
+    padding-left: 100px;
     padding-right: 100px;
 }
 
-.card:hover{
-    transform:scale(1.05); /*agrandamiento al pasar el mouse*/
-    box-shadow:0 4px 8px rgba(0, 0, 0, 0.15);  /*sombra*/
+.card:hover {
+    transform: scale(1.05); /*agrandamiento al pasar el mouse*/
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /*sombra*/
 }
 /*desabilitamos agrandamiento para las cards grid*/
 .card.card-grid {
     transition: none;
 }
-.card.card-grid:hover {
-    transform: none;
-    box-shadow: none;
- }
+
+    .card.card-grid:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
 body {
-    background-color:grey; /*color de fondo*/
+    background-color: grey; /*color de fondo*/
     margin: 0;
     padding: 0;
 }
+
 .tabla-productos {
     min-height: 700px;
     max-height: 700px;
@@ -45,14 +47,15 @@ body {
     padding: 0;
     width: 100%;
 }
-#gvProductos{
-    width:100%;
+
+#gvProductos {
+    width: 100%;
 }
-#gvProductos{
+
+#gvProductos {
     position: sticky;
-    top:0;
-    z-index:10;
-    
+    top: 0;
+    z-index: 10;
 }
 /*ajuste para las lineas */
 .table-bordered td,
@@ -72,12 +75,12 @@ body {
 }
 
 .table {
-    width:100%;
+    width: 100%;
     border-collapse: collapse !important;
 }
 
-.contenedor-tabla{
-    width:100%;
-    display:flex;
-    flex-direction:column;
+.contenedor-tabla {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }

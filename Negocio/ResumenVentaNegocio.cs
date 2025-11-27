@@ -202,6 +202,44 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
-        } 
+        }
+        public List<ResumenVenta> filtrarPorFechas(DateTime desde, DateTime hasta)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<ResumenVenta> lresumen = new List<ResumenVenta>();
+            try
+            {
+                string consulta = "select NroDeCierre,TotalGeneral,TotalEfectivo,TotalTarjeta,TotalQr,TotalFA,TotalFB,TotalFC,TotalOperaciones,FechaResumenVenta from resumenVenta Where Cerrado=1 and FechaResumenVenta BETWEEN @desde and @hasta";
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@desde", desde);
+                datos.setearParametro("@hasta", hasta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    ResumenVenta aux = new ResumenVenta();
+                    aux.NroDeCierre = (int)datos.Lector["NroDeCierre"];
+                    aux.totalGeneral = (decimal)datos.Lector["TotalGeneral"];
+                    aux.totalEfectivo = (decimal)datos.Lector["TotalEfectivo"];
+                    aux.totalTarjeta = (decimal)datos.Lector["TotalTarjeta"];
+                    aux.totalQr = (decimal)datos.Lector["TotalQr"];
+                    aux.totalFa = (decimal)datos.Lector["TotalFA"];
+                    aux.totalFb = (decimal)datos.Lector["TotalFB"];
+                    aux.totalFc = (decimal)datos.Lector["TotalFC"];
+                    aux.totalOperaciones = (int)datos.Lector["TotalOperaciones"];
+                    aux.fechaResumenVenta = (DateTime)datos.Lector["FechaResumenVenta"];
+                    lresumen.Add(aux);
+
+                }
+                return lresumen;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

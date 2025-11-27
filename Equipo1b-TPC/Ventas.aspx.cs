@@ -371,26 +371,29 @@ namespace Equipo1b_TPC
             List<Cliente> lclientes = negocio.listar(false, int.Parse(ddlClientes.SelectedValue));
             venta.cliente = lclientes[0];
             venta.calcularTotal();
+            //intentamos actualizar resumen de venta con los datos
+            //sumamos la venta al resumen
+            bool actualizo = resumenVentaNegocio.actualizarResumenDeldia(venta);
+            //si no actualizo mostramos mensaje
+            if (!actualizo)
+            {
+                lblMensaje.Text = "No se puede agregar la venta al resumen debido a que , la venta del dia " + DateTime.Today.ToString("dd/MM/yyyy") + " esta cerrada";
+                lblMensaje.Visible = true;
+                return;
+            }
+            //si el resumen se actualizo
             //obtenemos el id de venta agregado
-            int numeroFactura= ventaNegocio.Agregar(venta);
-
+            int numeroFactura = ventaNegocio.Agregar(venta);
+           
             //guardamos los detalles
-            foreach(var det in ldetalle)
+            foreach (var det in ldetalle)
             {
                 det.NumeroFactura = numeroFactura;
                 det.PrecioUnitario = det.producto.PrecioVenta;
                 det.subtotal = det.CalcularSubtotal();
                 detalleNegocio.AgregarDetalle(det);
             }
-            //sumamos la venta al resumen
-            bool actualizo=resumenVentaNegocio.actualizarResumenDeldia(venta);
-            //si no actualizo mostramos mensaje
-            if (!actualizo)
-            {
-                lblMensaje.Text = "No se puede agregar la venta al resumen debido a que , la venta del dia " + DateTime.Today.ToString("dd/MM/yyyy") + " esta cerrada";
-                lblMensaje.Visible = true;
-            }
-           
+            
             //reiniciamos la lista y controles
             ldetalle = new List<detalleVenta>();
             CargarDetalle();
