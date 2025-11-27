@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Categorias.aspx" />
     <Content Include="content\styles.css" />
+    <Content Include="Error.aspx" />
     <Content Include="FormularioProducto.aspx" />
     <Content Include="gestionProductos.aspx" />
     <Content Include="GestionProveedores.aspx" />
@@ -93,6 +94,13 @@
     </Compile>
     <Compile Include="Categorias.aspx.designer.cs">
       <DependentUpon>Categorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="FormularioProducto.aspx.cs">
       <DependentUpon>FormularioProducto.aspx</DependentUpon>
