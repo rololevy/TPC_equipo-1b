@@ -58,9 +58,8 @@ namespace Negocio
             }
         }
 
-        /// <summary>
-        /// Valida que un producto pertenezca a un proveedor específico
-        /// </summary>
+        //un producto pertenezca a un proveedor
+
         private bool ValidarProductoProveedor(int productoId, int proveedorId)
         {
             AccesoDatos datos = new AccesoDatos();
