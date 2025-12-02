@@ -19,13 +19,13 @@ namespace Negocio
             try
             {
                 //lista solo cajas abiertas
-                if (!incluirCerradas)
+                if (incluirCerradas)
                 {
-                    consulta += " Where Cerrado = 0";
+                    consulta += " Where Cerrado = 1";
                 }
                 else
                 {
-                    consulta += " Where 1=1";
+                    consulta += " Where Cerrado = 0";
                 }
                 if (fecha != null)
                 {
@@ -183,15 +183,14 @@ namespace Negocio
                 
             }
         }
-        public void CerrarVenta()
+        public void CerrarVenta(int nroDeCierre)
         {
             AccesoDatos datos = new AccesoDatos();
-            DateTime dia = DateTime.Today;
             try
             {
-                string consulta = "Update ResumenVenta set Cerrado=1 Where FechaResumenVenta=@fecha";
+                string consulta = "Update ResumenVenta set Cerrado=1 Where NroDeCierre=@NroDeCierre";
                 datos.setearConsulta(consulta);
-                datos.setearParametro("@fecha", dia);
+                datos.setearParametro("@NroDeCierre", nroDeCierre);
                 datos.ejecutarAccion();
             }
             catch(Exception ex)
@@ -240,6 +239,80 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        //devuelve el ultimo resumen de venta activo
+        public ResumenVenta GetCierreActivo()
+        {
+         
+            AccesoDatos datos = new AccesoDatos();
+            
+            try
+            {
+                datos.setearConsulta("select top 1 NroDeCierre,FechaResumenVenta from resumenVenta where cerrado=0 order by NroDeCierre Desc");
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    ResumenVenta resumen = new ResumenVenta();
+                    resumen.NroDeCierre =(int)datos.Lector["NroDeCierre"];
+                    resumen.fechaResumenVenta = (DateTime)datos.Lector["FechaResumenVenta"];
+                    return resumen;
+                }
+
+                return null;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        //creamos un nuevo resumen si no hay ninguno activo
+        public int crearResumenVenta()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("Insert into resumenVenta(TotalGeneral,TotalEfectivo,TotalTarjeta,TotalQr,TotalFA,TotalFB,TotalFC,TotalOperaciones,FechaResumenVenta,Cerrado) values (0,0,0,0,0,0,0,0, GETDATE(),0)  select SCOPE_IDENTITY()");
+                return datos.ejecutarScalar();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public ResumenVenta ObtenerResumenDelDia()
+        {
+            //verificamos si existe un resumen activo
+            ResumenVenta resumen = GetCierreActivo();
+            //si no existe creamos uno nuevo
+            if (resumen == null)
+            {
+                resumen = new ResumenVenta();
+                int nro = crearResumenVenta();
+                resumen.NroDeCierre = nro;
+                resumen.fechaResumenVenta = DateTime.Today;
+                return resumen;
+            }
+            //si existe pero no es de hoy y sigue activo cerramos y creamos uno nuevo
+            if (resumen.fechaResumenVenta.Date != DateTime.Today.Date)
+            {
+                CerrarVenta(resumen.NroDeCierre);
+                int nro = crearResumenVenta();
+                resumen = new ResumenVenta();
+                resumen.NroDeCierre = nro;
+                resumen.fechaResumenVenta = DateTime.Today;
+                return resumen;
+            }
+            //si existe y es de hoy
+            return resumen;
+          
         }
     }
 }

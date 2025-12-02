@@ -50,7 +50,8 @@ namespace Equipo1b_TPC
         {
 
             ResumenVentaNegocio negocio = new ResumenVentaNegocio();
-            negocio.CerrarVenta();
+            ResumenVenta resuVenta = negocio.GetCierreActivo();
+            negocio.CerrarVenta(resuVenta.NroDeCierre);
             lblMensaje.Visible = true;
             lblMensaje.CssClass = "h4 text-success fw-bold";
             lblMensaje.Text = "La caja del dia " + DateTime.Today.ToString("dd/MM/yyyy") + " se cerro correctamente ";
@@ -74,7 +75,8 @@ namespace Equipo1b_TPC
             {
                 lblMensajeHistorial.Text = "La primer fecha seleccionada no puede ser mayor a la segunda ";
                 lblMensajeHistorial.Visible = true;
-                CargarResumenHistorico();
+                gvHistorialVentas.DataSource = new List<ResumenVenta>();
+                gvHistorialVentas.DataBind();
                 return;
             }
             ResumenVentaNegocio negocio= new ResumenVentaNegocio();
@@ -97,8 +99,22 @@ namespace Equipo1b_TPC
         {
             lblMensajeHistorial.Visible = false;
             lblDesde.Text = "";
-            lblHasta.Text = "";
+            lblHasta.Text = ""; 
             CargarResumenHistorico();
+        }
+
+        protected void btnVerDetalle_Click(object sender, EventArgs e)
+        {
+            //obtenemos el nro de cierre
+            //obtenemos el boton que acciono el evento
+            Button btn = (Button)sender;
+            //obtenemos la fila
+            GridViewRow fila = (GridViewRow)btn.NamingContainer;
+            //obtenemos el nro
+            int nroDeCierre = int.Parse(btn.CommandArgument);
+            //redigirimos a pagina ver detalles
+            Response.Redirect("DetalleVentas.aspx?nroDeCierre=" + nroDeCierre);
+            
         }
     }
 }

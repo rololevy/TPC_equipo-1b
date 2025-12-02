@@ -11,6 +11,7 @@
                         <h4 class="text-white text-center">Resumen general de ventas - <%=DateTime.Now.ToString("dd/MM/yyyy")%></h4>
                         <asp:GridView ID="gvResumenVenta" ClientIDMode="static" ShowHeaderWhenEmpty="true" EmptyDataText="No hay resumen de venta para mostrar" CssClass="table table-striped table-bordered text-center w-100" AutoGenerateColumns="false" runat="server">
                             <Columns>
+                                <asp:BoundField DataField="NroDeCierre" Visible="false" />
                                 <asp:BoundField DataField="TotalGeneral" HeaderText="Total venta General" />
                                 <asp:BoundField DataField="TotalFa" HeaderText="Total Factura(A)" />
                                 <asp:BoundField DataField="TotalFb" HeaderText="Total Factura(B)" />
@@ -19,6 +20,11 @@
                                 <asp:BoundField DataField="TotalEfectivo" HeaderText="Total Efectivo" />
                                 <asp:BoundField DataField="TotalTarjeta" HeaderText="Total Tarjeta" />
                                 <asp:BoundField DataField="TotalQR" HeaderText="Total Qr" />
+                                <asp:TemplateField HeaderText="Detalle">
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnVerDetalle" runat="server" CssClass="btn btn-sm btn-outline-primary mr-1" OnClick="btnVerDetalle_Click" Text="Ver detalle" CommandArgument='<%# Eval("NroDeCierre") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
                         <div class="d-flex justify-content-center align-items-center">
@@ -52,17 +58,23 @@
                             <asp:Button ID="btnLimpiarFiltros" OnClick="btnLimpiarFiltros_Click" CssClass="btn btn-danger" runat="server" Text="limpiar filtros" />
                         </div>
                     </div>
-                    <div style="max-height:400px; overflow-y:auto; overflow-x:hidden; background:white; margin-top:12px;">
-                            <asp:GridView ID="gvHistorialVentas" ClientIDMode="static" ShowHeaderWhenEmpty="true" EmptyDataText="No hay ventas historicas almacenadas" CssClass="table table-striped table-bordered text-center w-100" AutoGenerateColumns="false" runat="server">
-                                <Columns>
-                                    <asp:BoundField DataField="TotalGeneral" HeaderText="Total venta General" />
-                                    <asp:BoundField DataField="TotalOperaciones" HeaderText="Total de operaciones" />
-                                    <asp:BoundField DataField="fechaResumenVenta" HeaderText="fecha de venta" />
-                                </Columns>
-                            </asp:GridView>
+                    <div style="max-height: 400px; overflow-y: auto; overflow-x: hidden; background: white; margin-top: 12px;">
+                        <asp:GridView ID="gvHistorialVentas" ClientIDMode="static" ShowHeaderWhenEmpty="true" EmptyDataText="No hay ventas historicas almacenadas" CssClass="table table-striped table-bordered text-center w-100" AutoGenerateColumns="false" runat="server">
+                            <Columns>
+                                <asp:BoundField DataField="NroDeCierre" Visible="false" />
+                                <asp:BoundField DataField="TotalGeneral" HeaderText="Total venta General" />
+                                <asp:BoundField DataField="TotalOperaciones" HeaderText="Total de operaciones" />
+                                <asp:BoundField DataField="fechaResumenVenta" HeaderText="fecha de venta" />
+                                <asp:TemplateField HeaderText="Detalle">
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnVerDetalle" runat="server" CssClass="btn btn-sm btn-outline-primary mr-1" OnClick="btnVerDetalle_Click" Text="Ver detalle" CommandArgument='<%# Eval("NroDeCierre") %>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
-                        <asp:Label ID="lblMensajeHistorial" CssClass="text-danger fw-bold text-center" Visible="false" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="lblMensajeHistorial" CssClass="h4 text-danger fw-bold text-center" Visible="false" runat="server" Text=""></asp:Label>
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>

@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Error.aspx.cs" Inherits="Equipo1b_TPC.Error" %>
+ï»¿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Error.aspx.cs" Inherits="Equipo1b_TPC.Error" %>
 
 <!DOCTYPE html>
 
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="alert alert-info" role="alert">
-                    <strong>¿Qué hacer?</strong>
+                    <strong>ï¿½Quï¿½ hacer?</strong>
                     <ul class="mb-0 mt-2">
                         <li>Verifica los datos ingresados</li>
                         <li>Intenta nuevamente</li>

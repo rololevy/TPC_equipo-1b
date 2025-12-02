@@ -73,6 +73,7 @@
     <Content Include="FormularioProducto.aspx" />
     <Content Include="gestionProductos.aspx" />
     <Content Include="GestionProveedores.aspx" />
+    <Content Include="DetalleVentas.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Global.asax" />
@@ -122,6 +123,13 @@
     </Compile>
     <Compile Include="GestionProveedores.aspx.designer.cs">
       <DependentUpon>GestionProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleVentas.aspx.cs">
+      <DependentUpon>DetalleVentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleVentas.aspx.designer.cs">
+      <DependentUpon>DetalleVentas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -238,6 +246,10 @@
     <ProjectReference Include="..\Negocio\Negocio.csproj">
       <Project>{612a5dd9-a573-4e22-a4bf-53155f1907e3}</Project>
       <Name>Negocio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Validaciones\Validaciones.csproj">
+      <Project>{96cd0a8f-4f21-4592-929c-beaf94d42cfc}</Project>
+      <Name>Validaciones</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

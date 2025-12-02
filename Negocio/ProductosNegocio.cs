@@ -380,5 +380,30 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public void descontarStock(int productoId, int cantidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"UPDATE Productos 
+                                      SET StockActual=StockActual-@cantidad
+                                      WHERE Id = @Id");
+
+                datos.setearParametro("@Id", productoId);
+                datos.setearParametro("@cantidad", cantidad);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Equipo1b_TPC.Dominio;
-using System; 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -18,18 +18,20 @@ namespace dominio
         public decimal totalVenta { get; set; }
 
         public DateTime FechaVenta { get; set; }
+        public int nroCierreCaja { get; set; }
+
         public venta()
         {
             detalleV = new List<detalleVenta>();
             totalVenta = 0;
             FechaVenta = DateTime.Today;//asignamos la fecha actual
             cliente = new Cliente();
-            
+
         }
         //meotdo que calcula el total de la venta 
         public void calcularTotal()
         {
-            totalVenta = detalleV.Sum(d => d.total);
+            totalVenta = detalleV.Sum(d => d.subtotal);
         }
         //metodo para agregar productos y recalcular el total 
         public void agregarDetalle(detalleVenta detalle)
@@ -37,23 +39,6 @@ namespace dominio
             detalleV.Add(detalle);
             calcularTotal();
         }
-        //public void SetMedioPago(string mPago)
-        //{
-            
-        //    switch (mPago)
-        //    {
-        //        case "T":
-        //            MedioPago = "Tarjeta";
-        //            break;
-        //        case "Q":
-        //            MedioPago = "Codigo Qr";
-        //            break;
-        //        case "E":
-        //            MedioPago = "Efectivo";
-        //            break;
 
-        //    }
-        //}
-        
     }
 }

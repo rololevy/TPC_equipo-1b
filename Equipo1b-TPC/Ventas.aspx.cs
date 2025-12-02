@@ -11,6 +11,7 @@ using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.WebSockets;
 
 
 namespace Equipo1b_TPC
@@ -60,7 +61,7 @@ namespace Equipo1b_TPC
             gvProductos.DataSource = ldetalle;
             gvProductos.DataBind();
 
-            decimal total = ldetalle.Sum(d => d.total);
+            decimal total = ldetalle.Sum(d => d.subtotal);
             var cultaAR = new CultureInfo("es-AR");
             if (ldetalle.Count > 0)
             {
@@ -315,8 +316,10 @@ namespace Equipo1b_TPC
             }
 
             detalleVenta detalle = new detalleVenta();
-            detalle.producto = lprod[0];
+            detalle.producto = producto;
             detalle.cantidad = cantidad;
+            detalle.PrecioUnitario = producto.PrecioVenta;
+            detalle.CalcularSubtotal();
             ldetalle.Add(detalle);
             CargarDetalle();
             lblMensaje.Visible = false;
@@ -347,6 +350,7 @@ namespace Equipo1b_TPC
 
         protected void btnFinalizar_Click(object sender, EventArgs e)
         {
+            //validaciones iniciales
             if (ldetalle == null || ldetalle.Count == 0)
             {
                 lblMensaje.Visible = true;
@@ -359,9 +363,14 @@ namespace Equipo1b_TPC
                 lblMensaje.Text = "Debe seleccionar un medio de pago";
                 return;
             }
+            
             VentaNegocio ventaNegocio = new VentaNegocio();
             DetalleVentasNegocio detalleNegocio = new DetalleVentasNegocio();
             ResumenVentaNegocio resumenVentaNegocio = new ResumenVentaNegocio();
+            ProductosNegocio prodNegocio = new ProductosNegocio();
+            //obtenemos o creamos nuevo resumen
+            ResumenVenta resumen = resumenVentaNegocio.ObtenerResumenDelDia();
+            
             //asignacion de venta
             venta venta = new venta();
             venta.tipoFactura = ddlFactura.SelectedValue;
@@ -370,7 +379,9 @@ namespace Equipo1b_TPC
             ClientesNegocio negocio = new ClientesNegocio();
             List<Cliente> lclientes = negocio.listar(false, int.Parse(ddlClientes.SelectedValue));
             venta.cliente = lclientes[0];
+            venta.nroCierreCaja = resumen.NroDeCierre;
             venta.calcularTotal();
+
             //intentamos actualizar resumen de venta con los datos
             //sumamos la venta al resumen
             bool actualizo = resumenVentaNegocio.actualizarResumenDeldia(venta);
@@ -389,11 +400,15 @@ namespace Equipo1b_TPC
             foreach (var det in ldetalle)
             {
                 det.NumeroFactura = numeroFactura;
-                det.PrecioUnitario = det.producto.PrecioVenta;
-                det.subtotal = det.CalcularSubtotal();
                 detalleNegocio.AgregarDetalle(det);
+                prodNegocio.descontarStock(det.producto.Id,det.cantidad);
+
             }
-            
+           //si la venta se grabo correctamente
+            lblMensaje.Visible = true;
+            lblMensaje.CssClass = "text-success fw-bold";
+            lblMensaje.Text = "La venta N° " + numeroFactura + " se registro correctamente";
+
             //reiniciamos la lista y controles
             ldetalle = new List<detalleVenta>();
             CargarDetalle();

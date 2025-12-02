@@ -15,21 +15,13 @@ namespace dominio
         public Producto producto { get; set; }
         public int cantidad { get; set; }
         public decimal subtotal { get; set; }
-         public decimal PrecioUnitario { get; set;
-        }
-        public decimal total
+         public decimal PrecioUnitario { get; set;}
+        public string MedioPago { get; set; }
+        public string TipoFactura { get; set; }
+        //calcula el subtotal
+        public void CalcularSubtotal()
         {
-            get
-            {
-                return CalcularSubtotal();
-            }
-        }
-        //calcula el subtotal segun el producto
-
-        public decimal CalcularSubtotal()
-        {
-            return producto.CalcularPrecioVenta() * cantidad;
-
+                subtotal=PrecioUnitario * cantidad; 
         }
         public detalleVenta()
         {

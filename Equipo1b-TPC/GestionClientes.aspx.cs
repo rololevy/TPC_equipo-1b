@@ -45,7 +45,7 @@ namespace Equipo1b_TPC
             Button btn = (Button)sender;
             //obtenemos la fila
             GridViewRow fila = (GridViewRow)btn.NamingContainer;
-            //obtenemos el cuit de la fila
+            //obtenemos el id de la fila
             int id = int.Parse(btn.CommandArgument);
             //redigirimos a la pagina para modificar
             Response.Redirect("AgregarCliente.aspx?id=" + id);

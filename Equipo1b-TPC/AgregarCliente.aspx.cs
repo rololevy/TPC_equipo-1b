@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.ModelBinding;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Validaciones;
 
 namespace Equipo1b_TPC
 {
@@ -57,22 +58,31 @@ namespace Equipo1b_TPC
 
             try
             {
+                validacion validador = new validacion();
                 Cliente cl = new Cliente();
                 ClientesNegocio negocio = new ClientesNegocio();
-                if (string.IsNullOrEmpty(txtCuit.Text) || string.IsNullOrEmpty(txtRazonSocial.Text))
+                if ( string.IsNullOrEmpty(txtRazonSocial.Text))
                 {
                     lblConfirmacion.Visible = true;
                     lblConfirmacion.CssClass = "text-danger fw-bold";
-                    lblConfirmacion.Text = "debe ingregar al menos una razon social y CUIT";
+                    lblConfirmacion.Text = "La razon social es obligatoria";
                     return;
                 }
-                if (ddlTipoFactura.SelectedValue == "")
+                if (!validador.validarTxtCuit(txtCuit.Text))
                 {
                     lblConfirmacion.Visible = true;
                     lblConfirmacion.CssClass = "text-danger fw-bold";
-                    lblConfirmacion.Text = "Debe seleccionar un tipo de factura";
+                    lblConfirmacion.Text = "El cuit ingresado es invalido";
                     return;
                 }
+                if (!validador.validarEmail(txtEmail.Text))
+                {
+                    lblConfirmacion.Visible = true;
+                    lblConfirmacion.CssClass = "text-danger fw-bold";
+                    lblConfirmacion.Text = "El email ingresado no tiene un formato valido";
+                    return;
+                }
+        
                 cl.RazonSocial = txtRazonSocial.Text.Trim();
                 cl.Cuit = txtCuit.Text.Trim();
                 cl.Email = txtEmail.Text.Trim();

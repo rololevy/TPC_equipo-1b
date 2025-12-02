@@ -44,7 +44,7 @@
                                             <asp:BoundField DataField="producto.Marca.Nombre" HeaderText="Marca" />
                                             <asp:BoundField DataField="producto.PrecioVenta" DataFormatString="{0:C2}" HeaderText="precio" />
                                             <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
-                                            <asp:BoundField DataField="total" DataFormatString="{0:C2}" HeaderText="Total" />
+                                            <asp:BoundField DataField="subtotal" DataFormatString="{0:C2}" HeaderText="SubTotal" />
                                         </Columns>
                                     </asp:GridView>
                                 </div>
