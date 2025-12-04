@@ -33,7 +33,22 @@ namespace Equipo1b_TPC
                 Session["ldetalle"] = value;
             }
         }
-       
+        private int NroFacturaSession
+        {
+            get
+            {
+                if (Session["NroFactura"] == null)
+                {
+                    Session["NroFactura"] = 0;
+                }
+                return (int)Session["NroFactura"];
+            }
+            set
+            {
+                Session["NroFactura"] = value;
+            }
+        }
+
         public bool filtroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -363,14 +378,20 @@ namespace Equipo1b_TPC
                 lblMensaje.Text = "Debe seleccionar un medio de pago";
                 return;
             }
-            
-            VentaNegocio ventaNegocio = new VentaNegocio();
-            DetalleVentasNegocio detalleNegocio = new DetalleVentasNegocio();
             ResumenVentaNegocio resumenVentaNegocio = new ResumenVentaNegocio();
             ProductosNegocio prodNegocio = new ProductosNegocio();
             //obtenemos o creamos nuevo resumen
             ResumenVenta resumen = resumenVentaNegocio.ObtenerResumenDelDia();
-            
+            //si existe un resumen de venta de hoy pero esta cerrado
+            if (resumen.Cerrado && resumen.fechaResumenVenta == DateTime.Today.Date)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "El cierre del dia ya fue realizado, no puede registar mas ventas";
+                return;
+            }
+
+            VentaNegocio ventaNegocio = new VentaNegocio();
+            DetalleVentasNegocio detalleNegocio = new DetalleVentasNegocio();
             //asignacion de venta
             venta venta = new venta();
             venta.tipoFactura = ddlFactura.SelectedValue;
@@ -395,20 +416,28 @@ namespace Equipo1b_TPC
             //si el resumen se actualizo
             //obtenemos el id de venta agregado
             int numeroFactura = ventaNegocio.Agregar(venta);
-           
+
             //guardamos los detalles
             foreach (var det in ldetalle)
             {
                 det.NumeroFactura = numeroFactura;
                 detalleNegocio.AgregarDetalle(det);
-                prodNegocio.descontarStock(det.producto.Id,det.cantidad);
+                prodNegocio.descontarStock(det.producto.Id, det.cantidad);
 
             }
-           //si la venta se grabo correctamente
+            //guardamos en session el nro de venta y invocamos al modal
+            NroFacturaSession = numeroFactura;
+            ScriptManager.RegisterStartupScript(
+                this,
+                this.GetType(),
+                "MostrarModal",
+                "var m = new bootstrap.Modal(document.getElementById('modalImprimir')); m.show();",
+                true
+             );
+            //si la venta se grabo correctamente
             lblMensaje.Visible = true;
             lblMensaje.CssClass = "text-success fw-bold";
             lblMensaje.Text = "La venta N° " + numeroFactura + " se registro correctamente";
-
             //reiniciamos la lista y controles
             ldetalle = new List<detalleVenta>();
             CargarDetalle();
@@ -457,5 +486,12 @@ namespace Equipo1b_TPC
                 }
             }
         }
+
+        protected void btnImprimir_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("VerFactura.aspx?nroDeFactura=" + NroFacturaSession);
+        }
+
+
     }
 }

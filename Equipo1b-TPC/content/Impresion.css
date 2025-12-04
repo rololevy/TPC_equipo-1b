@@ -1,0 +1,49 @@
+﻿/*sacamos header, footer evitamos que salga url en la impresion*/
+@page {
+    margin: 0;
+}
+
+@media print {
+    /*ocultamos navbar,botones etc*/
+    body * {
+        visibility: hidden !important;
+    }
+    /*mostramos solo la factura*/
+    #printArea, #printArea * {
+        visibility: visible !important;
+    }
+    /*sacamos margenes y rellenos */
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    /*centramos la factura y le damos un ancho prolijo*/
+    .container {
+        width: 100% !important;
+        max-width: 700px !important;
+        margin: 0 auto !important;
+    }
+    /* recuadro donde va la factura*/
+    .card-grid {
+        background: #ffffff !important;
+        border: 2px solid #000 !important;
+        padding: 10px !important;
+        box-shadow: none !important;
+    }
+    /* ocultamos el boton de imprimir*/
+    button, .btn, #btnImprimir {
+        display: none !important;
+    }
+    /*bordes a la tabla*/
+    table, th, td {
+        border: 1px solid #000 !important;
+        border-collapse: collapse !important;
+    }
+    /*gris al encabezado*/
+    th {
+        background: #f2f2f2 !important;
+        color: #000 !important;
+    }
+
+    
+}

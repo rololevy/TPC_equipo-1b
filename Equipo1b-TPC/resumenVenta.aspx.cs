@@ -51,6 +51,12 @@ namespace Equipo1b_TPC
 
             ResumenVentaNegocio negocio = new ResumenVentaNegocio();
             ResumenVenta resuVenta = negocio.GetCierreActivo();
+            if (resuVenta == null)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "No existe un resumen de venta activo";
+                return;
+            }
             negocio.CerrarVenta(resuVenta.NroDeCierre);
             lblMensaje.Visible = true;
             lblMensaje.CssClass = "h4 text-success fw-bold";

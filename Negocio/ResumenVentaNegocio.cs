@@ -269,7 +269,36 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        //creamos un nuevo resumen si no hay ninguno activo
+        //devuelve el ultimo resumen de venta 
+        public ResumenVenta GetUltimoCierre()
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("select top 1 NroDeCierre,FechaResumenVenta,Cerrado from resumenVenta order by NroDeCierre Desc");
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    ResumenVenta resumen = new ResumenVenta();
+                    resumen.NroDeCierre = (int)datos.Lector["NroDeCierre"];
+                    resumen.fechaResumenVenta = (DateTime)datos.Lector["FechaResumenVenta"];
+                    resumen.Cerrado = (bool)datos.Lector["Cerrado"];
+                    return resumen;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public int crearResumenVenta()
         {
             AccesoDatos datos = new AccesoDatos();
@@ -290,7 +319,7 @@ namespace Negocio
         public ResumenVenta ObtenerResumenDelDia()
         {
             //verificamos si existe un resumen activo
-            ResumenVenta resumen = GetCierreActivo();
+            ResumenVenta resumen = GetUltimoCierre();
             //si no existe creamos uno nuevo
             if (resumen == null)
             {

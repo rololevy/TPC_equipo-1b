@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Categorias.aspx" />
+    <Content Include="content\Impresion.css" />
     <Content Include="content\styles.css" />
     <Content Include="Error.aspx" />
     <Content Include="FormularioProducto.aspx" />
@@ -87,6 +88,7 @@
     <Content Include="AgregarProvedor.aspx" />
     <Content Include="resumenVenta.aspx" />
     <Content Include="GestionClientes.aspx" />
+    <Content Include="VerFactura.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categorias.aspx.cs">
@@ -218,6 +220,13 @@
     </Compile>
     <Compile Include="GestionClientes.aspx.designer.cs">
       <DependentUpon>GestionClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerFactura.aspx.cs">
+      <DependentUpon>VerFactura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerFactura.aspx.designer.cs">
+      <DependentUpon>VerFactura.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

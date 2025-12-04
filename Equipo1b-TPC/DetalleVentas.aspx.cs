@@ -12,7 +12,7 @@ namespace Equipo1b_TPC
 {
     public partial class HistorialVentas : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e) 
         {
             if (!IsPostBack)
             {
@@ -45,42 +45,7 @@ namespace Equipo1b_TPC
             gvDetalleVentas.DataBind();
             
         }
-        private void cargarItemsVenta(int NroFactura)
-        {
-            DetalleVentasNegocio negocio = new DetalleVentasNegocio();
-            List<detalleVenta> ldetalle = negocio.ListarFactura(NroFactura); 
-           
-            VentaNegocio ventaNegocio = new VentaNegocio();
-            List<venta> lventas = ventaNegocio.listar(0, NroFactura);
-            ClientesNegocio clientesNegocio = new ClientesNegocio();
-            List<Cliente> lclientes = clientesNegocio.listar(true, lventas[0].cliente.Id);
-            TxtNombreCliente.Text = lclientes[0].RazonSocial;
-            if (lventas.Count == 0)
-            {
-                Label1.Text = " no se encontro ninguna venta";
-                Label1.Visible = true;
-                return;
-            }
-            txtNumeroFactura.Text = NroFactura.ToString();
-            switch (lventas[0].MedioPago)
-            {
-                case "E":
-                    txtMedioPago.Text = "Efectivo";
-                    break;
-                case "Q":
-                    txtMedioPago.Text = "Codigo QR";
-                    break;
-                case "T":
-                    txtMedioPago.Text = "Tarjeta";
-                    break;
-            }
-            txtFecha.Text = lventas[0].FechaVenta.ToString("dd/MM/yyyy");
-            txtTotal.Text = lventas[0].totalVenta.ToString("C");
-            lblTotalFactura.Visible = true;
-            txtTotal.Visible = true;
-            gvItemsVentas.DataSource = ldetalle;
-            gvItemsVentas.DataBind();
-        }
+   
         protected void btnVerDetalle_Click(object sender, EventArgs e)
         {
             //obtenemos el boton que acciono el evento
@@ -89,7 +54,7 @@ namespace Equipo1b_TPC
             GridViewRow fila = (GridViewRow)btn.NamingContainer;
             //obtenemos el nro
             int nroDeFactura = int.Parse(btn.CommandArgument);
-            cargarItemsVenta(nroDeFactura);
+            Response.Redirect("VerFactura.aspx?NroDeFactura="+nroDeFactura);
         }
     }
 }

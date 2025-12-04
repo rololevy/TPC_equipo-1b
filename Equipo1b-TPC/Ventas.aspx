@@ -74,7 +74,7 @@
                             <asp:TextBox ID="txtTotal" CssClass="form-control" AutoPostBack="true" ClientIDMode="Static" ReadOnly="true" placeHolder="Total" runat="server"></asp:TextBox>
                         </div>
                         <div class="col-4">
-                            <asp:DropDownList ID="ddlMedioPago" AutoPostBack="true"  CssClass="form-select" runat="server">
+                            <asp:DropDownList ID="ddlMedioPago" AutoPostBack="true" CssClass="form-select" runat="server">
                                 <asp:ListItem Text="Seleccione el medio de pago" Value="0"></asp:ListItem>
                                 <asp:ListItem Text="Tarjeta" Value="T"></asp:ListItem>
                                 <asp:ListItem Text="codigo QR" Value="Q"></asp:ListItem>
@@ -112,6 +112,24 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
+    <div class="modal" id="modalImprimir" tabindex="-1" aria-labelledby="modalImprimirLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalImprimirLabel">Confirmación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Desea imprimir la factura?
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btnImprimir" OnClick="btnImprimir_Click" CssClass="btn btn-primary" runat="server" Text="Si,Imprimir" />
+                    <asp:Button ID="btnCancelarImpresion" CssClass="btn btn-secondary"  runat="server" Text="No" data-bs-dismiss="modal" />
+                </div>
+
+            </div>
+        </div>
+    </div>
 </asp:Content>
 
 
