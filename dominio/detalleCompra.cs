@@ -14,10 +14,14 @@ namespace dominio
         public Producto Producto { get; set; }
         public int Cantidad { get; set; }
         public decimal PrecioUnitario { get; set; }
-
+        public decimal subtotal { get; set; }
         public decimal CalcularTotal()
         {
             return Cantidad * PrecioUnitario;
+        }
+        public detalleCompra()
+        {
+            Producto = new Producto();
         }
     }
 }

@@ -21,6 +21,8 @@ namespace dominio
             Detalles = new List<detalleCompra>();
             Recibida = true;
             FechaCompra = DateTime.Now;
+            Proveedor = new Proveedor();
+            
         }
 
         public decimal CalcularTotal()

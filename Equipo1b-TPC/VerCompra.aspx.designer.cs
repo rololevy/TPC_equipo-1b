@@ -11,17 +11,17 @@ namespace Equipo1b_TPC
 {
 
 
-    public partial class WebForm7
+    public partial class WebForm9
     {
 
         /// <summary>
-        /// Control UpItemsVenta.
+        /// Control UpVerCompras.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpItemsVenta;
+        protected global::System.Web.UI.UpdatePanel UpVerCompras;
 
         /// <summary>
         /// Control btnImprimir.
@@ -42,76 +42,40 @@ namespace Equipo1b_TPC
         protected global::System.Web.UI.WebControls.Label lblDetalleFactura;
 
         /// <summary>
-        /// Control lblNumeroFactura.
+        /// Control lblNumeroCompra.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNumeroFactura;
+        protected global::System.Web.UI.WebControls.Label lblNumeroCompra;
 
         /// <summary>
-        /// Control txtNumeroFactura.
+        /// Control txtNumeroCompra.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNumeroFactura;
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroCompra;
 
         /// <summary>
-        /// Control lblTipoFactura.
+        /// Control lblRazonSocial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTipoFactura;
+        protected global::System.Web.UI.WebControls.Label lblRazonSocial;
 
         /// <summary>
-        /// Control txtTipoFactura.
+        /// Control txtRazonSocial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTipoFactura;
-
-        /// <summary>
-        /// Control LblNCliente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblNCliente;
-
-        /// <summary>
-        /// Control TxtNombreCliente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtNombreCliente;
-
-        /// <summary>
-        /// Control LblMedioPago.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblMedioPago;
-
-        /// <summary>
-        /// Control txtMedioPago.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMedioPago;
+        protected global::System.Web.UI.WebControls.TextBox txtRazonSocial;
 
         /// <summary>
         /// Control lblFecha.
@@ -132,13 +96,13 @@ namespace Equipo1b_TPC
         protected global::System.Web.UI.WebControls.TextBox txtFecha;
 
         /// <summary>
-        /// Control gvItemsVentas.
+        /// Control gvItemsCompra.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvItemsVentas;
+        protected global::System.Web.UI.WebControls.GridView gvItemsCompra;
 
         /// <summary>
         /// Control lblMensaje.
@@ -150,13 +114,13 @@ namespace Equipo1b_TPC
         protected global::System.Web.UI.WebControls.Label lblMensaje;
 
         /// <summary>
-        /// Control lblTotalFactura.
+        /// Control lblTotalCompra.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalFactura;
+        protected global::System.Web.UI.WebControls.Label lblTotalCompra;
 
         /// <summary>
         /// Control txtTotal.

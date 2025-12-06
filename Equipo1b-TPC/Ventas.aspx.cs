@@ -195,6 +195,7 @@ namespace Equipo1b_TPC
             ddlClientes.DataSource = lcliente;
             ddlClientes.DataTextField = "razonSocial";
             ddlClientes.DataValueField = "Id";
+            ddlFactura.SelectedValue = lcliente[0].TipoFactura;
             ddlClientes.DataBind();
             lblModificarCliente.Visible = false;
         }

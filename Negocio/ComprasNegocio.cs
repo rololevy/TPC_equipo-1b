@@ -1,7 +1,9 @@
 using datos;
 using dominio;
 using Equipo1b_TPC.Dominio;
+using Microsoft.SqlServer.Server;
 using System;
+using System.Collections.Generic;
 
 namespace Negocio
 {
@@ -146,5 +148,115 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-    }
+        public List<Compra> listar(int idCompra = 0) {
+            AccesoDatos datos = new AccesoDatos();
+            string consulta = "select C.id AS CompraId,C.ProveedorId,C.FechaCompra,C.Recibida,C.Total,P.RazonSocial from Compras C inner join Proveedores P on ProveedorId=p.Id";
+            if (idCompra != 0)
+            {
+                consulta += " WHERE C.id=" + idCompra;
+            }
+            try
+            {
+                List<Compra> lcompra = new List<Compra>();
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Compra aux = new Compra();
+                    aux.Id =(int)datos.Lector["CompraId"];
+                    aux.Proveedor.Id = (int)datos.Lector["ProveedorId"];
+                    aux.Proveedor.RazonSocial = (string)datos.Lector["RazonSocial"];
+                    aux.FechaCompra = (DateTime)datos.Lector["FechaCompra"];
+                    aux.Recibida = (bool)datos.Lector["Recibida"];
+                    aux.Total = (decimal)datos.Lector["Total"];
+                    lcompra.Add(aux);
+                }
+                return lcompra;
+            }
+            catch(Exception ex)
+            {
+                
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public List<Compra> listarPorFecha(DateTime desde,DateTime hasta)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string consulta = "select id,ProveedorId,FechaCompra,Recibida,Total from Compras Where Convert(date,FechaCompra) BETWEEN @desde and @hasta";
+            List<Compra> lcompras = new List<Compra>();
+            try
+            {
+                datos.setearConsulta(consulta);
+                datos.setearParametro("@desde", desde.Date);
+                datos.setearParametro("@hasta", hasta.Date);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Compra aux = new Compra();
+                    aux.Id =(int)datos.Lector["id"];
+                    aux.Proveedor.Id = (int)datos.Lector["ProveedorId"];
+                    aux.FechaCompra = (DateTime)datos.Lector["FechaCompra"];
+                    aux.Recibida = (bool)datos.Lector["Recibida"];
+                    aux.Total = (decimal)datos.Lector["Total"];
+
+                    lcompras.Add(aux);
+
+                }
+                return lcompras;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public List<detalleCompra> listarDetalleCompras(int NroCompra = 0)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<detalleCompra> ldetalle = new List<detalleCompra>();
+            string consulta = "select CompraId,ProductoId,Cantidad,PrecioUnitario,Subtotal,P.Nombre from DetalleCompras inner join Productos P on ProductoId=P.Id";
+            if (NroCompra != 0)
+            {
+                consulta += " Where CompraID=" + NroCompra;
+            }
+            try
+            {
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    detalleCompra aux = new detalleCompra();
+                    aux.Id =(int)datos.Lector["CompraId"];
+                    aux.Producto.Id = (int)datos.Lector["ProductoId"];
+                    aux.Cantidad = (int)datos.Lector["Cantidad"];
+                    aux.PrecioUnitario = (decimal)datos.Lector["PrecioUnitario"];
+                    aux.subtotal = (decimal)datos.Lector["Subtotal"];
+                    aux.Producto.Nombre = (string)datos.Lector["Nombre"];
+
+                    ldetalle.Add(aux);
+                }
+                return ldetalle;
+            }
+            
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
+
+        }
 }

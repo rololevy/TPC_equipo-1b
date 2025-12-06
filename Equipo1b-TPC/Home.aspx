@@ -34,7 +34,7 @@
                     <asp:Image ID="imgProvedores" CssClass="card-img-top" ImageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdsTvip-xGcAc0rXklMYadeDmDEVz49bw__Q&s" AlternateText="Provedores" runat="server" />
                     <div class="card-body text-center">
                         <h5 class="card-title">Provedores</h5>
-                        <p class="card-text">Aceso a provedores realizar pedidos  y dar de alta nuevos provedores.</p>
+                        <p class="card-text">Aceso a compras, realizar pedidos a provedores existentes</p>
                         <div class="d-flex justify-content-center">
                             <asp:Button ID="btnProvedores" CssClass="btn btn-primary" runat="server" Text="ir a provedores" OnClick="btnProvedores_Click" />
                         </div>
@@ -90,6 +90,19 @@
                         <p class="card-text">Aceso a Gestion de Proveedores,alta y baja de provedores activos</p>
                         <div class="d-flex justify-content-center">
                             <asp:Button ID="btnGestionProveedores" CssClass="btn btn-primary" OnClick="btnGestionProveedores_Click" runat="server" Text="Ir a gestion de Proveedores" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="card h-100">
+                    <asp:Image ID="imgHistorialCompras" CssClass="card-img-top" ImageUrl="https://cdn-icons-png.flaticon.com/512/12457/12457659.png" AlternateText="Gestion de Compras" runat="server" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Historial compras</h5>
+                        <p class="card-text">Aceso a Historial de compras,Visualizar detalle de compras de provedores activos</p>
+                        <div class="d-flex justify-content-center">
+                            <asp:Button ID="btnHistorialCompras" CssClass="btn btn-primary" OnClick="btnHistorialCompras_Click" runat="server" Text="Ir a historial de compras" />
                         </div>
                     </div>
                 </div>

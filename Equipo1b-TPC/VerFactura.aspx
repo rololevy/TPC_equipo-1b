@@ -9,10 +9,13 @@
             <ContentTemplate>
                 <div class="col-12 mt-4 mb-4">
                     <div class="card-grid p-4  text-white" style="min-width: 400px; background: linear-gradient(135deg, #0d6efd, #5fa8ff); border-radius: 15px;">
+                        <div style="text-align: right;">
+                             <asp:Button ID="btnImprimir" runat="server" Text="Imprimir Factura" CssClass="btn btn-secondary" OnClientClick="imprimirFactura(); return false;" />
+                        </div>
                         <div class="text-center mb-3">
                             <asp:Label ID="lblDetalleFactura" CssClass="h4 text-white text-center" Text="Detalle Factura" runat="server"></asp:Label>
                         </div>
-                        <div class="row mt-3 text-center">
+                        <div class="row mt-3 text-center" id="filaDatosFactura">
                             <div class="col-2">
                                 <asp:Label ID="lblNumeroFactura" runat="server" CssClass="text-center form-label fw-bold" Text="Numero de Factura"></asp:Label>
                                 <asp:TextBox ID="txtNumeroFactura" ReadOnly="true" CssClass="form-control text-center" ClientIDMode="Static" runat="server"></asp:TextBox>
@@ -30,8 +33,8 @@
                                 <asp:TextBox ID="txtMedioPago" ReadOnly="true" CssClass="form-control text-center" ClientIDMode="Static" runat="server"></asp:TextBox>
                             </div>
                             <div class="col-3">
-                                <asp:Label ID="lblFecha" runat="server" CssClass="text-center form-label fw-bold" Text="Fecha De la factura"></asp:Label>
-                                <asp:TextBox ID="txtFecha" ReadOnly="true" CssClass="form-control text-center fecha-factura" ClientIDMode="Static" runat="server"></asp:TextBox>
+                                <asp:Label ID="lblFecha" runat="server" CssClass="text-center form-label fw-bold"  Text="Fecha De la factura"></asp:Label>
+                                <asp:TextBox ID="txtFecha" ReadOnly="true" CssClass="form-control text-center"  Style="text-align:center;" ClientIDMode="Static" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="mt-4">
@@ -57,13 +60,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                </div>
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
-    </div>
-    <div>
-        <asp:Button ID="btnImprimir" runat="server" Text="ImprimirFactura" CssClass="btn btn-primary mt-3" OnClientClick="imprimirFactura(); return false;" />
     </div>
     <script type="text/javascript">
         function imprimirFactura() {

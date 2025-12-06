@@ -1,12 +1,17 @@
 USE master;
 GO
+
 IF EXISTS(SELECT * FROM sys.databases WHERE name = 'COMERCIO_DB')
     DROP DATABASE COMERCIO_DB;
 GO
+
 CREATE DATABASE COMERCIO_DB;
 GO
+
 USE COMERCIO_DB;
 GO
+
+-- 1) USUARIOS
 CREATE TABLE Usuarios (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     NombreUsuario VARCHAR(50) NOT NULL UNIQUE,
@@ -17,6 +22,8 @@ CREATE TABLE Usuarios (
     Activo BIT NOT NULL DEFAULT(1)
 );
 GO
+
+-- 2) CLIENTES
 CREATE TABLE Clientes (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     RazonSocial varchar(100) NOT NULL,
@@ -24,9 +31,12 @@ CREATE TABLE Clientes (
     Telefono VARCHAR(20) NULL,
     Direccion VARCHAR(100) NULL,
     Email VARCHAR(100) NULL,
-    Activo BIT NOT NULL DEFAULT(1)
+    Activo BIT NOT NULL DEFAULT(1),
+    TipoFactura CHAR(1) NOT NULL DEFAULT('B')
 );
 GO
+
+-- 3) PROVEEDORES
 CREATE TABLE Proveedores (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     RazonSocial VARCHAR(100) NOT NULL,
@@ -37,6 +47,8 @@ CREATE TABLE Proveedores (
     Activo BIT NOT NULL DEFAULT(1)
 );
 GO
+
+-- 4) CATEGORIAS
 CREATE TABLE Categorias (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Nombre VARCHAR(150) NOT NULL,
@@ -45,6 +57,7 @@ CREATE TABLE Categorias (
 );
 GO
 
+-- 5) MARCAS
 CREATE TABLE Marcas (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Nombre VARCHAR(100) NOT NULL,
@@ -52,6 +65,7 @@ CREATE TABLE Marcas (
 );
 GO
 
+-- 6) PRODUCTOS (depende de Marcas, Categorias y Proveedores)
 CREATE TABLE Productos (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Nombre VARCHAR(200) NOT NULL,
@@ -71,6 +85,7 @@ CREATE TABLE Productos (
 );
 GO
 
+-- 7) COMPRAS (depende de Proveedores)
 CREATE TABLE Compras (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     ProveedorId INT NOT NULL,
@@ -81,6 +96,7 @@ CREATE TABLE Compras (
 );
 GO
 
+-- 8) DETALLECOMPRAS (depende de Compras y Productos)
 CREATE TABLE DetalleCompras (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     CompraId INT NOT NULL,
@@ -93,34 +109,7 @@ CREATE TABLE DetalleCompras (
 );
 GO
 
-CREATE TABLE Ventas (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    NumeroFactura INT NULL,
-    TipoFactura CHAR(1) NULL,
-    Fecha DATETIME NOT NULL DEFAULT(GETDATE()),
-    ClienteId INT NULL,
-    UsuarioId INT NULL,
-    Total DECIMAL(18,2) NULL,
-    MedioPago CHAR(1) NULL,
-    NroCierreCaja INT NULL,  
-    FOREIGN KEY (ClienteId) REFERENCES Clientes(Id),
-    FOREIGN KEY (UsuarioId) REFERENCES Usuarios(Id),
-    FOREIGN KEY (NroCierreCaja) REFERENCES ResumenVenta(NroDeCierre)
-);
-GO
-
-CREATE TABLE DetalleVentas (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    VentaId INT NOT NULL,
-    ProductoId INT NOT NULL,
-    Cantidad INT NOT NULL,
-    PrecioUnitario DECIMAL(18,2) NOT NULL,
-    SubTotal AS ROUND(Cantidad * PrecioUnitario,2) PERSISTED,
-    FOREIGN KEY (VentaId) REFERENCES Ventas(Id) ON DELETE CASCADE,
-    FOREIGN KEY (ProductoId) REFERENCES Productos(Id)
-);
-GO
-
+-- 9) RESUMENVENTA (no depende de nadie)
 CREATE TABLE ResumenVenta (
     NroDeCierre INT IDENTITY(1,1) PRIMARY KEY,
     TotalGeneral DECIMAL(18,2) NOT NULL DEFAULT(0),
@@ -131,25 +120,57 @@ CREATE TABLE ResumenVenta (
     TotalFB DECIMAL(18,2) NOT NULL DEFAULT(0),
     TotalFC DECIMAL(18,2) NOT NULL DEFAULT(0),
     TotalOperaciones INT NOT NULL DEFAULT(0),
-    FechaResumenVenta DATE NOT NULL,
-    Cerrado BIT NOT NULL DEFAULT(0)
+    FechaResumenVenta DATE NOT NULL DEFAULT (CAST(GETDATE() AS DATE)),
+    Cerrado BIT NOT NULL DEFAULT(0),
+    CONSTRAINT UQ_ResumenVenta_Fecha UNIQUE (FechaResumenVenta)
 );
 GO
 
+
+-- 10) VENTAS (depende de Clientes, Usuarios y ResumenVenta)
+CREATE TABLE Ventas (
+    NumeroFactura INT IDENTITY(1,1) PRIMARY KEY,
+    TipoFactura CHAR(1) NOT NULL,
+    Fecha DATETIME NOT NULL DEFAULT(GETDATE()),
+    ClienteId INT NOT NULL,
+    UsuarioId INT NULL,
+    Total DECIMAL(18,2) NOT NULL,
+    MedioPago CHAR(1) NOT NULL,
+    NroCierreCaja INT NOT NULL,
+    FOREIGN KEY (ClienteId) REFERENCES Clientes(Id),
+    FOREIGN KEY (UsuarioId) REFERENCES Usuarios(Id),
+    FOREIGN KEY (NroCierreCaja) REFERENCES ResumenVenta(NroDeCierre)
+);
+GO
+
+
+CREATE TABLE DetalleVentas (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    NumeroFactura INT NOT NULL,
+    ProductoId INT NOT NULL,
+    Cantidad INT NOT NULL,
+    PrecioUnitario DECIMAL(18,2) NOT NULL,
+    SubTotal AS ROUND(Cantidad * PrecioUnitario, 2) PERSISTED,
+    FOREIGN KEY (ProductoId) REFERENCES Productos(Id),
+    FOREIGN KEY (NumeroFactura) REFERENCES Ventas(NumeroFactura)
+);
+GO
+
+
+
+-- INSERTS
 
 INSERT INTO Usuarios (NombreUsuario, Contrasena, Nombre, Apellido, TipoUsuario, Activo) VALUES
 ('admin', 'admin123', 'Orlando', 'Administrador', 2, 1),
 ('vendedor', 'vendedor123', 'Albano', 'Suarez', 1, 1);
 GO
 
-
-INSERT INTO Clientes (RazonSocial, Cuit, Telefono, Direccion, Email, Activo) VALUES
-('Juan Perez', '20345678901', '1145671234', 'Belgrano 1120', 'juanp@mail.com', 1),
-('Laura Gomez', '27322789451', '1123478900', 'Av. Rivadavia 3320', 'lgomez@mail.com', 1),
-('Carlos Medina', '23123876543', '1134567800', 'Humahuaca 450', 'cmedina@mail.com', 1),
-('Sonia Duarte', '27456712389', '1124908871', 'San Juan 2301', 'sduarte@mail.com', 1);
+INSERT INTO Clientes (RazonSocial, Cuit, Telefono, Direccion, Email, Activo, TipoFactura) VALUES
+('Juan Perez', '20345678901', '1145671234', 'Belgrano 1120', 'juanp@mail.com', 1, 'B'),
+('Laura Gomez', '27322789451', '1123478900', 'Av. Rivadavia 3320', 'lgomez@mail.com', 1, 'B'),
+('Carlos Medina', '23123876543', '1134567800', 'Humahuaca 450', 'cmedina@mail.com', 1, 'B'),
+('Sonia Duarte', '27456712389', '1124908871', 'San Juan 2301', 'sduarte@mail.com', 1, 'B');
 GO
-
 
 INSERT INTO Proveedores (RazonSocial, CUIT, Email, Telefono, Direccion, Activo) VALUES
 ('Distribuidora Andes', '30789456123', 'andes@prov.com', '1122334455', 'Av Siempre Viva 123', 1),
@@ -159,14 +180,12 @@ INSERT INTO Proveedores (RazonSocial, CUIT, Email, Telefono, Direccion, Activo) 
 ('Importadora Solaris', '30776554321', 'solaris@prov.com', '1166778899', 'Corrientes 1500', 1);
 GO
 
-
 INSERT INTO Marcas (Nombre, Activo) VALUES
 ('Samsung', 1),
 ('LG', 1),
 ('Sony', 1),
 ('Philips', 1);
 GO
-
 
 INSERT INTO Categorias (Nombre, Descripcion, Activo) VALUES
 ('Televisores','Televisores LED, LCD y OLED',1),
@@ -175,9 +194,9 @@ INSERT INTO Categorias (Nombre, Descripcion, Activo) VALUES
 GO
 
 INSERT INTO Productos (Nombre, Descripcion, MarcaId, CategoriaId, ProveedorId, PrecioCompra, PorcentajeGanancia, StockActual, StockMinimo, Activo) VALUES
-('TV Samsung 55" 4K', 'Televisor Samsung 55 pulgadas Ultra HD 4K', 1, 1, 1, 450000, 35, 10, 5, 1),
-('TV LG OLED 65"', 'Televisor LG OLED 65 pulgadas', 2, 1, 2, 850000, 30, 5, 3, 1),
+('TV Samsung 55 4K', 'Televisor Samsung 55 pulgadas Ultra HD 4K', 1, 1, 1, 450000, 35, 10, 5, 1),
+('TV LG OLED 65 ', 'Televisor LG OLED 65 pulgadas', 2, 1, 2, 850000, 30, 5, 3, 1),
 ('Soundbar Sony HT-S350', 'Barra de sonido Sony 2.1 canales', 3, 2, 3, 120000, 40, 15, 8, 1),
 ('Microondas Philips 20L', 'Microondas digital 20L', 4, 3, 4, 65000, 45, 20, 10, 1),
-('Smart TV Samsung 43"', 'Smart TV Samsung Full HD 43"', 1, 1, 5, 280000, 35, 12, 6, 1);
+('Smart TV Samsung 43', 'Smart TV Samsung Full HD 43', 1, 1, 5, 280000, 35, 12, 6, 1);
 GO

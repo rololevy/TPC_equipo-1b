@@ -16,8 +16,9 @@ namespace Equipo1b_TPC
         {
             if (!IsPostBack)
             {
-                string nroFactura= Request.QueryString["nroDeFactura"];
-                if(!string.IsNullOrEmpty(nroFactura) && int.TryParse(nroFactura, out int nroFAC)){
+                string nroFactura = Request.QueryString["nroDeFactura"];
+                if (!string.IsNullOrEmpty(nroFactura) && int.TryParse(nroFactura, out int nroFAC))
+                {
                     cargarItemsVenta(nroFAC);
                     if (gvItemsVentas.Rows.Count == 0)
                     {
@@ -35,7 +36,7 @@ namespace Equipo1b_TPC
                     lblMensaje.Visible = true;
                 }
             }
-        } 
+        }
         private void cargarItemsVenta(int NroFactura)
         {
             DetalleVentasNegocio negocio = new DetalleVentasNegocio();

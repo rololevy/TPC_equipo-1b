@@ -49,5 +49,10 @@ namespace Equipo1b_TPC
         {
             Response.Redirect("GestionProveedores.aspx");
         }
+
+        protected void btnHistorialCompras_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("HistorialCompras.aspx");
+        }
     }
 }

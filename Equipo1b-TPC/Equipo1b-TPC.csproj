@@ -89,6 +89,8 @@
     <Content Include="resumenVenta.aspx" />
     <Content Include="GestionClientes.aspx" />
     <Content Include="VerFactura.aspx" />
+    <Content Include="HistorialCompras.aspx" />
+    <Content Include="VerCompra.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categorias.aspx.cs">
@@ -227,6 +229,20 @@
     </Compile>
     <Compile Include="VerFactura.aspx.designer.cs">
       <DependentUpon>VerFactura.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HistorialCompras.aspx.cs">
+      <DependentUpon>HistorialCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HistorialCompras.aspx.designer.cs">
+      <DependentUpon>HistorialCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerCompra.aspx.cs">
+      <DependentUpon>VerCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerCompra.aspx.designer.cs">
+      <DependentUpon>VerCompra.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
