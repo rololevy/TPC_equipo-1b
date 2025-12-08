@@ -1,5 +1,6 @@
 ﻿using dominio;
 using Equipo1b_TPC.Dominio;
+using Equipo1b_TPC.Helpers;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -50,15 +51,18 @@ namespace Equipo1b_TPC
         }
 
         public bool filtroAvanzado { get; set; }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            // VENDEDOR
+            SeguridadHelper.ValidarAccesoMultiple(TipoUsuario.Administrador, TipoUsuario.Vendedor);
+
             if (!IsPostBack)
             {
                 CargarDetalle();
                 CargarClientes();
                 CargarProductos();
             }
-
         }
         private void CargarProductos()
         {

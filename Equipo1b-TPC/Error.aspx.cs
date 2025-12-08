@@ -20,32 +20,31 @@ namespace Equipo1b_TPC
             {
                 lblErrorMessage.Text = Session["LastError"].ToString();
             }
+            else
+            {
+                lblErrorMessage.Text = "Ha ocurrido un error inesperado.";
+            }
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             LimpiarSesion();
-            Response.Redirect("~/Default.aspx", false);
+            Response.Redirect("Home.aspx", false);
         }
 
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
             LimpiarSesion();
-            
-            if (Request.UrlReferrer != null && !Request.UrlReferrer.ToString().Contains("Error.aspx"))
-            {
-                Response.Redirect(Request.UrlReferrer.ToString(), false);
-            }
-            else
-            {
-                Response.Redirect("~/Default.aspx", false);
-            }
+            Response.Redirect("Home.aspx", false);
         }
 
         private void LimpiarSesion()
         {
-            Session.Remove("LastError");
-            Session.Remove("LastErrorPage");
+            if (Session["LastError"] != null)
+                Session.Remove("LastError");
+            
+            if (Session["LastErrorPage"] != null)
+                Session.Remove("LastErrorPage");
         }
     }
 }

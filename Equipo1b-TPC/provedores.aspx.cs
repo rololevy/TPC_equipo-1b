@@ -1,4 +1,5 @@
 using Equipo1b_TPC.Dominio;
+using Equipo1b_TPC.Helpers;
 using dominio;
 using Negocio;
 using System;
@@ -31,6 +32,9 @@ namespace Equipo1b_TPC
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // ADMIN
+            SeguridadHelper.ValidarAcceso(TipoUsuario.Administrador);
+
             if (!IsPostBack)
             {
                 CargarProveedores();

@@ -135,6 +135,7 @@
     <Compile Include="DetalleVentas.aspx.designer.cs">
       <DependentUpon>DetalleVentas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\SeguridadHelper.cs" />
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using Equipo1b_TPC.Dominio;
+using Equipo1b_TPC.Helpers;
 using Negocio;
 
 namespace Equipo1b_TPC
@@ -10,6 +11,9 @@ namespace Equipo1b_TPC
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // ADMIN
+            SeguridadHelper.ValidarAcceso(TipoUsuario.Administrador);
+
             if (!IsPostBack)
             {
                 CargarGrilla();

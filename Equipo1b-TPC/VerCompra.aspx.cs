@@ -1,4 +1,6 @@
 ﻿using dominio;
+using Equipo1b_TPC.Dominio;
+using Equipo1b_TPC.Helpers;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,9 @@ namespace Equipo1b_TPC
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // ADMIN
+            SeguridadHelper.ValidarAcceso(TipoUsuario.Administrador);
+
             if (!IsPostBack)
             {
                 string nroCompra = Request.QueryString["NroCompra"];

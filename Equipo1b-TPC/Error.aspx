@@ -37,7 +37,7 @@
     <form id="form1" runat="server">
         <div class="container">
             <div class="error-container">
-                <div class="error-icon">??</div>
+                <div class="error-icon">⚠️</div>
                 <h2 class="error-title">Ha ocurrido un error</h2>
                 
                 <div class="alert alert-danger" role="alert">
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="alert alert-info" role="alert">
-                    <strong>�Qu� hacer?</strong>
+                    <strong>¿Qué hacer?</strong>
                     <ul class="mb-0 mt-2">
                         <li>Verifica los datos ingresados</li>
                         <li>Intenta nuevamente</li>

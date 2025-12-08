@@ -1,5 +1,6 @@
 ﻿using dominio;
 using Equipo1b_TPC.Dominio;
+using Equipo1b_TPC.Helpers;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,9 @@ namespace Equipo1b_TPC
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // AMBOS
+            SeguridadHelper.ValidarAccesoMultiple(TipoUsuario.Administrador, TipoUsuario.Vendedor);
+
             if (!IsPostBack)
             {
                 string nroFactura = Request.QueryString["nroDeFactura"];
