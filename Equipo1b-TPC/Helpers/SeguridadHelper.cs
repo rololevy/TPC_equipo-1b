@@ -36,7 +36,7 @@ namespace Equipo1b_TPC.Helpers
         {
             if (!ValidarSesion())
             {
-                HttpContext.Current.Session.Add("LastError", "?? Debes iniciar sesión para acceder.");
+                HttpContext.Current.Session.Add("LastError", "Debes iniciar sesión para acceder.");
                 HttpContext.Current.Response.Redirect("Login.aspx", false);
                 return;
             }
@@ -45,8 +45,8 @@ namespace Equipo1b_TPC.Helpers
             if (usuario.TipoUsuario != tipoRequerido)
             {
                 string mensaje = tipoRequerido == TipoUsuario.Administrador
-                    ? "? Sin permisos. Requiere nivel administrador."
-                    : "? Sin permisos.";
+                    ? "Sin permisos. Requiere nivel administrador."
+                    : "Sin permisos.";
 
                 HttpContext.Current.Session.Add("LastError", mensaje);
                 HttpContext.Current.Response.Redirect("Error.aspx", false);
@@ -57,7 +57,7 @@ namespace Equipo1b_TPC.Helpers
         {
             if (!ValidarSesion())
             {
-                HttpContext.Current.Session.Add("LastError", "?? Debes iniciar sesión.");
+                HttpContext.Current.Session.Add("LastError", "Debes iniciar sesión.");
                 HttpContext.Current.Response.Redirect("Login.aspx", false);
                 return;
             }
@@ -69,8 +69,18 @@ namespace Equipo1b_TPC.Helpers
                     return;
             }
 
-            HttpContext.Current.Session.Add("LastError", "? Sin permisos.");
+            HttpContext.Current.Session.Add("LastError", "Sin permisos.");
             HttpContext.Current.Response.Redirect("Error.aspx", false);
+        }
+
+        public static void CerrarSesion()
+        {
+            if (HttpContext.Current.Session != null)
+            {
+                HttpContext.Current.Session.Clear();
+                HttpContext.Current.Session.Abandon();
+            }
+            HttpContext.Current.Response.Redirect("Login.aspx", false);
         }
     }
 }

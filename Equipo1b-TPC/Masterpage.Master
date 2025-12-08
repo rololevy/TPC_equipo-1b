@@ -12,47 +12,48 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <asp:Panel ID="pnlNavBar" runat="server" Visible="true">
-        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="home.aspx">Gestion de negocio</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="Ventas.aspx">Ventas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="provedores.aspx">Proveedores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Stock.aspx">Stock</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Categorias.aspx">Categorías</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Marcas.aspx">Marcas</a>
-                        </li>
-                    </ul>
-                    
-                    <!-- Botones navegación -->
-                    <div class="ms-auto d-flex gap-2">
-                        <button type="button" class="btn btn-outline-light btn-sm" onclick="history.back()" title="Atrás">
-                            ← Atrás
-                        </button>
-                        <button type="button" class="btn btn-outline-light btn-sm" onclick="history.forward()" title="Adelante">
-                            Adelante →
-                        </button>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:Panel ID="pnlNavBar" runat="server" Visible="true">
+            <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="home.aspx">Gestion de negocio</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="Ventas.aspx">Ventas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="provedores.aspx">Proveedores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Stock.aspx">Stock</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Categorias.aspx">Categorías</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Marcas.aspx">Marcas</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Botones navegación y logout -->
+                        <div class="ms-auto d-flex gap-2 align-items-center">
+                            <button type="button" class="btn btn-outline-light btn-sm" onclick="history.back()" title="Atrás">
+                                ← Atrás
+                            </button>
+                            <button type="button" class="btn btn-outline-light btn-sm" onclick="history.forward()" title="Adelante">
+                                Adelante →
+                            </button>
+                            <asp:Button ID="btnLogout" runat="server" Text="Cerrar Sesión" CssClass="btn btn-danger btn-sm" OnClick="btnLogout_Click" CausesValidation="false" />
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
-    </asp:Panel>
-    <form id="form1" runat="server">
-         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            </nav>
+        </asp:Panel>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
