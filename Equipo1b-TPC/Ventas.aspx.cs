@@ -324,30 +324,40 @@ namespace Equipo1b_TPC
             List<Producto> lprod = negocio.listar(id);
 
             Producto producto = lprod[0];
+            //buscamos si el producto ya esta en la lista
+            detalleVenta existente = ldetalle.FirstOrDefault(d => d.producto.Id == id);
 
-            //cantidad del producto actual
-            int cantidadActual = ldetalle.Where(d => d.producto.Id == id).Sum(d => d.cantidad);
-            int cantidadTotal = cantidad + cantidadActual;
+            int cantidadActual = 0;
+            if(existente!=null)
+            {
+                cantidadActual = existente.cantidad;
+            }
+            int cantidadTotal = cantidadActual + cantidad;
+            //validar stock
             if (cantidadTotal > producto.StockActual)
             {
                 lblMensaje.Visible = true;
                 lblMensaje.Text = "No hay stock suficiente Stock total disponible :" + producto.StockActual;
                 return;
             }
-
-            detalleVenta detalle = new detalleVenta();
-            detalle.producto = producto;
-            detalle.cantidad = cantidad;
-            detalle.PrecioUnitario = producto.PrecioVenta;
-            detalle.CalcularSubtotal();
-            ldetalle.Add(detalle);
+            //verificamos si ya existe
+            if (existente != null)
+            {
+                existente.cantidad = cantidadTotal;
+                existente.CalcularSubtotal();
+            }
+            //si no existe sumamos a la lista un detalle nuevo
+            else
+            {
+                detalleVenta nuevo = new detalleVenta();
+                nuevo.producto = producto;
+                nuevo.cantidad = cantidad;
+                nuevo.PrecioUnitario = producto.PrecioVenta;
+                nuevo.CalcularSubtotal();
+                ldetalle.Add(nuevo);
+            }
             CargarDetalle();
             lblMensaje.Visible = false;
-
-
-
-
-
 
         }
 

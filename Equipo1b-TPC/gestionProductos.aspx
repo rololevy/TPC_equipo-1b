@@ -43,47 +43,5 @@
             </div>
         </div>
     </div>
-    <!-- Panel con la grilla -->
-    <asp:Panel ID="pnlGestionProductos" runat="server" Visible="false">
-        <div class="container mt-4">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Listado de Productos</h4>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <asp:TextBox ID="txtBuscar" CssClass="form-control" runat="server" placeholder="Buscar producto..."></asp:TextBox>
-                        <asp:Button ID="btnNuevoProducto" CssClass="btn btn-success ml-2" runat="server" Text="+ Nuevo Producto" />
-                    </div>
-
-                    <asp:GridView ID="gvProductos" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="false">
-                        <Columns>
-                            <asp:BoundField HeaderText="ID" DataField="Id" />
-                            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                            <asp:BoundField HeaderText="Marca" DataField="Marca" />
-                            <asp:BoundField HeaderText="Categoría" DataField="Categoria" />
-                            <asp:BoundField HeaderText="Precio Compra" DataField="PrecioCompra" DataFormatString="{0:C}" />
-                            <asp:BoundField HeaderText="% Ganancia" DataField="PorcentajeGanancia" />
-                            <asp:BoundField HeaderText="Stock Actual" DataField="StockActual" />
-                            <asp:BoundField HeaderText="Stock Mínimo" DataField="StockMinimo" />
-                            <asp:TemplateField HeaderText="Activo">
-                                <ItemTemplate>
-                                    <asp:Label runat="server" Text='<%# (bool)Eval("Activo") ? "Sí" : "No" %>' CssClass="badge badge-secondary"></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Acciones">
-                                <ItemTemplate>
-                                    <asp:Button ID="btnEditar" runat="server" CssClass="btn btn-sm btn-outline-primary mr-1" Text="Editar" />
-                                    <asp:Button ID="btnEliminar" runat="server" CssClass="btn btn-sm btn-outline-danger" Text="Eliminar" />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                        <EmptyDataTemplate>
-                            <div class="alert alert-info">No hay productos para mostrar</div>
-                        </EmptyDataTemplate>
-                    </asp:GridView>
-                </div>
-            </div>
-        </div>
-    </asp:Panel>
+    
 </asp:Content>
