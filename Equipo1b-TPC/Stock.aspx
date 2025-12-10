@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container px-3 mt-4">
+    <div class="container px-3 mt-4 mb-4">
         <div class="card-grid p-4 border-1 text-white" style="min-width: 400px; background: linear-gradient(135deg, #0d6efd, #5fa8ff); border-radius: 15px;">
             <h2>Gestión de Stock</h2>
 
@@ -30,7 +30,7 @@
             </div>
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 tabla-stock">
                     <asp:GridView ID="dgvStock" runat="server" CssClass="table table-striped table-bordered"
                         AutoGenerateColumns="false" DataKeyNames="Id" OnRowCommand="dgvStock_RowCommand">
                         <Columns>
@@ -44,9 +44,11 @@
                             <asp:BoundField HeaderText="Precio Compra" DataField="PrecioCompra" DataFormatString="{0:C2}" />
                             <asp:TemplateField HeaderText="Estado">
                                 <ItemTemplate>
-                                    <%# Convert.ToInt32(Eval("StockActual")) < Convert.ToInt32(Eval("StockMinimo")) 
-                                ? "<span class='badge bg-danger'>Stock Bajo</span>" 
-                                : "<span class='badge bg-success'>OK</span>" %>
+                                    <%# Convert.ToInt32(Eval("StockActual")) == 0
+                                        ? "<span class='badge bg-secondary'>Sin stock</span>"
+                                        :Convert.ToInt32(Eval("StockActual")) < Convert.ToInt32(Eval("StockMinimo")) 
+                                        ?"<span class='badge bg-danger'>Bajo</span>" 
+                                        : "<span class='badge bg-success'>OK</span>" %>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Acciones">
@@ -66,24 +68,24 @@
                 <div class="modal-content-custom">
                     <h4 class="mb-4">Ajustar Stock</h4>
                     <asp:HiddenField ID="hfIdProducto" runat="server" Value="0" />
-                    
+
                     <div class="mb-3">
                         <label class="form-label fw-bold text-dark">Producto:</label>
                         <asp:Label ID="lblProducto" runat="server" Text="" CssClass="form-control-plaintext fw-bold text-primary"></asp:Label>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label class="form-label text-dark">Stock Actual:</label>
                         <asp:TextBox ID="txtStockActual" runat="server" CssClass="form-control" TextMode="Number" min="0"></asp:TextBox>
                         <small class="form-text text-muted">Cantidad disponible en inventario</small>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label class="form-label text-dark">Stock Mínimo:</label>
                         <asp:TextBox ID="txtStockMinimo" runat="server" CssClass="form-control" TextMode="Number" min="0"></asp:TextBox>
                         <small class="form-text text-muted">Nivel de alerta para reabastecimiento</small>
                     </div>
-                    
+
                     <div class="d-flex justify-content-end">
                         <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary me-2" OnClick="btnGuardar_Click" />
                         <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary" OnClick="btnCancelar_Click" />

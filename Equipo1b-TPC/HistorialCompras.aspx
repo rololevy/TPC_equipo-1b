@@ -22,7 +22,7 @@
                             <asp:Button ID="btnLimpiarFiltros" OnClick="btnLimpiarFiltros_Click" CssClass="btn btn-danger" runat="server" Text="limpiar filtros" />
                         </div>
                     </div>
-                    <div style="max-height: 400px; overflow-y: auto; overflow-x: hidden; background: white; margin-top: 12px;">
+                    <div class="col-12 tabla-stock mt-4">
                         <asp:GridView ID="gvHistorialCompras"  CssClass="table table-striped table-bordered text-center w-100" EmptyDataText="No hay compras historicas almacenadas" ShowHeaderWhenEmpty="true" AutoGenerateColumns="false" runat="server">
                             <Columns>
                                 <asp:BoundField DataField="Id" HeaderText="NroCompra" />

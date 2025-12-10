@@ -26,7 +26,7 @@
                 <div class="row justify-content-center align-items-center text-center">
                     <asp:Label ID="lblFiltro" runat="server" ClientIDMode="Static" CssClass="text-danger fw-bold text-center" Visible="false"></asp:Label>
                 </div>
-                <div class="col-12 mt-2">
+                <div class="col-12 mt-2 tabla-stock">
                     <asp:GridView ID="gvProveedores" ClientIDMode="Static" ShowHeaderWhenEmpty="true" EmptyDataText="No se encontraron clientes en la base de datos" CssClass="table table-striped table-bordered text-center table-hover w-100" AutoGenerateColumns="false" runat="server">
                         <Columns>
                             <asp:BoundField  DataField="ID" HeaderText="ID" Visible="false"/>

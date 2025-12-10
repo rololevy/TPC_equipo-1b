@@ -8,7 +8,7 @@
             <h1 class="text-center text-white fw-bold text-primary">Gestion de Categorias
             </h1>
             <div class="row mt-3">
-                <div class="col-12">
+                <div class="col-12 tabla-stock">
                     <asp:GridView ID="dgvCategorias" runat="server"
                         CssClass="table table-striped table-bordered"
                         AutoGenerateColumns="false"
@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    <div class="container mt-4">
+    <div class="container mt-4 mb-4">
         <div class="card-grid p-4 border-1 text-white" style="max-width: 500px; background: linear-gradient(135deg, #0d6efd, #5fa8ff); border-radius: 15px;">
             <h1 class="text-center text-white fw-bold text-primary">
                 Agregar/Modificar Categoría

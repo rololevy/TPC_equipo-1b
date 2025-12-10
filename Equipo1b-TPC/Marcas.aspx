@@ -8,7 +8,7 @@
             <h1 class="text-center text-white fw-bold text-primary">Gestion de Marcas
             </h1>
             <div class="row mt-3">
-                <div class="col-12">
+                <div class="col-12 tabla-stock">
                     <asp:GridView ID="dgvMarcas" runat="server"
                         CssClass="table table-striped table-bordered"
                         AutoGenerateColumns="false"

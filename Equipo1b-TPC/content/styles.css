@@ -80,3 +80,19 @@ body {
     display: flex;
     flex-direction: column;
 }
+.tabla-productos {
+    min-height: 700px;
+    max-height: 700px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 8px;
+    padding: 0;
+    width: 100%;
+}
+
+/*ajustamos el alto y seteamos scroll en tabla stock*/
+.tabla-stock {
+    max-height: 700px;
+    overflow-y: auto;
+ 
+} 
