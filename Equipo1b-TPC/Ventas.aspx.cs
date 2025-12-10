@@ -150,7 +150,7 @@ namespace Equipo1b_TPC
             ddlCategorias.DataTextField = "Nombre";
             ddlCategorias.DataValueField = "Id";
             ddlCategorias.DataBind();
-            ddlCategorias.Items.Insert(0, new ListItem("Seleccione un producto", "0"));
+            ddlCategorias.Items.Insert(0, new ListItem("Seleccione una categoria", "0"));
         }
         private void CargarClientes()
         {
@@ -331,7 +331,7 @@ namespace Equipo1b_TPC
             if (cantidadTotal > producto.StockActual)
             {
                 lblMensaje.Visible = true;
-                lblMensaje.Text = "No hay stock suficiente, stock disponible :" + producto.StockActual;
+                lblMensaje.Text = "No hay stock suficiente Stock total disponible :" + producto.StockActual;
                 return;
             }
 
