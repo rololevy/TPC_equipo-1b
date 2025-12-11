@@ -66,7 +66,7 @@ namespace Equipo1b_TPC
 
             ProductosNegocio negocio = new ProductosNegocio();
 
-            // Si hay filtros avanzados activos
+            // verificamos si hay filtros usados primero
             int idMarca = 0;
             int idCategoria = 0;
 
@@ -79,7 +79,7 @@ namespace Equipo1b_TPC
                     idCategoria = int.Parse(ddlCategorias.SelectedValue);
             }
 
-            // Cargar solo productos del proveedor seleccionado
+            // productos del provedor seleccionado
             List<Producto> lproducto = negocio.listarPorProveedor(idProveedor, idMarca, idCategoria);
 
             ddlProductos.DataSource = lproducto;
@@ -384,21 +384,39 @@ namespace Equipo1b_TPC
         {
             txtCantidad.Text = "";
             txtPrecioUnitario.Text = "";
-            ddlProductos.SelectedIndex = 0;
+            
+            // validamos que el ddl tenga ites antes de setear el índice
+            if (ddlProductos.Items.Count > 0)
+            {
+                ddlProductos.SelectedIndex = 0;
+            }
         }
 
         private void LimpiarFormulario()
         {
             DetallesCompra.Clear();
             LimpiarCamposProducto();
-            ddlProvedores.SelectedIndex = 0;
+
+            // validamos que el ddl tenga ites antes de setear el índicee
+            if (ddlProvedores.Items.Count > 0)
+            {
+                ddlProvedores.SelectedIndex = 0;
+            }
+            
             ddlProductos.Items.Clear();
             ddlProductos.Items.Insert(0, new ListItem("Seleccione un Proveedor primero", "0"));
 
             if (filtroAvanzado)
             {
-                ddlMarcas.SelectedIndex = 0;
-                ddlCategorias.SelectedIndex = 0;
+                if (ddlMarcas.Items.Count > 0)
+                {
+                    ddlMarcas.SelectedIndex = 0;
+                }
+                
+                if (ddlCategorias.Items.Count > 0)
+                {
+                    ddlCategorias.SelectedIndex = 0;
+                }
             }
 
             ActualizarGridProductos();
