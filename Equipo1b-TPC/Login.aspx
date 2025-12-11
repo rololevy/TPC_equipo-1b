@@ -12,6 +12,7 @@
             <div class="mb-3 text-center">
                 <asp:Label ID="lblPassword" runat="server" CssClass="form-label" Text="Contraseña"></asp:Label>
                 <asp:TextBox ID="txtPassword" type="password" CssClass="form-control text-center" runat="server"></asp:TextBox>
+                <asp:Label ID="lblMensaje" CssClass="fw-bold text-danger" ClientIDMode="Static" runat="server" Visible="false"></asp:Label>
             </div>
             <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary" Text="Iniciar Sesion" OnClick="btnLogin_Click"  />
         </div>

@@ -31,7 +31,13 @@ namespace Equipo1b_TPC
                 string password = txtPassword.Text.Trim();
 
                 if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(password))
+                {
+                    lblMensaje.Visible = true;
+                    lblMensaje.Text = "Debe completar ambos campos";
                     return;
+
+                }
+                    
 
                 Usuario usuarioLogueado = negocio.Login(usuario, password);
 
@@ -44,6 +50,8 @@ namespace Equipo1b_TPC
                 {
                     TxtUsuario.Text = string.Empty;
                     txtPassword.Text = string.Empty;
+                    lblMensaje.Text = "Los datos ingresados son incorrectos.";
+                    lblMensaje.Visible = true;
                 }
             }
             catch (Exception ex)
