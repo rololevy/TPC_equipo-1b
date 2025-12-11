@@ -50,6 +50,8 @@ namespace Equipo1b_TPC
             txtNumeroCompra.Text = NroCompra.ToString();
             txtFecha.Text = lcompra[0].FechaCompra.ToShortDateString();
             txtRazonSocial.Text = lcompra[0].Proveedor.RazonSocial;
+            txtTotal.Text = lcompra[0].Total.ToString();
+            txtTotal.Visible = true;
 
             gvItemsCompra.DataSource = ldetalle;
             gvItemsCompra.DataBind();

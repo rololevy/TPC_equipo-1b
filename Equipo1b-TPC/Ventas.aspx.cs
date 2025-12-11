@@ -306,7 +306,7 @@ namespace Equipo1b_TPC
             if (int.Parse(ddlProductos.SelectedValue) == 0)
             {
                 lblMensaje.Visible = true;
-                lblMensaje.Text = "Debe seleccionar al menos un producto para agregarlo a ala venta";
+                lblMensaje.Text = "Debe seleccionar al menos un producto para agregarlo a la venta";
                 return;
 
             }
@@ -316,8 +316,20 @@ namespace Equipo1b_TPC
                 lblMensaje.Text = "Debe ingresar la cantidad para agregar el producto";
                 return;
             }
+            if (!int.TryParse(txtCantidad.Text, out int cantidad))
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "La cantidad ingresada debe ser numerica";
+                return;
+            }
+            if (cantidad <= 0)
+            {
+                lblMensaje.Visible = true;
+                lblMensaje.Text = "La cantidad ingresada no puede ser negativa";
+                return;
+            }
 
-            int cantidad = int.Parse(txtCantidad.Text);
+            
             int id = int.Parse(ddlProductos.SelectedValue);
 
             ProductosNegocio negocio = new ProductosNegocio();

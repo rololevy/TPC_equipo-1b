@@ -46,7 +46,8 @@
                         <div class="mb-3">
                             <label class="form-label">Precio de Compra *</label>
                             <asp:TextBox ID="txtPrecioCompra" runat="server" CssClass="form-control" 
-                                TextMode="Number" step="0.01" placeholder="0.00"></asp:TextBox>
+                            step="0.01" placeholder="0.00"></asp:TextBox>
+                            <asp:RegularExpressionValidator runat="server" ControlToValidate="txtPrecioCompra" ErrorMessage="ingrese un precio valido" ValidationExpression="^\d+(\,\d{1,2}|\.\d{1,2})?$"  CssClass="text-danger fw-bold" ></asp:RegularExpressionValidator>
                         </div>
 
                         <div class="mb-3">

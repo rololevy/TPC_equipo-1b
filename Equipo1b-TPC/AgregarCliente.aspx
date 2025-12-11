@@ -34,6 +34,7 @@
             <div class="mb-3">
                 <asp:Label ID="lblTelefono" runat="server" Text="Telefono del cliente"></asp:Label>
                 <asp:TextBox ID="txtTelefono" ClientIDMode="Static" TextMode="Phone" placeHolder="Ej: 1123456789" CssClass="form-control" runat="server"></asp:TextBox>
+                 <asp:RegularExpressionValidator ControlToValidate="txtTelefono" CssClass="fw-bold text-danger" ErrorMessage="El telefono puede contener solo numeros" ValidationExpression="^\d+$" Display="Dynamic" runat="server"></asp:RegularExpressionValidator>
             </div>
             <div class="mb-3">
                 <asp:Label ID="lblDireccion" CssClass="form-label" runat="server" Text="Direccion del cliente"></asp:Label>

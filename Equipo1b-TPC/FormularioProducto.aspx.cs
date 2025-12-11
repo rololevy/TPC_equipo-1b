@@ -28,6 +28,7 @@ namespace Equipo1b_TPC
                         txtPorcentajeGanancia.Text = prod.PorcentajeGanancia.ToString();
                         txtStockActual.Text = prod.StockActual.ToString();
                         txtStockMinimo.Text = prod.StockMinimo.ToString();
+             
                         chkActivo.Checked = prod.Activo;
 
                         if (prod.Marca != null && prod.Marca.Id != 0)
@@ -87,13 +88,23 @@ namespace Equipo1b_TPC
                     MostrarMensaje("Debe ingresar al menos el Nombre y el Precio de Compra", false);
                     return;
                 }
+                if(!decimal.TryParse(txtPrecioCompra.Text,out decimal precio))
+                {
+                    MostrarMensaje("El precio ingresado debe ser numerico", false);
+                    return;
+                }
+                if (precio < 0)
+                {
+                    MostrarMensaje("El precio ingresado no puede ser negativo", false);
+                    return;
+                }
 
                 ProductosNegocio negocio = new ProductosNegocio();
                 Producto prod = new Producto
                 {
                     Nombre = txtNombre.Text.Trim(),
                     Descripcion = txtDescripcion.Text.Trim(),
-                    PrecioCompra = decimal.Parse(txtPrecioCompra.Text),
+                    PrecioCompra = precio,
                     PorcentajeGanancia = int.Parse(txtPorcentajeGanancia.Text),
                     StockActual = int.Parse(txtStockActual.Text),
                     StockMinimo = int.Parse(txtStockMinimo.Text),

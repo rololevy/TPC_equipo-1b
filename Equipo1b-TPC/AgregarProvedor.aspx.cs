@@ -4,10 +4,12 @@ using Equipo1b_TPC.Helpers;
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Validaciones;
 
 namespace Equipo1b_TPC
 {
@@ -44,14 +46,40 @@ namespace Equipo1b_TPC
 
             try
             {
+                validacion validador = new validacion();
                 Proveedor prov = new Proveedor();
                 ProvedoresNegocio negocio = new ProvedoresNegocio();
-                if (string.IsNullOrEmpty(txtCuit.Text) || string.IsNullOrEmpty(txtRazonSocial.Text))
+                if (string.IsNullOrEmpty(txtRazonSocial.Text))
                 {
                     lblConfirmacion.Visible = true;
-                    lblConfirmacion.Text = "debe ingregar al menos una razon social y CUIT";
                     lblConfirmacion.CssClass = "text-danger fw-bold";
+                    lblConfirmacion.Text = "La razon social es obligatoria";
                     return;
+                }
+                if (!validador.validarTxtCuit(txtCuit.Text))
+                {
+                    lblConfirmacion.Visible = true;
+                    lblConfirmacion.CssClass = "text-danger fw-bold";
+                    lblConfirmacion.Text = "El cuit ingresado es invalido";
+                    return;
+                }
+                if (!validador.validarEmail(txtEmail.Text))
+                {
+                    lblConfirmacion.Visible = true;
+                    lblConfirmacion.CssClass = "text-danger fw-bold";
+                    lblConfirmacion.Text = "El email ingresado no tiene un formato valido";
+                    return;
+                }
+                if (!string.IsNullOrEmpty(txtTelefono.Text))
+                {
+                    //si el usuario ingresa un telefono validamos que sean solo numeros
+                    if (!txtTelefono.Text.All(char.IsDigit))
+                    {
+                        lblConfirmacion.Visible = true;
+                        lblConfirmacion.CssClass = "text-danger fw-bold";
+                        lblConfirmacion.Text = "El telefono debe contener solo numeros";
+                        return;
+                    }
                 }
                 prov.RazonSocial = txtRazonSocial.Text;
                 prov.Email = txtEmail.Text;

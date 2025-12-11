@@ -86,7 +86,17 @@ namespace Equipo1b_TPC
                     lblConfirmacion.Text = "El email ingresado no tiene un formato valido";
                     return;
                 }
-        
+                if (!string.IsNullOrEmpty(txtTelefono.Text))
+                {
+                    //si el usuario ingresa un telefono validamos que sean solo numeros
+                    if (!txtTelefono.Text.All(char.IsDigit))
+                    {
+                        lblConfirmacion.Visible = true;
+                        lblConfirmacion.CssClass = "text-danger fw-bold";
+                        lblConfirmacion.Text = "El telefono debe contener solo numeros";
+                        return;
+                    }
+                }
                 cl.RazonSocial = txtRazonSocial.Text.Trim();
                 cl.Cuit = txtCuit.Text.Trim();
                 cl.Email = txtEmail.Text.Trim();
